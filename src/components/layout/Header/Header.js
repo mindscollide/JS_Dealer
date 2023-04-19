@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Container, Row, Col, Nav, Dropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Modal } from "../../../components/elements";
 import Navbar from "react-bootstrap/Navbar";
 import { Checkbox, Switch } from "antd";
@@ -19,6 +21,7 @@ const Header = () => {
 
   //for user setting
   const [userSetting, setUserSetting] = useState(true);
+
 
   //for user passcode
   const [userPasscode, setUserPasscode] = useState(false);
@@ -40,6 +43,7 @@ const Header = () => {
     setUserSetting(false);
   };
 
+
   return (
     <>
       <Container fluid className="container-header">
@@ -53,13 +57,10 @@ const Header = () => {
               <Nav className="nav-rfq-calculator ms-auto">
                 <Nav.Link>
                   {" "}
-                  <Button
-                    text="Upload Rates"
-                    className="rfq-button"
-                  />
+                  <Button text="Upload Rates" className="rfq-button" />
                 </Nav.Link>
                 <Nav.Link>
-                  <Button text="Calculator" className="caluclator-button" />
+                  <Button text="Calculators" className="caluclator-button" />
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
@@ -110,12 +111,20 @@ const Header = () => {
               <Col lg={12} md={12} sm={12} className="top-button-setting-modal">
                 <Button
                   text="User Settings"
-                  className="modal-setting-btn"
+                  className={
+                    userSetting
+                      ? "modal-setting-btn-Active"
+                      : "modal-setting-btn-notActive"
+                  }
                   onClick={openUserSetting}
                 />
                 <Button
                   text="Passcode Settings"
-                  className="modal-setting-passcode-btn"
+                  className={
+                    userPasscode
+                      ? "modal-setting-passcode-active"
+                      : "modal-setting-passcode-notActive"
+                  }
                   onClick={openPasscodeSetting}
                 />
               </Col>

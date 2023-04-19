@@ -17,7 +17,7 @@
 .rfq-button {
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-radius: 4px !important;
-  padding: 7px 20px;
+  padding: 5px 20px;
   gap: 10px !important;
   font-size: 16px;
   font-weight: 600;
@@ -27,9 +27,9 @@
 }
 
 .rfq-button:hover {
-  background: #e97225 !important;
+  background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
   border-radius: 4px !important;
-  padding: 7px 20px;
+  padding: 5px 20px;
   font-size: 16px;
   font-weight: 600;
   text-align: center !important;
@@ -40,7 +40,7 @@
 .caluclator-button {
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-radius: 4px !important;
-  padding: 7px 35px;
+  padding: 5px 35px;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -49,9 +49,9 @@
 }
 
 .caluclator-button:hover {
-  background: #e97225 !important;
+  background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
   border-radius: 4px !important;
-  padding: 7px 35px;
+  padding: 5px 35px;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -136,7 +136,8 @@
   gap: 5px !important;
 }
 
-.modal-setting-btn {
+.modal-setting-btn-notActive,
+.modal-setting-btn-notActive:hover {
   margin: 0% !important;
   padding: 4px 10px !important;
   background: #e5e8ff !important;
@@ -147,9 +148,7 @@
   border-radius: 2px;
 }
 
-.modal-setting-btn:active,
-.modal-setting-btn:focus,
-.modal-setting-btn:hover {
+.modal-setting-btn-Active {
   margin: 0% !important;
   padding: 4px 10px !important;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
@@ -160,7 +159,8 @@
   border-radius: 2px;
 }
 
-.modal-setting-passcode-btn {
+.modal-setting-passcode-notActive,
+.modal-setting-passcode-notActive:hover {
   margin: 0% !important;
   padding: 4px 14px !important;
   background: #e5e8ff !important;
@@ -171,9 +171,7 @@
   border-radius: 2px;
 }
 
-.modal-setting-passcode-btn:active,
-.modal-setting-passcode-btn:focus,
-.modal-setting-passcode-btn:hover {
+.modal-setting-passcode-active {
   margin: 0% !important;
   padding: 4px 14px !important;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;

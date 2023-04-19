@@ -70,7 +70,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
     },
     {
       key: "1",
@@ -80,7 +80,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.43,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
     },
     {
       key: "1",
@@ -90,7 +90,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.43,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
     },
     {
       key: "1",
@@ -100,7 +100,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
     },
     {
       key: "1",
@@ -110,7 +110,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
     },
     {
       key: "1",
@@ -120,7 +120,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
     },
   ];
 
@@ -134,7 +134,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
       Coupon: 16,
     },
     {
@@ -145,7 +145,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.43,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
       Coupon: 16,
     },
     {
@@ -156,7 +156,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.43,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
       Coupon: 16,
     },
     {
@@ -167,7 +167,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
       Coupon: 16,
     },
     {
@@ -178,7 +178,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
       Coupon: 16,
     },
     {
@@ -189,7 +189,7 @@ const Dealer = () => {
       bid: 232,
       offer: 15.72,
       dtm: "ewew",
-      inventory: 1000000,
+      inventory: "1,000,000",
       Coupon: 16,
     },
   ];
@@ -267,6 +267,70 @@ const Dealer = () => {
       Coupon: 16,
       frequency: 2,
       bidspread: 25,
+    },
+  ];
+
+  // data for sukuk
+  const sukukData = [
+    {
+      key: "1",
+      issuedate: <label className="column-boldness">19-10-2022</label>,
+      maturity: <label className="column-boldness">12-01-2023</label>,
+      tenor: "1Y",
+      bid: 232,
+      offer: 15.72,
+      dtm: "ewew",
+      inventory: "1,000,000",
+    },
+    {
+      key: "1",
+      issuedate: <label className="column-boldness">19-10-2022</label>,
+      maturity: <label className="column-boldness">22-01-2023</label>,
+      tenor: "3m",
+      bid: 232,
+      offer: 15.43,
+      dtm: "ewew",
+      inventory: "1,000,000",
+    },
+    {
+      key: "1",
+      issuedate: <label className="column-boldness">19-10-2022</label>,
+      maturity: <label className="column-boldness">15-01-2023</label>,
+      tenor: "3m",
+      bid: 232,
+      offer: 15.43,
+      dtm: "ewew",
+      inventory: "1,000,000",
+    },
+    {
+      key: "1",
+      issuedate: <label className="column-boldness">19-10-2022</label>,
+      maturity: <label className="column-boldness">18-01-2023</label>,
+      tenor: "6m",
+      bid: 232,
+      offer: 15.72,
+      dtm: "ewew",
+      inventory: "1,000,000",
+    },
+    {
+      key: "1",
+      issuedate: <label className="column-boldness">19-10-2022</label>,
+      maturity: <label className="column-boldness">18-01-2023</label>,
+      tenor: "1Y",
+      bid: 232,
+      offer: 15.72,
+      dtm: "ewew",
+      inventory: "1,000,000",
+    },
+    {
+      key: "1",
+      issuedate: <label className="column-boldness">19-10-2022</label>,
+      maturity: <label className="column-boldness">18-01-2023</label>,
+      tenor: "1Y",
+      bid: 232,
+      offer: 15.72,
+      dtm: "ewew",
+      inventory: "1,000,000",
     },
   ];
 
@@ -643,7 +707,7 @@ const Dealer = () => {
       render: (text) => (
         <Button
           text={text}
-          onClick={openBuyModal}
+          // onClick={openBuyModal}
           className="bid-text-button"
         />
       ),
@@ -1008,6 +1072,151 @@ const Dealer = () => {
       dataIndex: "bidspread",
       key: "bidspread",
       width: "100px",
+    },
+  ];
+
+  // data for columns for first table
+  const sukukColumn = [
+    {
+      title: <label className="table-all-title">Issue Date</label>,
+      dataIndex: "issuedate",
+      key: "issuedate",
+      width: "130px",
+      ellipsis: true,
+      render: (text) => <label className="issue-date-column">{text}</label>,
+      filters: [
+        {
+          text: "12-10-2022",
+          value: "1",
+        },
+        {
+          text: "10-10-2022",
+          value: "2",
+        },
+        {
+          text: "09-10-2022",
+          value: "3",
+        },
+        {
+          text: "07-10-2022",
+          value: "4",
+        },
+      ],
+      filterIcon: (filtered) => (
+        <CaretDownFill className="filter-chevron-icon-client" />
+      ),
+    },
+    {
+      title: <label className="table-all-title">Maturity</label>,
+      dataIndex: "maturity",
+      key: "maturity",
+      width: "110px",
+      ellipsis: true,
+      render: (text) => <label className="maturity-column">{text}</label>,
+      filters: [
+        {
+          text: "12-10-2022",
+          value: "1",
+        },
+        {
+          text: "10-10-2022",
+          value: "2",
+        },
+        {
+          text: "09-10-2022",
+          value: "3",
+        },
+        {
+          text: "07-10-2022",
+          value: "4",
+        },
+      ],
+      filterIcon: (filtered) => (
+        <CaretDownFill className="filter-chevron-icon-client" />
+      ),
+    },
+    {
+      title: <label className="table-all-title">Tenor</label>,
+      dataIndex: "tenor",
+      key: "tenor",
+      align: "center",
+      ellipsis: true,
+      filters: [
+        {
+          text: "1Y",
+          value: "1",
+        },
+        {
+          text: "6M",
+          value: "2",
+        },
+        {
+          text: "3M",
+          value: "3",
+        },
+      ],
+      filterIcon: (filtered) => (
+        <CaretDownFill className="filter-chevron-icon-client" />
+      ),
+    },
+    {
+      title: <label className="table-all-title">Bid</label>,
+      dataIndex: "bid",
+      key: "bid",
+      ellipsis: true,
+      render: (text) => (
+        <Button
+          text={text}
+          onClick={openBuyModal}
+          className="bid-text-button"
+        />
+      ),
+    },
+    {
+      title: <label className="table-all-title">Offer</label>,
+      dataIndex: "offer",
+      key: "offer",
+      render: (text) => (
+        <Button
+          text={text}
+          onClick={openSellModal}
+          className="offer-text-button"
+        />
+      ),
+    },
+    {
+      title: <label className="table-all-title">DTM</label>,
+      dataIndex: "dtm",
+      key: "dtm",
+      ellipsis: true,
+      filters: [
+        {
+          text: "119",
+          value: "1",
+        },
+        {
+          text: "20",
+          value: "2",
+        },
+        {
+          text: "21",
+          value: "3",
+        },
+        {
+          text: "35",
+          value: "3",
+        },
+      ],
+      filterIcon: (filtered) => (
+        <CaretDownFill className="filter-chevron-icon-client" />
+      ),
+    },
+    {
+      title: <label className="table-all-title">Inventory Available</label>,
+      dataIndex: "inventory",
+      width: "100px",
+      key: "inventory",
+      ellipsis: true,
     },
   ];
 
@@ -1503,6 +1712,7 @@ const Dealer = () => {
     setIsTbills(true);
     setIsPib(false);
     setIsPibFloater(false);
+    setIsSukuk(false);
   };
 
   //open right tabe Tbill
@@ -1510,6 +1720,7 @@ const Dealer = () => {
     setIsRightTbills(true);
     setIsRightPib(false);
     setIsPibRightFloater(false);
+    setIsRightSukuk(false);
   };
 
   //open another Pib table
@@ -1517,6 +1728,7 @@ const Dealer = () => {
     setIsPib(true);
     setIsTbills(false);
     setIsPibFloater(false);
+    setIsSukuk(false);
   };
 
   //open right pib table
@@ -1524,6 +1736,7 @@ const Dealer = () => {
     setIsRightPib(true);
     setIsRightTbills(false);
     setIsPibRightFloater(false);
+    setIsRightSukuk(false);
   };
 
   //open another PibFoater table
@@ -1531,11 +1744,29 @@ const Dealer = () => {
     setIsPibFloater(true);
     setIsPib(false);
     setIsTbills(false);
+    setIsSukuk(false);
   };
 
   //open right pibfloater table
   const openRightFloater = () => {
     setIsPibRightFloater(true);
+    setIsRightPib(false);
+    setIsRightTbills(false);
+    setIsRightSukuk(false);
+  };
+
+  //open sukuk table
+  const openSukuk = () => {
+    setIsSukuk(true);
+    setIsTbills(false);
+    setIsPib(false);
+    setIsPibFloater(false);
+  };
+
+  //open right Sukuk table
+  const openRightSukuk = () => {
+    setIsRightSukuk(true);
+    setIsPibRightFloater(false);
     setIsRightPib(false);
     setIsRightTbills(false);
   };
@@ -1753,23 +1984,39 @@ const Dealer = () => {
                   <div className="upper-div-button">
                     <Button
                       text="Tbills"
-                      className={"table-upper-tbill-button"}
+                      className={
+                        isTbills
+                          ? "table-upper-tbill-button-active"
+                          : "table-upper-tbill-button-notActive "
+                      }
                       onClick={openTbillTable}
                     />
                     <Button
                       text="PIBs"
-                      className="table-upper-PIB-button"
+                      className={
+                        isPib
+                          ? "table-upper-PIB-button-active"
+                          : "table-upper-PIB-button-notActive"
+                      }
                       onClick={openPibTable}
                     />
                     <Button
                       text="PIB Floater"
-                      className="table-upper-Floater-button"
+                      className={
+                        isPibFloater
+                          ? "table-upper-PIB-button-active"
+                          : "table-upper-Floater-button-notActive"
+                      }
                       onClick={openPibFloaterTable}
                     />
                     <Button
                       text="SUKUK"
-                      className="table-upper-SUKUK-button"
-                      onClick={openTbillTable}
+                      className={
+                        isSukuk
+                          ? "table-upper-SUKUK-button-active"
+                          : "table-upper-SUKUK-button-notActive"
+                      }
+                      onClick={openSukuk}
                     />
                   </div>
                 </>
@@ -1809,8 +2056,8 @@ const Dealer = () => {
                   ) : isSukuk ? (
                     <>
                       <Table
-                        column={columns}
-                        rows={data}
+                        column={sukukColumn}
+                        rows={sukukData}
                         className="inside-table"
                         pagination={false}
                       />
@@ -2005,23 +2252,39 @@ const Dealer = () => {
                   <div className="upper-div-button">
                     <Button
                       text="Tbills"
-                      className="table-upper-tbill-button"
+                      className={
+                        isRightTbills
+                          ? "table-upper-tbill-button-active"
+                          : "table-upper-tbill-button-notActive"
+                      }
                       onClick={openRightTbill}
                     />
                     <Button
                       text="PIBs"
-                      className="table-upper-PIB-button"
+                      className={
+                        isRightPib
+                          ? "table-upper-PIB-button-active"
+                          : "table-upper-PIB-button-notActive"
+                      }
                       onClick={openRightPib}
                     />
                     <Button
                       text="PIB Floater"
-                      className="table-upper-Floater-button"
+                      className={
+                        isPibRightFloater
+                          ? "table-upper-Floater-button-active"
+                          : "table-upper-Floater-button-notActive"
+                      }
                       onClick={openRightFloater}
                     />
                     <Button
                       text="SUKUK"
-                      className="table-upper-SUKUK-button"
-                      onClick={openRightTbill}
+                      className={
+                        isRightSukuk
+                          ? "table-upper-SUKUK-button-active"
+                          : "table-upper-SUKUK-button-notActive"
+                      }
+                      onClick={openRightSukuk}
                     />
                   </div>
                 </>
@@ -2089,12 +2352,18 @@ const Dealer = () => {
             <Col lg={6} md={6} sm={6} className="txn-outstanding-btns">
               <Button
                 text="TXN Summary"
-                className={"txn-summary-btn"}
+                className={
+                  isTxn ? "txn-summary-btn-outline" : "txn-summary-btn"
+                }
                 onClick={txnTableHandler}
               />
               <Button
                 text="Outstanding Deals"
-                className={"txn-summary-btn"}
+                className={
+                  isOutstanding
+                    ? "outstanding-summary-btn-outline"
+                    : "outstanding-summary-btn"
+                }
                 onClick={outstandingTableHandler}
               />
             </Col>
@@ -2122,7 +2391,7 @@ const Dealer = () => {
             </Col>
           </Row>
           <Row>
-            <Col lg={12} md={12} sm={12} className="features-table">
+            <Col lg={12} md={12} sm={12} className="features-table mt-2">
               {isTxn ? (
                 <>
                   <Table
