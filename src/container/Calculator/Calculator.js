@@ -51,7 +51,7 @@ const Calculator = () => {
                         lg={1}
                         md={1}
                         sm={1}
-                        className="d-flex justify-content-end mt-3"
+                        className="d-flex justify-content-end mt-4"
                       >
                         <label className={styles["yield-to-price-labels"]}>
                           Price
@@ -176,7 +176,7 @@ const Calculator = () => {
                         lg={1}
                         md={1}
                         sm={1}
-                        className="d-flex justify-content-end mt-3"
+                        className="d-flex justify-content-end mt-4"
                       >
                         <label className={styles["yield-to-price-labels"]}>
                           Tenor
