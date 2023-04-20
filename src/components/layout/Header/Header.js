@@ -16,12 +16,13 @@ import JohnCater from "../../../assets/images/profile3.png";
 import JsLogo from "../../../assets/images/js-logo.png";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   // for show modal state
   const [show, setShow] = useState(false);
 
   //for user setting
   const [userSetting, setUserSetting] = useState(true);
-
 
   //for user passcode
   const [userPasscode, setUserPasscode] = useState(false);
@@ -43,13 +44,17 @@ const Header = () => {
     setUserSetting(false);
   };
 
+  // for open calculator
+  const gotoCalculator = () => {
+    navigate("/calculator");
+  };
 
   return (
     <>
       <Container fluid className="container-header">
         <Navbar collapseOnSelect expand="lg">
           <Container fluid>
-            <Navbar.Brand>
+            <Navbar.Brand to="/" as={Link}>
               <img src={JsLogo} width={220} height={50} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -60,7 +65,11 @@ const Header = () => {
                   <Button text="Upload Rates" className="rfq-button" />
                 </Nav.Link>
                 <Nav.Link>
-                  <Button text="Calculators" className="caluclator-button" />
+                  <Button
+                    text="Calculators"
+                    className="caluclator-button"
+                    onClick={gotoCalculator}
+                  />
                 </Nav.Link>
               </Nav>
             </Navbar.Collapse>
