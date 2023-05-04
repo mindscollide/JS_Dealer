@@ -16,6 +16,7 @@
 .Rejection_reason_paper {
   width: 95%;
   padding: 20px 20px !important;
+  box-shadow: none !important;
 }
 
 .AddApprovalReason {
@@ -28,6 +29,10 @@
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-color: #5b67cd;
   padding: 6px 14px;
+}
+
+.AddApprovalReason:is(:hover,){
+  background: linear-gradient(to bottom, #feac78 0%, #e97225 100%) !important;
 }
 
 .icon-add-Approval{

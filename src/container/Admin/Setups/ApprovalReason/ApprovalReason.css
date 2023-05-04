@@ -16,6 +16,7 @@
 .Approval_reason_paper {
   width: 95% !important;
   padding: 20px 20px !important;
+  box-shadow: none !important;
 }
 
 .AddApprovalReason-btn {
@@ -27,6 +28,10 @@
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-color: #5b67cd;
   padding: 6px 17px;
+}
+
+.AddApprovalReason-btn:is(:hover, ) {
+  background: linear-gradient(to bottom, #feac78 0%, #e97225 100%) !important;
 }
 
 .Table_content_Approval_reason {
@@ -69,7 +74,7 @@
   cursor: pointer;
 }
 
-.icon-margin{
+.icon-margin {
   font-size: 17px;
   margin-right: 10px;
 }

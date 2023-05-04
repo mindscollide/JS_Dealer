@@ -91,24 +91,23 @@ const PropertyType = () => {
                     lg={12}
                     md={12}
                     sm={12}
-                    className="d-flex justify-content-center gap-3"
+                    className="d-flex justify-content-center gap-2"
                   >
                     {/* <Button
                       text="Approved"
                       className="Button_approved"
                     /> */}
-                    <button
-                      type="button"
-                      className="btn btn-primary btn-lg fs-5 px-4 Button_approved"
-                    >
-                      <i className="icon-check fs-5"></i> Approve
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-secondary btn-lg fs-5 px-4 Button_reject"
-                    >
-                      <i className="icon-close fs-4"></i> Reject
-                    </button>
+                    <Button
+                      text="Approve"
+                      className="btn-lg fs-5 px-4 Button_approved"
+                      icon={<i className="icon-check fs-5"></i>}
+                    />
+
+                    <Button
+                      text="Reject"
+                      className="btn-lg fs-5 px-4 Button_reject"
+                      icon={<i className="icon-close fs-4"></i>}
+                    />
                     {/* <Button
                       text="Reject"
                       className="Button_reject"
