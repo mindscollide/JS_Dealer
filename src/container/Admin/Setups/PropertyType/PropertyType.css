@@ -1,0 +1,75 @@
+.Property-container {
+  align-items: top !important;
+  height: 350px !important;
+  width: 100% !important;
+  left: 260px !important;
+  justify-content: center !important;
+  position: fixed !important;
+}
+
+
+.Signup_request_heading {
+  font-size: 18px;
+  color: #004990;
+  font-weight: 600;
+}
+
+.Subheading_signup_pending {
+  color: #45494d;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.paper_sizing {
+  width: 95%;
+  padding: 20px 20px !important;
+}
+
+.Form_heading {
+  color: #9fa4a9;
+  font-weight: 400;
+}
+.Credentials {
+  color: #45494d;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.Comment_section {
+  font-size: 12px;
+  color: #004990;
+}
+
+.streik {
+  color: #cf5b5b;
+}
+
+.lineheight {
+  line-height: 1px !important;
+}
+
+.Button_approved {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
+  border-color: #5b67cd;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in;
+  font-weight: 500;
+}
+
+.Button_reject {
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: linear-gradient(to bottom, #feac78 0%, #e97225 100%);
+  border-color: #feac78;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in;
+  font-weight: 500;
+}
