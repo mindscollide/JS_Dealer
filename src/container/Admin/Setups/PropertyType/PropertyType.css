@@ -7,7 +7,6 @@
   position: fixed !important;
 }
 
-
 .Signup_request_heading {
   font-size: 18px;
   color: #004990;
@@ -24,6 +23,7 @@
 .paper_sizing {
   width: 95%;
   padding: 20px 20px !important;
+  box-shadow: none !important;
 }
 
 .Form_heading {
@@ -35,6 +35,15 @@
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 500;
+}
+
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th {
+  position: relative;
+  padding: 10px 16px;
+  overflow-wrap: break-word;
 }
 
 .Comment_section {
@@ -55,11 +64,17 @@
   border-bottom-left-radius: 0px;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
+  width: 180px !important;
+  height: 49px !important;
+  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
   border-color: #5b67cd;
   cursor: pointer;
-  -webkit-transition: all 0.3s ease-in;
   font-weight: 500;
+}
+
+.Button_approved:is(:hover, ) {
+  border: none !important;
+  background: linear-gradient(to bottom, #feac78 0%, #e97225 100%) !important;
 }
 
 .Button_reject {
@@ -67,9 +82,15 @@
   border-bottom-left-radius: 0px;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  width: 140px !important;
+  height: 49px !important;  
   background: linear-gradient(to bottom, #feac78 0%, #e97225 100%);
   border-color: #feac78;
   cursor: pointer;
-  -webkit-transition: all 0.3s ease-in;
   font-weight: 500;
+}
+
+.Button_reject:is(:hover, ) {
+  border: none !important;
+  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
 }

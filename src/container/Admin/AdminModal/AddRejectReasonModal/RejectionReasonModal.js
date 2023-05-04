@@ -6,35 +6,31 @@ import {
   Table,
   Modal,
 } from "../../../../components/elements";
-import "./ApprovalModal.css";
+import "./RejectionReasonModal.css";
 
-const ApprovalModal = ({ ModalTitle, modalApproval, setModalApproval }) => {
+const RejectionReasonModal = ({ ModalTitle, modalReason, setModalReason }) => {
   // for close modal handler
-  const closeApprovalModal = () => {
-    setModalApproval(false);
+  const closeRejectionReasonModal = () => {
+    setModalReason(false);
   };
   return (
     <Fragment>
       <Modal
-        show={modalApproval}
-        setShow={setModalApproval}
-        className="modaldialog modal-Approval"
+        show={modalReason}
+        setShow={setModalReason}
+        className="modaldialog modal-Reason"
         modalHeaderClassName={"d-none"}
-        modalFooterClassName="modal-Approval-footer"
+        modalFooterClassName="modal-Reason-footer"
         size="lg"
-        onHide={closeApprovalModal}
+        onHide={closeRejectionReasonModal}
         ModalBody={
           <Fragment>
-            {modalApproval ? (
+            {modalReason ? (
               <Fragment>
                 <Row className="mt-2">
-                  <Col
-                    lg={12}
-                    md={12}
-                    sm={12}
-                  >
+                  <Col lg={12} md={12} sm={12}>
                     <p className="paragraph-accepting">
-                    Are you sure you want to add Approval Reason?
+                      Are you sure you want to add Rejection Reason?
                     </p>
                   </Col>
                 </Row>
@@ -45,7 +41,7 @@ const ApprovalModal = ({ ModalTitle, modalApproval, setModalApproval }) => {
         ModalFooter={
           <Fragment>
             <Row className="mb-3">
-              <Col lg={12} md={12} sm={12} className="footer-approval-btn-col">
+              <Col lg={12} md={12} sm={12} className="footer-Reason-btn-col">
                 <Button
                   text="Proceed"
                   className="proceed-btn"
@@ -65,4 +61,4 @@ const ApprovalModal = ({ ModalTitle, modalApproval, setModalApproval }) => {
   );
 };
 
-export default ApprovalModal;
+export default RejectionReasonModal;
