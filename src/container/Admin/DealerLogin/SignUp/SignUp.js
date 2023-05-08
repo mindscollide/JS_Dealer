@@ -2,9 +2,80 @@ import React, { Fragment, useEffect, useState } from "react";
 import { Container, Col, Row, InputGroup, Form } from "react-bootstrap";
 import { Button, TextField } from "../../../../components/elements";
 import jsLogo from "../../../../assets/images/js-logo.png";
+import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
+import { validationEmail } from "../../../../assets/common/functions/validations";
+import { useNavigate } from "react-router-dom";
+import { signUp } from "../../../../store/actions/Auth-Actions";
 import "./SignUp.css";
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [transactionType, setTransactionType] = useState([]);
+  const [regionType, setRegionType] = useState([]);
+  const [roleType, setRoleType] = useState([]);
+  const [signupCredentials, setSignupCredentials] = useState({
+    emailAddress: {
+      content: "",
+      isError: true,
+      isSuccess: false,
+      errorMessage: "",
+      isFail: false,
+    },
+    password: {
+      content: "",
+      isSuccess: false,
+      isError: true,
+      errorMessage: "",
+      isFail: false,
+    },
+    completed: false,
+  });
+
+  const [credentialsBio, setCredentialsBio] = useState({
+    email: {
+      content: "",
+      isError: false,
+      errorMessage: "",
+      isSuccess: false,
+    },
+    userName: {
+      content: "",
+      isError: false,
+      errorMessage: "",
+      isSuccess: false,
+    },
+    firstName: {
+      content: "",
+      isError: false,
+      errorMessage: "",
+      isSuccess: false,
+    },
+    lastName: {
+      content: "",
+      isError: false,
+      errorMessage: "",
+      isSuccess: false,
+    },
+    personalNumber: {
+      content: "",
+      isError: false,
+      errorMessage: "",
+      isSuccess: false,
+    },
+    role: {
+      content: "",
+      isError: false,
+      errorMessage: "",
+      isSuccess: false,
+    },
+  });
+
+  //goback btn handler
+  const goBackBtn = () => {
+    navigate("/");
+  };
+
   const transactionOption = [
     { label: "Transaction type1", value: 1 },
     {
@@ -64,6 +135,9 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
+                              name="email"
+                              // onChange={emailChangeHandler}
+                              value={credentialsBio.email.content}
                               className="sign-up-field"
                               placeholder="Email ID"
                               aria-label="Username"
@@ -80,6 +154,8 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
+                              name="userName"
+                              value={credentialsBio.userName.content}
                               className="sign-up-field"
                               placeholder="User Name"
                               aria-label="Username"
@@ -101,6 +177,8 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
+                              name="firstName"
+                              value={credentialsBio.firstName.content}
                               className="sign-up-field"
                               placeholder="First Name"
                               aria-label="Username"
@@ -117,6 +195,8 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
+                              name="lastName"
+                              value={credentialsBio.lastName.content}
                               className="sign-up-field"
                               placeholder="Last Name"
                               aria-label="Username"
@@ -183,7 +263,11 @@ const SignUp = () => {
                       lg={12}
                       className="goback-signup-btn-col mt-3"
                     >
-                      <Button text="Go Back" className="Goback-Signup-btn" />
+                      <Button
+                        text="Go Back"
+                        className="Goback-Signup-btn"
+                        onClick={goBackBtn}
+                      />
                       <Button text="Signup" className="Proceed-btn" />
                     </Col>
                   </Row>

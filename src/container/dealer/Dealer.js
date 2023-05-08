@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { Container, Col, Row } from "react-bootstrap";
-import { Table, Button, Modal, TextField } from "../../components/elements";
+import {
+  Table,
+  Button,
+  Modal,
+  TextField,
+  Loader,
+} from "../../components/elements";
 import {
   ChevronDown,
   CaretDownFill,
@@ -2428,6 +2434,8 @@ const Dealer = () => {
           setViewModal={setViewDealerModal}
         />
       ) : null}
+
+      {/* {openViewModal ? (<Loader />) : null} */}
     </>
   );
 };
