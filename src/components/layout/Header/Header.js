@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Container, Row, Col, Nav, Dropdown } from "react-bootstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Button, Modal } from "../../../components/elements";
+import { Button, Modal, TextField } from "../../../components/elements";
+import { signOut } from "../../../store/actions/Auth-Actions";
 import Navbar from "react-bootstrap/Navbar";
 import { Checkbox, Switch } from "antd";
 import {
@@ -17,6 +19,7 @@ import JsLogo from "../../../assets/images/js-logo.png";
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // for show modal state
   const [show, setShow] = useState(false);
@@ -26,6 +29,13 @@ const Header = () => {
 
   //for user passcode
   const [userPasscode, setUserPasscode] = useState(false);
+
+  // for change password field state
+  const [changePassField, setChangePassField] = useState(false);
+
+  const openChangePassField = () => {
+    setChangePassField(true);
+  };
 
   //for open setting show modal
   const openSettingModalHandler = async () => {
@@ -46,7 +56,7 @@ const Header = () => {
 
   // for open calculator
   const gotoCalculator = () => {
-    navigate("/calculator");
+    navigate("/Js/calculator/");
   };
 
   return (
@@ -54,7 +64,7 @@ const Header = () => {
       <Container fluid className="container-header">
         <Navbar collapseOnSelect expand="lg">
           <Container fluid>
-            <Navbar.Brand to="/" as={Link}>
+            <Navbar.Brand to="/JS/Home" as={Link}>
               <img src={JsLogo} width={220} height={50} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -97,7 +107,12 @@ const Header = () => {
                 <Dropdown.Item>
                   <Nav.Link>
                     <BoxArrowRight />
-                    <label className="dropdown-select-labels">Logout</label>
+                    <label
+                      className="dropdown-select-labels"
+                      onClick={() => dispatch(signOut(navigate))}
+                    >
+                      Logout
+                    </label>
                   </Nav.Link>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -263,7 +278,27 @@ const Header = () => {
                     <Button
                       text="Change password"
                       className="change-password-btn"
+                      onClick={() => setChangePassField(!changePassField)}
                     />
+
+                    {changePassField ? (
+                      <>
+                        <div className="setting-change-password">
+                          <Row>
+                            <Col lg={12} md={12} sm={12}>
+                              {/* <img src={PDF} alt="pdf" height={25} /> */}
+                              <TextField />
+                              <span className="col">
+                                <i className="icon-email2 fs-4 cursor-pointer"></i>
+                              </span>
+                              <span className="col">
+                                <i className="icon-screen fs-4 cursor-pointer"></i>
+                              </span>
+                            </Col>
+                          </Row>
+                        </div>
+                      </>
+                    ) : null}
                   </Col>
                 </Row>
               </>

@@ -21,14 +21,13 @@ export const router = createHashRouter(
   createRoutesFromElements(
     <>
       <Route exact path="SignUp" element={<SignUp />} />
-      <Route exact path="DealerLogin" element={<DealerLogin />} />
+      <Route exact path="/" element={<DealerLogin />} />
       <Route exact path="SignUpRequest" element={<SignUpRequest />} />
-      <Route exact path="/" element={<Dashboard />}>
+      <Route exact path="/Js/" element={<Dashboard />}>
+        <Route path="Home" element={<Dealer />} />
         <Route path="" element={<Dealer />} />
-        <Route path="client" element={<Dealer />} />
         <Route path="calculator" element={<Calculator />} />
       </Route>
-
       <Route exact path="/AdminDashboard/" element={<AdminDashboard />}>
         <Route path="" element={<PropertyType />} />
         <Route path="PropertyType" element={<PropertyType />} />

@@ -8,8 +8,10 @@ import CustomPaper from "./paper/Paper";
 import Modal from "./modal/Modal"
 import CustomRadio from "./radioButton/Radio";
 import Table from "./table/Table";
+import Loader from "./loader/Loader";
 
 export {
+  Loader,
   Button,
   Accordian,
   Checkbox,

@@ -4,14 +4,18 @@ import "./index.css";
 import App from "./App";
 import { RouterProvider, HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { Loader } from "./components/elements";
 import { router } from "./routes/Routes";
+import store from "./store/store";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Suspense>
-    <RouterProvider router={router} />
-  </Suspense>
+  <Provider store={store}>
+    <Suspense>
+      <RouterProvider router={router} />
+    </Suspense>
+  </Provider>
 
   // <React.StrictMode>
   //   <App />

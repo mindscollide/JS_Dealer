@@ -1,7 +1,13 @@
 import React from "react";
 import { Container, Col, Row, Card, Form } from "react-bootstrap";
 import { Collapse, Divider, Select } from "antd";
-import { Table, Button, Accordian, TextField } from "../../components/elements";
+import {
+  Table,
+  Button,
+  Accordian,
+  TextField,
+  Loader,
+} from "../../components/elements";
 import styles from "./Calculator.module.css";
 
 const Calculator = () => {
@@ -1115,6 +1121,7 @@ const Calculator = () => {
           <Col lg={1} md={1} sm={1} />
         </Row>
       </Container>
+
     </>
   );
 };
