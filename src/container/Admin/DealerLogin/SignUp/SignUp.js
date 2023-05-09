@@ -6,11 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { validationEmail } from "../../../../assets/common/functions/validations";
 import { useNavigate } from "react-router-dom";
-import { signUp } from "../../../../store/actions/Auth-Actions";
+import { signUp, allUserRoles } from "../../../../store/actions/Auth-Actions";
 import "./SignUp.css";
 const SignUp = () => {
+  const { auth } = useSelector((state) => state);
+  console.log(auth, "allUserRoles");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // roles states
+  // const [roles, setRoles] = useState([]);
+  // const [roleValue, setRoleValue] = useState([]);
+  const [userRoles, setUserRoles] = useState([]);
+
   const [transactionType, setTransactionType] = useState([]);
   const [regionType, setRegionType] = useState([]);
   const [roleType, setRoleType] = useState([]);
@@ -32,48 +40,66 @@ const SignUp = () => {
     completed: false,
   });
 
+  // const [credentialsBio, setCredentialsBio] = useState({
+  //   email: {
+  //     content: "",
+  //     isError: false,
+  //     errorMessage: "",
+  //     isSuccess: false,
+  //   },
+  //   userName: {
+  //     content: "",
+  //     isError: false,
+  //     errorMessage: "",
+  //     isSuccess: false,
+  //   },
+  //   firstName: {
+  //     content: "",
+  //     isError: false,
+  //     errorMessage: "",
+  //     isSuccess: false,
+  //   },
+  //   lastName: {
+  //     content: "",
+  //     isError: false,
+  //     errorMessage: "",
+  //     isSuccess: false,
+  //   },
+  //   personalNumber: {
+  //     content: "",
+  //     isError: false,
+  //     errorMessage: "",
+  //     isSuccess: false,
+  //   },
+  //   role: {
+  //     content: "",
+  //     isError: false,
+  //     errorMessage: "",
+  //     isSuccess: false,
+  //   },
+  // });
+
   const [credentialsBio, setCredentialsBio] = useState({
-    email: {
-      content: "",
-      isError: false,
-      errorMessage: "",
-      isSuccess: false,
-    },
-    userName: {
-      content: "",
-      isError: false,
-      errorMessage: "",
-      isSuccess: false,
-    },
-    firstName: {
-      content: "",
-      isError: false,
-      errorMessage: "",
-      isSuccess: false,
-    },
-    lastName: {
-      content: "",
-      isError: false,
-      errorMessage: "",
-      isSuccess: false,
-    },
-    personalNumber: {
-      content: "",
-      isError: false,
-      errorMessage: "",
-      isSuccess: false,
-    },
-    role: {
-      content: "",
-      isError: false,
-      errorMessage: "",
-      isSuccess: false,
-    },
+    email: "",
+    userName: "",
+    firstName: "",
+    lastName: "",
+    personalNumber: "",
+    userRoles: [],
   });
 
   //goback btn handler
   const goBackBtn = () => {
     navigate("/");
+  };
+
+  const rolesChangeHandler = async (selectedOption) => {
+    if (Object.keys(selectedOption).length > 0) {
+      setCredentialsBio({
+        ...credentialsBio,
+        userRoles: selectedOption.label,
+      });
+    }
   };
 
   const transactionOption = [
@@ -108,6 +134,29 @@ const SignUp = () => {
       border: "none",
     }),
   };
+
+  // useEffect(() => {
+  //   let tem = [];
+  //   if (Object.keys(auth.UserRoleList).length > 0) {
+  //     auth.UserRoleList.map((data, index) => {
+  //       console.log(data, "datadatadatadata");
+  //       tem.push({
+  //         label: data.userRoleName,
+  //         value : data.userRoleID
+  //       })
+  //       setUserRoleValue(tem)
+  //       // let roll = { value: data.userRoles };
+  //       // tem.push(roll);
+  //     });
+  //     setRoleValue(tem);
+  //   }
+  // }, [auth.UserRoleList]);
+
+  useEffect(() => {
+    // on page refresh
+    dispatch(allUserRoles());
+  }, []);
+
   return (
     <Fragment>
       <Col sm={12} lg={12} md={12} className="signup">
@@ -207,41 +256,7 @@ const SignUp = () => {
                       </Row>
                     </Col>
 
-                    <Col sm={12} md={12} lg={12} className="mt-1">
-                      <Row>
-                        <span className="fields-label">
-                          Transaction Type
-                          <span className="required-span">*</span>
-                        </span>
-                        <Col sm={12} md={12} lg={12}>
-                          <Select
-                            placeholder="Transaction ID"
-                            options={transactionOption}
-                            className="TransactionFilter"
-                            styles={CustomStyle}
-                          />
-                        </Col>
-                      </Row>
-                    </Col>
-
-                    <Col sm={12} md={12} lg={12} className="mt-3">
-                      <Row>
-                        <span className="fields-label">
-                          Region
-                          <span className="required-span">*</span>
-                        </span>
-                        <Col sm={12} md={12} lg={12}>
-                          <Select
-                            placeholder="Region"
-                            options={regionOption}
-                            className="TransactionFilter"
-                            styles={CustomStyle}
-                          />
-                        </Col>
-                      </Row>
-                    </Col>
-
-                    <Col sm={12} md={12} lg={12} className="mt-3">
+                    <Col sm={12} md={12} lg={12} className="mt-2">
                       <Row>
                         <span className="fields-label">
                           Role
@@ -249,8 +264,12 @@ const SignUp = () => {
                         </span>
                         <Col sm={12} md={12} lg={12}>
                           <Select
+                            name="userRoles"
                             placeholder="Role"
-                            options={roleOption}
+                            options={userRoles}
+                            // value={userRoleValue}
+                            onChange={rolesChangeHandler}
+                            // options={roleOption}
                             className="TransactionFilter"
                             styles={CustomStyle}
                           />
@@ -261,7 +280,7 @@ const SignUp = () => {
                       sm={12}
                       md={12}
                       lg={12}
-                      className="goback-signup-btn-col mt-3"
+                      className="goback-signup-btn-col mt-5"
                     >
                       <Button
                         text="Go Back"

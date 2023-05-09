@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { Button, Modal, TextField } from "../../../components/elements";
 import { signOut } from "../../../store/actions/Auth-Actions";
 import Navbar from "react-bootstrap/Navbar";
+import CustomUpload from "../../elements/upload/Upload";
+import deleteButtonCreateMeeting from "../../../assets/images/cancel_meeting_icon.svg";
+import FileIcon from "react-file-icon";
 import { Checkbox, Switch } from "antd";
 import {
   ListUl,
@@ -33,6 +36,11 @@ const Header = () => {
   // for change password field state
   const [changePassField, setChangePassField] = useState(false);
 
+  //Upload File States
+  const [tasksAttachments, setTasksAttachments] = useState({
+    TasksAttachments: [],
+  });
+
   const openChangePassField = () => {
     setChangePassField(true);
   };
@@ -57,6 +65,77 @@ const Header = () => {
   // for open calculator
   const gotoCalculator = () => {
     navigate("/Js/calculator/");
+  };
+
+  //Upload File Handler
+  const uploadFilesToDo = (data) => {
+    const uploadFilePath = data.target.value;
+    const uploadedFile = data.target.files[0];
+    var ext = uploadedFile.name.split(".").pop();
+    console.log("uploadedFile", uploadedFile.name, ext);
+    let file = tasksAttachments.TasksAttachments;
+    console.log("uploadedFile", file);
+    if (
+      ext === "doc" ||
+      ext === "docx" ||
+      ext === "xls" ||
+      ext === "xlsx" ||
+      ext === "pdf" ||
+      ext === "png" ||
+      ext === "txt" ||
+      ext === "jpg" ||
+      ext === "jpeg" ||
+      ext === "gif"
+    ) {
+      let data;
+      let sizezero;
+      let size;
+      if (file.length > 0) {
+        file.map((filename, index) => {
+          console.log("uploadedFile", filename);
+          if (filename.DisplayAttachmentName === uploadedFile.name) {
+            console.log(
+              "uploadedFile",
+              filename.DisplayAttachmentName === uploadedFile.name
+            );
+            data = false;
+          }
+        });
+        if (uploadedFile.size > 10000000) {
+          size = false;
+        } else if (uploadedFile.size === 0) {
+          sizezero = false;
+        }
+        if (data === false) {
+        } else if (size === false) {
+        } else if (sizezero === false) {
+        } else {
+          // dispatch(FileUploadToDo(uploadedFile));
+        }
+      } else {
+        let size;
+        let sizezero;
+        if (uploadedFile.size > 10000000) {
+          size = false;
+        } else if (uploadedFile.size === 0) {
+          sizezero = false;
+        }
+        if (size === false) {
+        } else if (sizezero === false) {
+        } else {
+          // dispatch(FileUploadToDo(uploadedFile));
+        }
+      }
+    }
+
+    file.push({
+      PK_TAID: 0,
+      DisplayAttachmentName: uploadedFile.name,
+      OriginalAttachmentName: uploadFilePath,
+      CreationDateTime: "",
+      FK_TID: 0,
+    });
+    setTasksAttachments({ ["TasksAttachments"]: file });
   };
 
   return (
@@ -85,7 +164,7 @@ const Header = () => {
             </Navbar.Collapse>
 
             <Dropdown className="profilebtn-dropdown">
-              <Dropdown.Toggle className="dropdown-toggle">
+              <Dropdown.Toggle className="dropdown-toggle-1">
                 <img src={JohnCater} className="image-john" />
 
                 <p className="user-name">Michael Hawk</p>
@@ -94,19 +173,19 @@ const Header = () => {
               <Dropdown.Menu className="dropdown_menu">
                 <Dropdown.Item>
                   <Nav.Link onClick={openSettingModalHandler}>
-                    <Gear />
+                    <i className="icon-settings setting-icon"></i>
                     <label className="dropdown-select-labels">Setting</label>
                   </Nav.Link>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                  <QuestionCircle />
+                  <i className="icon-help-circle setting-icon"></i>
                   <label className="dropdown-select-labels">
                     Help & Support
                   </label>
                 </Dropdown.Item>
                 <Dropdown.Item>
                   <Nav.Link>
-                    <BoxArrowRight />
+                    <i className="icon-logout setting-icon"></i>
                     <label
                       className="dropdown-select-labels"
                       onClick={() => dispatch(signOut(navigate))}
@@ -164,7 +243,9 @@ const Header = () => {
                     className="modal-setting-checkbox-col mt-5"
                   >
                     <Checkbox />
-                    <p className="modal-setting-para">Chat Panel Overlap</p>
+                    <p className="modal-setting-para fw-5">
+                      Chat Panel Overlap
+                    </p>
                   </Col>
                 </Row>
 
@@ -261,7 +342,9 @@ const Header = () => {
                     sm={6}
                     className="d-flex justify-content-start mt-5"
                   >
-                    <p>Two Factor Authentication</p>
+                    <p className="two-fac-authentication-para">
+                      Two Factor Authentication
+                    </p>
                   </Col>
                   <Col
                     lg={6}
@@ -283,20 +366,46 @@ const Header = () => {
 
                     {changePassField ? (
                       <>
-                        <div className="setting-change-password">
-                          <Row>
-                            <Col lg={12} md={12} sm={12}>
-                              {/* <img src={PDF} alt="pdf" height={25} /> */}
-                              <TextField />
-                              <span className="col">
-                                <i className="icon-email2 fs-4 cursor-pointer"></i>
-                              </span>
-                              <span className="col">
-                                <i className="icon-screen fs-4 cursor-pointer"></i>
-                              </span>
-                            </Col>
-                          </Row>
-                        </div>
+                        <Row>
+                          <Col
+                            lg={12}
+                            md={12}
+                            sm={12}
+                            className="col-change-password"
+                          >
+                            <Row className="mt-3">
+                              <Col lg={12} md={12} sm={12}>
+                                <Row>
+                                  <Col lg={4} md={4} sm={12}>
+                                    <span className="change-password-label">
+                                      Enter New Password*
+                                    </span>
+                                  </Col>
+                                  <Col lg={8} md={8} sm={12}>
+                                    <TextField
+                                      className="change-password-textfield"
+                                      labelClass="d-none"
+                                    />
+                                  </Col>
+                                </Row>
+
+                                <Row className="mt-3">
+                                  <Col lg={4} md={4} sm={12}>
+                                    <span className="change-password-label">
+                                      Confirm New Password*
+                                    </span>
+                                  </Col>
+                                  <Col lg={8} md={8} sm={12}>
+                                    <TextField
+                                      className="change-password-textfield"
+                                      labelClass="d-none"
+                                    />
+                                  </Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
                       </>
                     ) : null}
                   </Col>
@@ -309,7 +418,7 @@ const Header = () => {
           <>
             {userSetting ? (
               <>
-                <Row>
+                <Row className="mb-4">
                   <Col
                     lg={12}
                     md={12}

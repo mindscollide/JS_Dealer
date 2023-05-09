@@ -9,3 +9,7 @@ export const SIGN_UP_SUCCESS = "SIGN_UP_SUCCESS";
 export const SIGN_UP_FAIL = "SIGN_UP_FAIL";
 
 export const SIGN_OUT = "SIGN_OUT";
+
+export const USER_ROLES_INIT = "USER_ROLES_INIT";
+export const USER_ROLES_SUCCESS = "USER_ROLES_SUCCESS";
+export const USER_ROLES_FAIL = "USER_ROLES_FAIL";

@@ -10,4 +10,8 @@ const authenticationSignUp = {
   RequestMethod: "ServiceManager.SignUp",
 };
 
-export { authenticationLogIn, authenticationSignUp };
+const authenticationUserRoles = {
+  _token: null,
+  RequestMethod: "ServiceManager.GetAllUserRoles",
+};
+export { authenticationLogIn, authenticationSignUp, authenticationUserRoles };

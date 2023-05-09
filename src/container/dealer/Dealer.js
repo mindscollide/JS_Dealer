@@ -8,15 +8,15 @@ import {
   Loader,
 } from "../../components/elements";
 import {
-  ChevronDown,
   CaretDownFill,
-  ListUl,
+  X,
+  Send,
+  Paperclip,
   ChatDots,
-  Facebook,
 } from "react-bootstrap-icons";
 
 import ViewModal from "../Pages/viewModal-Dealer/ViewModal";
-
+import JohnCater from "../../assets/images/profile3.png";
 import DowJones from "../../assets/images/dowjones.png";
 import CNBC from "../../assets/images/cnbc.png";
 import PDF from "../../assets/images/pdf.png";
@@ -28,6 +28,9 @@ import "./Dealer.css";
 
 const Dealer = () => {
   const [show, setShow] = useState(false);
+
+  //for another chat box open
+  const [chatBoxOpen, setChatBoxOpen] = useState(false);
 
   //View dealer modal
   const [viewDealerModal, setViewDealerModal] = useState(false);
@@ -1441,7 +1444,11 @@ const Dealer = () => {
       key: "chat",
       width: "100px",
       render: (text) => (
-        <Button text={text} className="chatIcon-inBotton-table" />
+        <Button
+          text={text}
+          onClick={() => setChatBoxOpen(!chatBoxOpen)}
+          className="chatIcon-inBotton-table"
+        />
       ),
       // ellipsis: true,
     },
@@ -2427,6 +2434,36 @@ const Dealer = () => {
           </Row>
         </div>
       </Container>
+
+      {chatBoxOpen ? (
+        <>
+          <div className="openNew-Chat-dashboard">
+            <Row className="chatbox-row-bottom-dashboard">
+              <Col lg={2} md={2} sm={2}>
+                <img src={JohnCater} className="chatBox-image-john-dashboard" />
+              </Col>
+              <Col lg={6} md={6} sm={6} className="label-col-dashboard">
+                <label className="recent-chatBox-dashboard">John Carter</label>
+              </Col>
+              <Col lg={4} md={4} sm={4} className="chatBox-top-icons-dashboard">
+                <X size={20} onClick={() => setChatBoxOpen(!chatBoxOpen)} />
+              </Col>
+            </Row>
+
+            <div className="bottom-chat-box-dashboard">
+              <Row>
+                <Col lg={9} md={9} sm={9} className="mb-2">
+                  <TextField className="textfield-chatbox-dashboard" />
+                </Col>
+                <Col lg={3} md={3} sm={3} className="btm-icons-dashboard">
+                  <Send size={20} />
+                  <Paperclip size={20} />
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </>
+      ) : null}
 
       {viewDealerModal ? (
         <ViewModal

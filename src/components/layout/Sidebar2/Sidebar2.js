@@ -58,7 +58,7 @@ const Sidebar2 = () => {
                 background: "#000000",
               }}
             >
-              <span className="logo" />
+              <span className="menuMain">
               <Menu
                 theme="light"
                 defaultOpenKeys={["sub1"]}
@@ -109,6 +109,7 @@ const Sidebar2 = () => {
                   </Menu.Item>
                 </SubMenu>
               </Menu>
+              </span>
             </Sider>
           </Layout>
         </Col>

@@ -5,8 +5,7 @@
   border: none !important;
 }
 
-.accodion-header-title:hover,
-.accodion-header-title:active {
+.accodion-header-title:is(:hover, :focus, :focus-visible, :focus-within) {
   text-align: center !important;
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
 }
@@ -19,8 +18,7 @@
   margin-top: 10px;
 }
 
-.accodion-header-title-two:hover,
-.accodion-header-title-two:active {
+.accodion-header-title-two:is(:hover, :focus, :focus-visible, :focus-within) {
   text-align: center !important;
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
 }
