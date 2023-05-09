@@ -111,12 +111,15 @@
   background: #ffffff !important;
 }
 
+.menuMain > ant-menu-submenu-arrow,
+.ant-menu-submenu-arrow {
+  /* right: 10px !important; */
+  transform: rotate(270deg) translateX(2.5px) !important;
+}
 
-
-/* for siderbar dropdown main menu icon */
-/* :where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-inline-collapsed
-  .ant-menu-submenu-arrow::before,
-:where(.css-dev-only-do-not-override-1e3x2xa).ant-menu-inline
-  .ant-menu-submenu-arrow::before {
-  transform: rotate(130deg) translateX(2.5px) !important;
-} */
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-menu
+  .ant-menu-submenu-open.ant-menu-submenu-inline
+  > .ant-menu-submenu-title
+  > .ant-menu-submenu-arrow::after {
+  transform: rotate(135deg) translateX(-2.5px) translateY(0px);
+}

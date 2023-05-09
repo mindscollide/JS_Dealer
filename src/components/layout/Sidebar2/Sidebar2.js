@@ -47,6 +47,11 @@ const Sidebar2 = () => {
     navigate("/AdminDashboard/AssetBanking");
   };
 
+  //this will change the route on page refresh
+  useEffect(() => {
+    navigate("/AdminDashboard/PropertyType");
+  }, []);
+
   return (
     <Fragment>
       <Row className="sidebar-row">
@@ -59,56 +64,56 @@ const Sidebar2 = () => {
               }}
             >
               <span className="menuMain">
-              <Menu
-                theme="light"
-                defaultOpenKeys={["sub1"]}
-                defaultSelectedKeys={["3"]}
-                mode="inline"
-                className="Menu-sidebar-class"
-              >
-                <SubMenu
-                  key="sub1"
-                  icon={<i className="icon-user menu-icons"></i>}
-                  title="Setup"
-                  className="submenu-sidebar-icons"
+                <Menu
+                  theme="light"
+                  defaultOpenKeys={["sub1"]}
+                  defaultSelectedKeys={["3"]}
+                  mode="inline"
+                  className="Menu-sidebar-class"
                 >
-                  <Menu.Item
-                    className="menu-items-sidebar"
-                    key="3"
-                    onClick={navigateToProperty}
+                  <SubMenu
+                    key="sub1"
+                    icon={<i className="icon-user menu-icons"></i>}
+                    title="Setup"
+                    className="submenu-sidebar-icons"
                   >
-                    Property Type
-                  </Menu.Item>
-                  <Menu.Item
-                    className="menu-items-sidebar"
-                    key="4"
-                    onClick={navigateToApproval}
+                    <Menu.Item
+                      className="menu-items-sidebar"
+                      key="3"
+                      onClick={navigateToProperty}
+                    >
+                      Property Type
+                    </Menu.Item>
+                    <Menu.Item
+                      className="menu-items-sidebar"
+                      key="4"
+                      onClick={navigateToApproval}
+                    >
+                      Approval Reason
+                    </Menu.Item>
+                    <Menu.Item
+                      className="menu-items-sidebar"
+                      key="5"
+                      onClick={navigateToRejection}
+                    >
+                      Rejection Reason
+                    </Menu.Item>
+                  </SubMenu>
+                  <SubMenu
+                    key="sub2"
+                    icon={<i className="icon-user menu-icons"></i>}
+                    title="Reports"
+                    className="submenu-sidebar-icons"
                   >
-                    Approval Reason
-                  </Menu.Item>
-                  <Menu.Item
-                    className="menu-items-sidebar"
-                    key="5"
-                    onClick={navigateToRejection}
-                  >
-                    Rejection Reason
-                  </Menu.Item>
-                </SubMenu>
-                <SubMenu
-                  key="sub2"
-                  icon={<i className="icon-user menu-icons"></i>}
-                  title="Reports"
-                  className="submenu-sidebar-icons"
-                >
-                  <Menu.Item
-                    className="menu-items-sidebar"
-                    key="5"
-                    onClick={navigateToReport}
-                  >
-                    Non-Banking Assets
-                  </Menu.Item>
-                </SubMenu>
-              </Menu>
+                    <Menu.Item
+                      className="menu-items-sidebar"
+                      key="5"
+                      onClick={navigateToReport}
+                    >
+                      Non-Banking Assets
+                    </Menu.Item>
+                  </SubMenu>
+                </Menu>
               </span>
             </Sider>
           </Layout>
