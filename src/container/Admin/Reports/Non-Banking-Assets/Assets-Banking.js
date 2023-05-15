@@ -23,22 +23,22 @@ const NonBankingAssets = () => {
                 <TextField
                   labelClass="d-none"
                   className="text-fields-edituser"
-                  value="Total Acquistion Value From"
+                  placeholder="Total Acquistion Value From"
                 />
                 <TextField
                   labelClass="d-none"
                   className="text-fields-edituser"
-                  value="Total Acquistion Value From"
+                  placeholder="Total Acquistion Value From"
                 />
                 <TextField
                   labelClass="d-none"
                   className="text-fields-edituser"
-                  value="Misyis Customer Code"
+                  placeholder="Misyis Customer Code"
                 />
                 <TextField
                   labelClass="d-none"
                   className="text-fields-edituser"
-                  value="ECIB Code"
+                  placeholder="ECIB Code"
                 />
               </Col>
             </Row>
@@ -47,7 +47,7 @@ const NonBankingAssets = () => {
                 <TextField
                   labelClass="d-none"
                   className="text-fields-edituser"
-                  value="Total Acquistion Value From"
+                  placeholder="Name of Brower"
                 />
                 <Row>
                   <Col

@@ -92,6 +92,7 @@ const RejectionReason = () => {
                       <TextField
                         // className="form-control3"
                         type="text"
+                        className={"Rejection-Reason-class"}
                         placeholder="Rejection Reason"
                         labelClass="d-none"
                         required={true}

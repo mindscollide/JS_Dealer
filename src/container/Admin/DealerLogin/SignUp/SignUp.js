@@ -16,9 +16,9 @@ const SignUp = () => {
 
   // roles states
   // const [roles, setRoles] = useState([]);
-  // const [roleValue, setRoleValue] = useState([]);
+  const [roleValue, setRoleValue] = useState([]);
   const [userRoles, setUserRoles] = useState([]);
-
+  console.log(userRoles, "userRolesuserRolesuserRoles");
   const [transactionType, setTransactionType] = useState([]);
   const [regionType, setRegionType] = useState([]);
   const [roleType, setRoleType] = useState([]);
@@ -85,21 +85,20 @@ const SignUp = () => {
     firstName: "",
     lastName: "",
     personalNumber: "",
-    userRoles: [],
+    roleID: 0,
   });
-
+  console.log("credentialsBio", credentialsBio);
   //goback btn handler
   const goBackBtn = () => {
     navigate("/");
   };
 
   const rolesChangeHandler = async (selectedOption) => {
-    if (Object.keys(selectedOption).length > 0) {
+    console.log(selectedOption, "selectedOptionselectedOption");
       setCredentialsBio({
         ...credentialsBio,
-        userRoles: selectedOption.label,
+        roleID: selectedOption.value,
       });
-    }
   };
 
   const transactionOption = [
@@ -135,22 +134,20 @@ const SignUp = () => {
     }),
   };
 
-  // useEffect(() => {
-  //   let tem = [];
-  //   if (Object.keys(auth.UserRoleList).length > 0) {
-  //     auth.UserRoleList.map((data, index) => {
-  //       console.log(data, "datadatadatadata");
-  //       tem.push({
-  //         label: data.userRoleName,
-  //         value : data.userRoleID
-  //       })
-  //       setUserRoleValue(tem)
-  //       // let roll = { value: data.userRoles };
-  //       // tem.push(roll);
-  //     });
-  //     setRoleValue(tem);
-  //   }
-  // }, [auth.UserRoleList]);
+  useEffect(() => {
+    if (Object.keys(auth.UserRoleList).length > 0) {
+      let tem = [];
+      auth.UserRoleList.map((data, index) => {
+        console.log(data, "datadatadatadata");
+        tem.push({
+          label: data.roleName,
+          value: data.roleID,
+        });
+      });
+      setUserRoles(tem);
+      // setRoleValue(tem);
+    }
+  }, [auth.UserRoleList]);
 
   useEffect(() => {
     // on page refresh
@@ -264,7 +261,7 @@ const SignUp = () => {
                         </span>
                         <Col sm={12} md={12} lg={12}>
                           <Select
-                            name="userRoles"
+                            name="roleID"
                             placeholder="Role"
                             options={userRoles}
                             // value={userRoleValue}

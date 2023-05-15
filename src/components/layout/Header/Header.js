@@ -144,7 +144,7 @@ const Header = () => {
         <Navbar collapseOnSelect expand="lg">
           <Container fluid>
             <Navbar.Brand to="/JS/Home" as={Link}>
-              <img src={JsLogo} width={220} height={50} />
+              <img src={JsLogo} width={230} />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

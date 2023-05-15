@@ -1,6 +1,7 @@
 .table-content-div {
   background-color: #f4f4f4 !important;
   border: none;
+  padding: 6px !important;
   border-radius: 4px !important;
   box-shadow: 1px #5a5a5a;
   display: flex;
@@ -8,15 +9,22 @@
 }
 
 .inside-table {
-  max-height: 37vh;
+  max-height: 38vh;
   overflow: auto !important;
   overflow-x: hidden;
 }
+
+.inside-table .ant-table-thead > tr > th {
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+}
+
 :where(.css-dev-only-do-not-override-1e3x2xa).ant-table-wrapper
   .ant-table-tbody
   > tr
   > td {
-  padding: 7px !important;
+  padding: 5px !important;
   text-align: center;
 }
 .inside-table::-webkit-scrollbar {
@@ -78,6 +86,7 @@
 .table-upper-tbill-button-notActive:hover {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background-color: #e5e8ff;
@@ -88,6 +97,7 @@
 .table-upper-tbill-button-active {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
@@ -99,6 +109,7 @@
 .table-upper-PIB-button-notActive:hover {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background-color: #e5e8ff;
@@ -109,6 +120,7 @@
 .table-upper-PIB-button-active {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
@@ -120,6 +132,7 @@
 .table-upper-Floater-button-notActive:hover {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background-color: #e5e8ff;
@@ -130,6 +143,7 @@
 .table-upper-Floater-button-active {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
@@ -141,6 +155,7 @@
 .table-upper-SUKUK-button-notActive:hover {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background-color: #e5e8ff;
@@ -151,6 +166,7 @@
 .table-upper-SUKUK-button-active {
   padding: 4px 8px;
   width: 90%;
+  font-size: 14px !important;
   border-radius: 3px;
   font-weight: 600;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
@@ -239,8 +255,9 @@
 }
 
 .dj-jones-text {
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 600 !important;
+  font-size: 13px;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .date-dj-jone {
@@ -258,7 +275,7 @@
 .bottom-table-container {
   background-color: #f4f4f4;
   position: absolute;
-  padding: 0px 12px;
+  padding: 0px 6px;
   width: 100% !important;
 }
 
@@ -283,11 +300,17 @@
 }
 
 .export-bttom-btn {
-  padding: 5px 30px;
+  font-size: 14px !important;
+  padding: 7px 24px !important;
+  font-weight: 500;
   border-radius: 4px;
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
   border: none;
   color: white;
+}
+
+.export-bttom-btn:is(:hover, :focus) {
+  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
 }
 
 .date-insde {
@@ -445,7 +468,7 @@
 .card-box {
   background: #ffffff;
   border-radius: 4px;
-  width: 99%;
+  width: 100%;
   height: 350px;
   overflow: hidden;
   padding: 2px;
@@ -473,7 +496,7 @@
 .bottom-container-div {
   background-color: white !important;
   padding: 0.5px 10px;
-  width: 95% !important;
+  width: 94.5% !important;
   border-radius: 4px;
   margin-top: 10px;
 }
@@ -702,7 +725,8 @@
 }
 
 .txn-summary-btn {
-  padding: 2px 18px;
+  font-size: 14px;
+  padding: 4px 16px;
   font-weight: 600;
   background: #ffe4ce !important;
   color: #304547 !important;
@@ -711,7 +735,8 @@
 }
 
 .txn-summary-btn-outline {
-  padding: 2px 18px;
+  font-size: 14px;
+  padding: 4px 16px;
   font-weight: 600;
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%) !important;
   color: rgb(255, 255, 255) !important;
@@ -720,7 +745,8 @@
 }
 
 .outstanding-summary-btn {
-  padding: 2px 18px;
+  font-size: 14px;
+  padding: 4px 16px;
   font-weight: 600;
   background: #ffe4ce !important;
   color: #304547 !important;
@@ -729,7 +755,8 @@
 }
 
 .outstanding-summary-btn-outline {
-  padding: 2px 18px;
+  font-size: 14px;
+  padding: 4px 16px;
   font-weight: 600;
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%) !important;
   color: rgb(255, 255, 255) !important;

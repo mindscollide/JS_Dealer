@@ -90,17 +90,18 @@ const ApprovalReason = () => {
               <Row>
                 <Col lg={12} md={12} sm={12}>
                   <Row>
-                    <Col lg={9} md={9} sm={9} className="CreateMeetingInput">
+                    <Col lg={9} md={9} sm={12} className="CreateMeetingInput">
                       <TextField
                         applyClass="form-control2"
                         type="text"
                         labelClass="d-none"
+                        className="Approval-Reason-textfield"
                         placeholder="Approval Reason"
                         required={true}
                         name="tasktitle"
                       />
                     </Col>
-                    <Col lg={3} md={3} sm={3}>
+                    <Col lg={3} md={3} sm={12}>
                       <Button
                         className="AddApprovalReason-btn"
                         onClick={openAddApprovalModal}

@@ -73,7 +73,7 @@ const Sidebar2 = () => {
                 >
                   <SubMenu
                     key="sub1"
-                    icon={<i className="icon-user menu-icons"></i>}
+                    icon={<i className="icon-settings menu-icons"></i>}
                     title="Setup"
                     className="submenu-sidebar-icons"
                   >
@@ -107,7 +107,7 @@ const Sidebar2 = () => {
                   >
                     <Menu.Item
                       className="menu-items-sidebar"
-                      key="5"
+                      key="6"
                       onClick={navigateToReport}
                     >
                       Non-Banking Assets

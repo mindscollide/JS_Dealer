@@ -430,21 +430,22 @@ const allUserRoles = () => {
       data: form,
     })
       .then(async (response) => {
+        console.log("UserRoleListUserRoleList", response);
         if (response.data.responseCode === 200) {
           if (response.data.responseResult.isExecuted === true) {
             if (
-              response.data.responseResult.responseMessage
-                .toLowerCase()
-                .includes(
-                  "ERM_AuthService_SignUpManager_GetAllUserRoles_01".toLowerCase()
-                )
+              response.data.responseResult.responseMessage.toLowerCase() ===
+              "ERM_AuthService_RoleManager_RoleList_01".toLowerCase()
             ) {
-              dispatch(rolesSuccess("record found"));
+              console.log("UserRoleListUserRoleList", response);
+              dispatch(
+                rolesSuccess(response.data.responseResult.roles, "Record found")
+              );
             } else if (
               response.data.responseResult.responseMessage
                 .toLowerCase()
                 .includes(
-                  "ERM_AuthService_SignUpManager_GetAllUserRoles_02".toLowerCase()
+                  "ERM_AuthService_RoleManager_RoleList_02".toLowerCase()
                 )
             ) {
               dispatch(rolesFail("No Record Found"));
@@ -452,7 +453,7 @@ const allUserRoles = () => {
               response.data.responseResult.responseMessage
                 .toLowerCase()
                 .includes(
-                  "ERM_AuthService_SignUpManager_GetAllUserRoles_03".toLowerCase()
+                  "ERM_AuthService_RoleManager_RoleList_03".toLowerCase()
                 )
             ) {
               dispatch(rolesFail("Exception No roles available"));

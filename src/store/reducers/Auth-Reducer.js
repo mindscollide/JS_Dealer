@@ -77,12 +77,14 @@ const authReducer = (state = initialState, action) => {
         ...state,
         Loading: false,
         UserRoleList: action.response,
+        ResponseMessage: action.message,
       };
 
     case actions.USER_ROLES_FAIL:
       return {
         ...state,
         Loading: false,
+        UserRoleList: [],
         ResponseMessage: action.message,
       };
 
