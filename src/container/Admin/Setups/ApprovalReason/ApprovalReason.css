@@ -25,9 +25,11 @@
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
   cursor: pointer;
+  margin-left: -10px !important;
+  height: 37px !important;
+  width: 245px !important;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-color: #5b67cd;
-  padding: 6px 17px;
 }
 
 .AddApprovalReason-btn:is(:hover, ) {
@@ -77,4 +79,9 @@
 .icon-margin {
   font-size: 17px;
   margin-right: 10px;
+}
+
+.Approval-Reason-textfield {
+  font-size: 13px !important;
+  height: 37px !important;
 }

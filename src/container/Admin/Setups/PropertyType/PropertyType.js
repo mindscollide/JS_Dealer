@@ -75,7 +75,7 @@ const PropertyType = () => {
                       as={"textarea"}
                       label={
                         <label className="Comment_section">
-                          Type your Comment here
+                          Type your Comment
                           <span className="streik">*</span>
                         </label>
                       }

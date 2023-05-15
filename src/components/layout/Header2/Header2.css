@@ -1,4 +1,4 @@
-.container-header {
+.container-header-2 {
   width: 100% !important;
   background: #f4f4f4;
   z-index: 1 !important;
@@ -50,11 +50,11 @@
   justify-content: end !important;
 }
 
-.profilebtn-dropdown {
+.profilebtn-dropdown-header2 {
   max-width: 240px;
 }
 
-.dropdown-toggle {
+.dropdown-toggle-header2 {
   margin: 0;
   padding: 2px 2px;
   border-radius: 50px;
@@ -70,7 +70,7 @@
   display: none !important;
 }
 
-.image-john {
+.image-john-header2 {
   padding: 2px;
   border-radius: 50%;
   width: 45px !important;
@@ -80,7 +80,7 @@
   align-items: center;
 }
 
-.user-name {
+.user-name-header2 {
   font-size: 14px;
   font-weight: 500;
   margin: 0;
@@ -91,11 +91,11 @@
   overflow: hidden;
 }
 
-.user-dropdown .dropdown-toggle .user-name {
+.user-dropdown .dropdown-toggle .user-name-header2 {
   margin: 0 5px;
 }
 
-.dropdown_menu {
+.dropdown_menu-Header2 {
   border: none !important;
   width: 100% !important;
 }

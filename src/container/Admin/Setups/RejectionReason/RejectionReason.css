@@ -28,14 +28,17 @@
   cursor: pointer;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-color: #5b67cd;
-  padding: 6px 14px;
+  margin-left: -10px !important;
+  height: 37px !important;
+  width: 245px !important;
+  /* padding: 6px 14px; */
 }
 
-.AddApprovalReason:is(:hover,){
+.AddApprovalReason:is(:hover, ) {
   background: linear-gradient(to bottom, #feac78 0%, #e97225 100%) !important;
 }
 
-.icon-add-Approval{
+.icon-add-Approval {
   font-size: 17px;
   margin-right: 10px;
 }
@@ -78,4 +81,9 @@
   color: #cf5b5b;
   font-size: 18px;
   cursor: pointer;
+}
+
+.Rejection-Reason-class {
+  font-size: 13px !important;
+  height: 37px !important;
 }

@@ -8,15 +8,15 @@ import {
   Loader,
 } from "../../components/elements";
 import {
-  ChevronDown,
   CaretDownFill,
-  ListUl,
+  X,
+  Send,
+  Paperclip,
   ChatDots,
-  Facebook,
 } from "react-bootstrap-icons";
 
 import ViewModal from "../Pages/viewModal-Dealer/ViewModal";
-
+import JohnCater from "../../assets/images/profile3.png";
 import DowJones from "../../assets/images/dowjones.png";
 import CNBC from "../../assets/images/cnbc.png";
 import PDF from "../../assets/images/pdf.png";
@@ -28,6 +28,9 @@ import "./Dealer.css";
 
 const Dealer = () => {
   const [show, setShow] = useState(false);
+
+  //for another chat box open
+  const [chatBoxOpen, setChatBoxOpen] = useState(false);
 
   //View dealer modal
   const [viewDealerModal, setViewDealerModal] = useState(false);
@@ -633,8 +636,9 @@ const Dealer = () => {
       title: <label className="table-all-title">Issue Date</label>,
       dataIndex: "issuedate",
       key: "issuedate",
-      width: "130px",
-      ellipsis: true,
+      align: "center",
+      width: "125px",
+      // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
@@ -662,6 +666,7 @@ const Dealer = () => {
       title: <label className="table-all-title">Maturity</label>,
       dataIndex: "maturity",
       key: "maturity",
+      align: "center",
       width: "110px",
       ellipsis: true,
       render: (text) => <label className="maturity-column">{text}</label>,
@@ -692,6 +697,7 @@ const Dealer = () => {
       dataIndex: "tenor",
       key: "tenor",
       align: "center",
+      width: "100px",
       ellipsis: true,
       filters: [
         {
@@ -715,6 +721,8 @@ const Dealer = () => {
       title: <label className="table-all-title">Bid</label>,
       dataIndex: "bid",
       key: "bid",
+      align: "center",
+      width: "70px",
       ellipsis: true,
       render: (text) => (
         <Button
@@ -728,6 +736,8 @@ const Dealer = () => {
       title: <label className="table-all-title">Offer</label>,
       dataIndex: "offer",
       key: "offer",
+      align: "center",
+      width: "70px",
       render: (text) => (
         <Button
           text={text}
@@ -740,7 +750,9 @@ const Dealer = () => {
       title: <label className="table-all-title">DTM</label>,
       dataIndex: "dtm",
       key: "dtm",
-      ellipsis: true,
+      align: "center",
+      width: "80px",
+      // ellipsis: true,
       filters: [
         {
           text: "119",
@@ -766,9 +778,10 @@ const Dealer = () => {
     {
       title: <label className="table-all-title">Inventory Available</label>,
       dataIndex: "inventory",
-      width: "100px",
+      align: "center",
+      width: "120px",
       key: "inventory",
-      ellipsis: true,
+      // ellipsis: true,
     },
   ];
 
@@ -1240,6 +1253,7 @@ const Dealer = () => {
       key: "txnid",
       width: "100px",
       ellipsis: true,
+      align: "center",
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
@@ -1254,6 +1268,7 @@ const Dealer = () => {
       dataIndex: "bank",
       key: "bank",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1269,6 +1284,7 @@ const Dealer = () => {
       dataIndex: "position",
       key: "position",
       width: "100px",
+      align: "center",
       ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1284,6 +1300,7 @@ const Dealer = () => {
       dataIndex: "securitytype",
       key: "securitytype",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1299,6 +1316,7 @@ const Dealer = () => {
       dataIndex: "amount",
       key: "amount",
       width: "80px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1313,6 +1331,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Rate</label>,
       dataIndex: "rate",
       key: "rate",
+      align: "center",
       width: "80px",
       ellipsis: true,
     },
@@ -1321,6 +1340,7 @@ const Dealer = () => {
       dataIndex: "tenor",
       key: "tenor",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1335,6 +1355,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Issue Date</label>,
       dataIndex: "issuedate",
       key: "issuedate",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1350,6 +1371,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Maturity Date</label>,
       dataIndex: "maturitydate",
       key: "maturitydate",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1365,6 +1387,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Trade Date</label>,
       dataIndex: "tradedate",
       key: "tradedate",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1380,6 +1403,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">No of Days</label>,
       dataIndex: "noofdays",
       key: "noofdays",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1395,6 +1419,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Settlement Date</label>,
       dataIndex: "settlement",
       key: "settlement",
+      align: "center",
       width: "110px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1410,6 +1435,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Status</label>,
       dataIndex: "status",
       key: "status",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1425,6 +1451,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Action</label>,
       dataIndex: "action",
       key: "action",
+      align: "center",
       width: "100px",
       // ellipsis: true,
     },
@@ -1432,6 +1459,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Comment</label>,
       dataIndex: "comment",
       key: "comment",
+      align: "center",
       width: "100px",
       // ellipsis: true,
     },
@@ -1439,9 +1467,14 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Chat</label>,
       dataIndex: "chat",
       key: "chat",
+      align: "center",
       width: "100px",
       render: (text) => (
-        <Button text={text} className="chatIcon-inBotton-table" />
+        <Button
+          text={text}
+          onClick={() => setChatBoxOpen(!chatBoxOpen)}
+          className="chatIcon-inBotton-table"
+        />
       ),
       // ellipsis: true,
     },
@@ -1454,6 +1487,7 @@ const Dealer = () => {
       dataIndex: "txnid",
       key: "txnid",
       width: "100px",
+      align: "center",
       ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1469,6 +1503,7 @@ const Dealer = () => {
       dataIndex: "client",
       key: "client",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1484,6 +1519,7 @@ const Dealer = () => {
       dataIndex: "position",
       key: "position",
       width: "100px",
+      align: "center",
       ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1499,6 +1535,7 @@ const Dealer = () => {
       dataIndex: "securitytype",
       key: "securitytype",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1513,6 +1550,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Amount</label>,
       dataIndex: "amount",
       key: "amount",
+      align: "center",
       width: "80px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1529,12 +1567,14 @@ const Dealer = () => {
       dataIndex: "bid",
       key: "bid",
       width: "80px",
+      align: "center",
       ellipsis: true,
     },
     {
       title: <label className="bottom-table-header">Offer</label>,
       dataIndex: "offer",
       key: "offer",
+      align: "center",
       width: "80px",
       ellipsis: true,
     },
@@ -1543,6 +1583,7 @@ const Dealer = () => {
       dataIndex: "tenor",
       key: "tenor",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1557,6 +1598,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Issue Date</label>,
       dataIndex: "issuedate",
       key: "issuedate",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1573,6 +1615,7 @@ const Dealer = () => {
       dataIndex: "maturitydate",
       key: "maturitydate",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1588,6 +1631,7 @@ const Dealer = () => {
       dataIndex: "tradedate",
       key: "tradedate",
       width: "100px",
+      align: "center",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
@@ -1602,6 +1646,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">No of Days</label>,
       dataIndex: "noofdays",
       key: "noofdays",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1617,6 +1662,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Settlement Date</label>,
       dataIndex: "settlement",
       key: "settlement",
+      align: "center",
       width: "110px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1632,6 +1678,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Status</label>,
       dataIndex: "status",
       key: "status",
+      align: "center",
       width: "100px",
       // ellipsis: true,
       render: (text) => <label className="issue-date-column">{text}</label>,
@@ -1647,6 +1694,7 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Comment</label>,
       dataIndex: "comment",
       key: "comment",
+      align: "center",
       width: "100px",
       // ellipsis: true,
     },
@@ -1654,9 +1702,14 @@ const Dealer = () => {
       title: <label className="bottom-table-header">Chat</label>,
       dataIndex: "chat",
       key: "chat",
+      align: "center",
       width: "100px",
       render: (text) => (
-        <Button text={text} className="chatIcon-inBotton-table" />
+        <Button
+          text={text}
+          className="chatIcon-inBotton-table"
+          onClick={() => setChatBoxOpen(!chatBoxOpen)}
+        />
       ),
       // ellipsis: true,
     },
@@ -2041,9 +2094,11 @@ const Dealer = () => {
                       <Table
                         // dataSource={filteredData}
                         column={columns}
+                        fixed="true"
                         rows={filteredData}
                         className="inside-table"
                         pagination={false}
+                        scroll={{ y: 50 }}
                       />
                     </>
                   ) : isPib ? (
@@ -2089,7 +2144,7 @@ const Dealer = () => {
             </div>
           </Col>
 
-          <Col lg={5} md={5} sm={5} className="news-colm">
+          <Col lg={6} md={6} sm={6} className="news-colm">
             <div className="card-box">
               <Row className="mt-2">
                 <Col lg={8} md={8} sm={8}>
@@ -2427,6 +2482,36 @@ const Dealer = () => {
           </Row>
         </div>
       </Container>
+
+      {chatBoxOpen ? (
+        <>
+          <div className="openNew-Chat-dashboard">
+            <Row className="chatbox-row-bottom-dashboard">
+              <Col lg={2} md={2} sm={2}>
+                <img src={JohnCater} className="chatBox-image-john-dashboard" />
+              </Col>
+              <Col lg={6} md={6} sm={6} className="label-col-dashboard">
+                <label className="recent-chatBox-dashboard">John Carter</label>
+              </Col>
+              <Col lg={4} md={4} sm={4} className="chatBox-top-icons-dashboard">
+                <X size={20} onClick={() => setChatBoxOpen(!chatBoxOpen)} />
+              </Col>
+            </Row>
+
+            <div className="bottom-chat-box-dashboard">
+              <Row>
+                <Col lg={9} md={9} sm={9} className="mb-2">
+                  <TextField className="textfield-chatbox-dashboard" />
+                </Col>
+                <Col lg={3} md={3} sm={3} className="btm-icons-dashboard">
+                  <Send size={20} />
+                  <Paperclip size={20} />
+                </Col>
+              </Row>
+            </div>
+          </div>
+        </>
+      ) : null}
 
       {viewDealerModal ? (
         <ViewModal

@@ -16,7 +16,7 @@ import JsLogo from "../../../assets/images/js-logo.png";
 const Header = () => {
   return (
     <>
-      <Container fluid className="container-header">
+      <Container fluid className="container-header-2">
         <Navbar collapseOnSelect expand="lg">
           <Container fluid>
             <Navbar.Brand>
@@ -39,13 +39,13 @@ const Header = () => {
               </Nav>
             </Navbar.Collapse>
 
-            <Dropdown className="profilebtn-dropdown">
-              <Dropdown.Toggle className="dropdown-toggle">
-                <p className="user-name">Owais Wajid</p>
-                <img src={JohnCater} className="image-john" />
+            <Dropdown className="profilebtn-dropdown-header2">
+              <Dropdown.Toggle className="dropdown-toggle-header2">
+                <p className="user-name-header2">Owais Wajid</p>
+                <img src={JohnCater} className="image-john-header2" />
               </Dropdown.Toggle>
 
-              <Dropdown.Menu className="dropdown_menu">
+              <Dropdown.Menu className="dropdown_menu-Header2">
                 <Dropdown.Item>
                   <Nav.Link>
                     <i className="icon-settings me-1"></i>

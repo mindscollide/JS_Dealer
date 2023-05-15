@@ -17,9 +17,9 @@
 .rfq-button {
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-radius: 4px !important;
-  padding: 5px 20px;
+  padding: 6px 20px;
   gap: 10px !important;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-align: center !important;
   border: none;
@@ -29,8 +29,8 @@
 .rfq-button:hover {
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
   border-radius: 4px !important;
-  padding: 5px 20px;
-  font-size: 16px;
+  padding: 6px 20px;
+  font-size: 14px;
   font-weight: 600;
   text-align: center !important;
   border: none;
@@ -40,7 +40,7 @@
 .caluclator-button {
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
   border-radius: 4px !important;
-  padding: 5px 35px;
+  padding: 6px 20px !important;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -51,7 +51,7 @@
 .caluclator-button:hover {
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
   border-radius: 4px !important;
-  padding: 5px 35px;
+  padding: 6px 20px !important;
   font-size: 15px;
   font-weight: 600;
   border: none;
@@ -69,9 +69,9 @@
   max-width: 240px;
 }
 
-.dropdown-toggle {
+.dropdown-toggle-1 {
   margin: 0;
-  padding: 5px 14px;
+  padding: 5px 5px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,6 +105,10 @@
   margin: 0 5px;
 }
 
+.dropdown-toggle::after {
+  display: none !important;
+}
+
 .dropdown_menu {
   border: none !important;
   width: 100% !important;
@@ -119,6 +123,7 @@
 
 .modal-setting .modal-content {
   margin-top: -2%;
+  /* position: relative !important; */
   height: 86vh !important;
   width: 48vw !important;
   background-color: #ffffff;
@@ -128,6 +133,7 @@
   justify-content: center !important;
   padding: 10px 15px;
   margin-left: 10%;
+  box-shadow: 10px 10px 40px rgb(0 0 0 / 10%) !important ;
 }
 
 .top-button-setting-modal {
@@ -191,17 +197,18 @@
 }
 
 .modal-setting-para {
-  font-size: 14px;
-  font-weight: 400 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
 }
 
 .header-Modal-setting {
   font-size: 11px;
   border: none !important;
-  position: absolute;
-  right: 0px;
+  cursor: pointer;
+  /* position: absolute; */
+  /* right: 0px;
   top: 20px;
-  font-size: 9px;
+  font-size: 9px; */
 }
 
 .modal-setting-footer {
@@ -210,13 +217,14 @@
 }
 
 .modal-footer-save-btn {
-  padding: 6px 24px !important;
+  height: 35px !important;
+  /* padding: 7px 24px !important; */
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
   color: #ffffff;
   border: none;
   border-radius: 2px !important;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px !important;
+  font-weight: 500 !important;
   border-radius: 4px !important;
 }
 
@@ -225,9 +233,10 @@
 }
 
 .change-password-btn {
-  padding: 5px 16px;
+  padding: 7px 16px !important;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
   color: #ffffff;
   border: none !important;
   background: linear-gradient(to bottom, #f8ae58 0%, #f76729 100%);
@@ -235,16 +244,35 @@
 
 .setting-change-password {
   background-color: white !important;
-  border: 1px solid #ccc;
+  width: 100% !important;
+  /* border: 1px solid #ccc; */
   border-radius: 4px;
   padding: 8px 10px;
   z-index: 2;
   display: flex;
-  justify-content: center;
   align-items: center;
   position: absolute !important;
   top: 200px !important;
   gap: 10px;
 }
 
+.two-fac-authentication-para {
+  font-size: 13px;
+  font-weight: 500;
+}
 
+.change-password-textfield {
+  height: 27px !important;
+  border-radius: 4px !important;
+  font-size: 13px;
+  -webkit-text-security: disc !important;
+}
+
+.change-password-label {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.setting-icon {
+  font-size: 17px;
+}

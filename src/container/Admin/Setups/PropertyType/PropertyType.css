@@ -47,8 +47,11 @@
 }
 
 .Comment_section {
-  font-size: 12px;
-  color: #004990;
+  position: absolute;
+  font-size: 12px !important;
+  color: #004990 !important;
+  font-weight: 500 !important;
+  top: 90px !important;
 }
 
 .streik {
