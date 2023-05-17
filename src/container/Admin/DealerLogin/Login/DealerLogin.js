@@ -85,7 +85,7 @@ const DealerLogin = () => {
 
   // navigate to signup
   const navigateToSignup = () => {
-    navigate("SignUp");
+    navigate("SignUpRequest");
   };
 
   return (

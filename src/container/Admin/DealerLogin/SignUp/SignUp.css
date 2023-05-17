@@ -47,6 +47,8 @@
 .Goback-Signup-btn {
   width: 93px !important;
   height: 39px !important;
+  font-size: 14px;
+  font-weight: 500;
   background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 0px;

@@ -90,15 +90,15 @@ const SignUp = () => {
   console.log("credentialsBio", credentialsBio);
   //goback btn handler
   const goBackBtn = () => {
-    navigate("/");
+    navigate("/SignUpRequest");
   };
 
   const rolesChangeHandler = async (selectedOption) => {
     console.log(selectedOption, "selectedOptionselectedOption");
-      setCredentialsBio({
-        ...credentialsBio,
-        roleID: selectedOption.value,
-      });
+    setCredentialsBio({
+      ...credentialsBio,
+      roleID: selectedOption.value,
+    });
   };
 
   const transactionOption = [
