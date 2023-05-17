@@ -156,7 +156,11 @@ const SignUpRequest = () => {
                       lg={12}
                       className="signIn-Proceed-btn-col"
                     >
-                      <Button text="Go Back" className="goBack-btn" />
+                      <Button
+                        text="Go Back"
+                        className="goBack-btn"
+                        onClick={() => navigate("/")}
+                      />
                       <Button
                         text="Proceed"
                         className="Proceed-btn"

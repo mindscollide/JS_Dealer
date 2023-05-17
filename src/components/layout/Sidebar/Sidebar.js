@@ -31,6 +31,23 @@ const Sidebar = () => {
   //for another chat box open
   const [chatBoxOpen, setChatBoxOpen] = useState(false);
 
+  const openChatBox = () => {
+    setOpenLogIn(false);
+    setOpenInvite(false);
+  };
+
+  // for open login
+  const openLogin = () => {
+    setOpenChat(false);
+    setOpenInvite(false);
+  };
+
+  // for open Invite chat
+  const openInvitePanel = () => {
+    setOpenChat(false);
+    setOpenLogIn(false);
+  };
+
   return (
     <>
       <Row className={styles["sidebar-row"]}>
@@ -44,7 +61,10 @@ const Sidebar = () => {
                   <i
                     className="icon-chat2"
                     size={40}
-                    onClick={() => setOpenChat(!openChat)}
+                    onClick={() => {
+                      setOpenChat(!openChat);
+                      openChatBox();
+                    }}
                   ></i>
                 </span>
 
@@ -59,7 +79,10 @@ const Sidebar = () => {
                   <i
                     className="icon-group-chat"
                     size={40}
-                    onClick={() => setOpenLogIn(!openLogIn)}
+                    onClick={() => {
+                      setOpenLogIn(!openLogIn);
+                      openLogin();
+                    }}
                   ></i>
                 </span>
                 <label className={styles["sidebar-text"]}>
@@ -73,7 +96,10 @@ const Sidebar = () => {
                   <i
                     className="icon-group-chat"
                     size={40}
-                    onClick={() => setOpenInvite(!openInvite)}
+                    onClick={() => {
+                      setOpenInvite(!openInvite);
+                      openInvitePanel();
+                    }}
                   ></i>
                 </span>
 

@@ -33,3 +33,16 @@ export const onlyNumberValidation = (value) => {
   let numberValidate = valueCheck !== "" ? true : false;
   return numberValidate;
 };
+
+export const decimalNumber = (value) => {
+  console.log("valuevaluevalue", value);
+  let decimal = /^[-+]?[0-9]+\.[0-9]+$/;
+  console.log(decimal.test(value));
+  if (value.match(decimal)) {
+    console.log("valuevaluevalue", value);
+    return true;
+  } else {
+    console.log("valuevaluevalue", value);
+    return false;
+  }
+};

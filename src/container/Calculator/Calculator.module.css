@@ -53,24 +53,34 @@
 }
 
 .heading-paper {
-  padding: 10px 30px;
-  position: relative !important;
+  padding: 10px 5px;
+  /* position: relative !important; */
   top: -6px;
   background-color: white !important;
   /* box-shadow: 1px 1px 3px 3px rgb(236, 236, 236) !important; */
-}
-
-.select-field-calculator {
-  margin-top: 5px;
-  width: 100%;
-  height: 27px !important;
-  border-radius: 4px;
 }
 
 .alltextfields-calculator {
   width: 100%;
   height: 29px;
   border-radius: 4px;
+  font-size: 11px;
+}
+
+.select-field-calculator {
+  width: 100%;
+  color: #002650 !important;
+  /* height: 27px !important; */
+  text-align: start !important;
+  border-radius: 4px;
+}
+
+.datepickerfields-calculator {
+  width: 100%;
+  height: 29px;
+  border-radius: 4px;
+  font-size: 11px;
+  border: 1px solid #ced4da !important;
 }
 
 .all-field-labels {
@@ -121,24 +131,43 @@
 
 .yield-to-price-labels {
   font-size: 12px !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
   text-align: right !important;
 }
 
 .PIB-labels {
   font-size: 12px !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
   text-align: right !important;
 }
 
 .slect-bond-p-to-y {
   font-size: 12px !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
   text-align: right !important;
 }
 
 .maturity-bond-p-to-y {
   font-size: 12px !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
+  font-family: "Montserrat", sans-serif !important;
   text-align: right !important;
+}
+
+.date-picker-calculator {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  width: 100% !important;
+  height: 27px !important;
+  align-items: center !important;
+  margin-top: 20px !important;
+  font-size: 13px !important;
+  font-family: "Montserrat", sans-serif !important;
+  cursor: pointer;
+}
+.date-picker-calculator:is(:focus, :focus-visible) {
+  outline: none !important;
 }

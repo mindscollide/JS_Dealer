@@ -50,28 +50,6 @@ const signupFail = (response, message) => {
   };
 };
 
-const rolesInit = () => {
-  return {
-    type: actions.USER_ROLES_INIT,
-  };
-};
-
-const rolesSuccess = (response, message) => {
-  return {
-    type: actions.USER_ROLES_SUCCESS,
-    response: response,
-    message: message,
-  };
-};
-
-const rolesFail = (response, message) => {
-  return {
-    type: actions.USER_ROLES_FAIL,
-    response: response,
-    message: message,
-  };
-};
-
 const signOut = (navigate, message) => {
   localStorage.clear();
   navigate("/");
@@ -415,6 +393,28 @@ const signUp = (UserData, navigate) => {
       .catch((response) => {
         dispatch(signupFail("Something went wrong"));
       });
+  };
+};
+
+const rolesInit = () => {
+  return {
+    type: actions.USER_ROLES_INIT,
+  };
+};
+
+const rolesSuccess = (response, message) => {
+  return {
+    type: actions.USER_ROLES_SUCCESS,
+    response: response,
+    message: message,
+  };
+};
+
+const rolesFail = (response, message) => {
+  return {
+    type: actions.USER_ROLES_FAIL,
+    response: response,
+    message: message,
   };
 };
 
