@@ -5,10 +5,11 @@ import jsLogo from "../../../../assets/images/js-logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { validationEmail } from "../../../../assets/common/functions/validations";
+import { validateEmailPassword } from "../../../../store/actions/Auth-Actions";
 import { useNavigate } from "react-router-dom";
 import { signUp, allUserRoles } from "../../../../store/actions/Auth-Actions";
 import "./SignUp.css";
-const SignUp = () => {
+const SignUp = (data) => {
   const { auth } = useSelector((state) => state);
   console.log(auth, "allUserRoles");
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ const SignUp = () => {
   // const [roles, setRoles] = useState([]);
   const [roleValue, setRoleValue] = useState([]);
   const [userRoles, setUserRoles] = useState([]);
-  console.log(userRoles, "userRolesuserRolesuserRoles");
   const [transactionType, setTransactionType] = useState([]);
   const [regionType, setRegionType] = useState([]);
   const [roleType, setRoleType] = useState([]);
@@ -40,54 +40,34 @@ const SignUp = () => {
     completed: false,
   });
 
-  // const [credentialsBio, setCredentialsBio] = useState({
-  //   email: {
-  //     content: "",
-  //     isError: false,
-  //     errorMessage: "",
-  //     isSuccess: false,
-  //   },
-  //   userName: {
-  //     content: "",
-  //     isError: false,
-  //     errorMessage: "",
-  //     isSuccess: false,
-  //   },
-  //   firstName: {
-  //     content: "",
-  //     isError: false,
-  //     errorMessage: "",
-  //     isSuccess: false,
-  //   },
-  //   lastName: {
-  //     content: "",
-  //     isError: false,
-  //     errorMessage: "",
-  //     isSuccess: false,
-  //   },
-  //   personalNumber: {
-  //     content: "",
-  //     isError: false,
-  //     errorMessage: "",
-  //     isSuccess: false,
-  //   },
-  //   role: {
-  //     content: "",
-  //     isError: false,
-  //     errorMessage: "",
-  //     isSuccess: false,
-  //   },
-  // });
-
   const [credentialsBio, setCredentialsBio] = useState({
-    email: "",
-    userName: "",
-    firstName: "",
-    lastName: "",
-    personalNumber: "",
-    roleID: 0,
+    Email: {
+      value: "",
+      errorMessage: "",
+      errorStatus: false,
+    },
+    UserName: {
+      value: "",
+      errorMessage: "",
+      errorStatus: false,
+    },
+    FirstName: {
+      value: "",
+      errorMessage: "",
+      errorStatus: false,
+    },
+    LastName: {
+      value: "",
+      errorMessage: "",
+      errorStatus: false,
+    },
+    RoleID: 0,
   });
   console.log("credentialsBio", credentialsBio);
+  useEffect(() => {
+    // on page refresh
+    dispatch(allUserRoles());
+  }, []);
   //goback btn handler
   const goBackBtn = () => {
     navigate("/SignUpRequest");
@@ -97,33 +77,93 @@ const SignUp = () => {
     console.log(selectedOption, "selectedOptionselectedOption");
     setCredentialsBio({
       ...credentialsBio,
-      roleID: selectedOption.value,
+      RoleID: selectedOption.value,
     });
   };
 
-  const transactionOption = [
-    { label: "Transaction type1", value: 1 },
-    {
-      label: "Transaction type2",
-      value: 2,
-    },
-  ];
+  // on change handler for signUp credentials
+  const signUpOnchangeHandler = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    let emailRegex = /([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@hbl([\.])com/g;
+    let alphabeticRegex = /[^a-zA-Z ]/g;
 
-  const regionOption = [
-    { label: "Region1", value: 1 },
-    {
-      label: "Region2",
-      value: 2,
-    },
-  ];
+    if (name === "Email" && value !== "") {
+      console.log(value, "emailemailemail");
+      if (value !== "") {
+        setCredentialsBio({
+          ...credentialsBio,
+          Email: {
+            value: value.trimStart(),
+            errorMessage: "",
+            errorStatus: false,
+          },
+        });
+      }
+    } else if (name === "Email" && value === "") {
+      setCredentialsBio({
+        ...credentialsBio,
+        Email: { value: "", errorMessage: "", errorStatus: false },
+      });
+    }
 
-  const roleOption = [
-    { label: "Role1", value: 1 },
-    {
-      label: "Role2",
-      value: 2,
-    },
-  ];
+    if (name === "UserName" && value !== "") {
+      let valueCheck = value.replace(/[^a-zA-Z ]/g, "");
+      if (valueCheck !== "") {
+        setCredentialsBio({
+          ...credentialsBio,
+          UserName: {
+            value: valueCheck.trimStart(),
+            errorMessage: "",
+            errorStatus: false,
+          },
+        });
+      }
+    } else if (name === "UserName" && value === "") {
+      setCredentialsBio({
+        ...credentialsBio,
+        UserName: { value: "", errorMessage: "", errorStatus: false },
+      });
+    }
+
+    if (name === "UserName" && value !== "") {
+      let valueCheck = value.replace(/[^a-zA-Z ]/g, "");
+      if (valueCheck !== "") {
+        setCredentialsBio({
+          ...credentialsBio,
+          UserName: {
+            value: valueCheck.trimStart(),
+            errorMessage: "",
+            errorStatus: false,
+          },
+        });
+      }
+    } else if (name === "FirstName" && value === "") {
+      setCredentialsBio({
+        ...credentialsBio,
+        FirstName: { value: "", errorMessage: "", errorStatus: false },
+      });
+    }
+
+    if (name === "LastName" && value !== "") {
+      let valueCheck = value.replace(/[^a-zA-Z ]/g, "");
+      if (valueCheck !== "") {
+        setCredentialsBio({
+          ...credentialsBio,
+          LastName: {
+            value: valueCheck.trimStart(),
+            errorMessage: "",
+            errorStatus: false,
+          },
+        });
+      }
+    } else if (name === "LastName" && value === "") {
+      setCredentialsBio({
+        ...credentialsBio,
+        LastName: { value: "", errorMessage: "", errorStatus: false },
+      });
+    }
+  };
 
   const CustomStyle = {
     option: (base, state) => ({
@@ -132,6 +172,17 @@ const SignUp = () => {
       color: state.isFocused ? "#fff" : "#000",
       border: "none",
     }),
+  };
+
+  const signUpButton = () => {
+    let Data = {
+      FirstName: credentialsBio.FirstName.value,
+      LastName: credentialsBio.LastName.value,
+      Email: credentialsBio.Email.value,
+      RoleID: credentialsBio.RoleID,
+      LoginID: credentialsBio.UserName.value,
+    };
+    dispatch(signUp(Data));
   };
 
   useEffect(() => {
@@ -145,14 +196,38 @@ const SignUp = () => {
         });
       });
       setUserRoles(tem);
-      // setRoleValue(tem);
     }
   }, [auth.UserRoleList]);
 
   useEffect(() => {
-    // on page refresh
-    dispatch(allUserRoles());
-  }, []);
+    if (Object.keys(auth.validateResponse).length > 0) {
+      let responseData = auth.validateResponse;
+      console.log("datatddatd", responseData);
+      setCredentialsBio({
+        ...credentialsBio,
+        Email: {
+          value: responseData.Email,
+          errorMessage: "",
+          errorStatus: false,
+        },
+        UserName: {
+          value: responseData.UserName,
+          errorMessage: "",
+          errorStatus: false,
+        },
+        FirstName: {
+          value: responseData.FirstName,
+          errorMessage: "",
+          errorStatus: false,
+        },
+        LastName: {
+          value: responseData.LastName,
+          errorMessage: "",
+          errorStatus: false,
+        },
+      });
+    }
+  }, [auth.validateResponse]);
 
   return (
     <Fragment>
@@ -181,13 +256,11 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
-                              name="email"
-                              // onChange={emailChangeHandler}
-                              value={credentialsBio.email.content}
+                              name="Email"
+                              value={credentialsBio.Email.value}
+                              onChange={signUpOnchangeHandler}
                               className="sign-up-field"
                               placeholder="Email ID"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
                             />
                           </InputGroup>
                         </Col>
@@ -200,12 +273,11 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
-                              name="userName"
-                              value={credentialsBio.userName.content}
+                              name="UserName"
+                              value={credentialsBio.UserName.value}
+                              onChange={signUpOnchangeHandler}
                               className="sign-up-field"
                               placeholder="User Name"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
                             />
                           </InputGroup>
                         </Col>
@@ -223,12 +295,11 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
-                              name="firstName"
-                              value={credentialsBio.firstName.content}
+                              name="FirstName"
+                              value={credentialsBio.FirstName.value}
+                              onChange={signUpOnchangeHandler}
                               className="sign-up-field"
                               placeholder="First Name"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
                             />
                           </InputGroup>
                         </Col>
@@ -241,12 +312,11 @@ const SignUp = () => {
                           </Form.Label>
                           <InputGroup className="mb-3">
                             <Form.Control
-                              name="lastName"
-                              value={credentialsBio.lastName.content}
+                              name="LastName"
+                              value={credentialsBio.LastName.value}
+                              onChange={signUpOnchangeHandler}
                               className="sign-up-field"
                               placeholder="Last Name"
-                              aria-label="Username"
-                              aria-describedby="basic-addon1"
                             />
                           </InputGroup>
                         </Col>
@@ -284,7 +354,11 @@ const SignUp = () => {
                         className="Goback-Signup-btn"
                         onClick={goBackBtn}
                       />
-                      <Button text="Signup" className="Proceed-btn" />
+                      <Button
+                        text="Signup"
+                        className="Proceed-btn"
+                        onClick={signUpButton}
+                      />
                     </Col>
                   </Row>
                 </Col>

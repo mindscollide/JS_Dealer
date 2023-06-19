@@ -4,6 +4,7 @@ import {
   authenticationLogIn,
   authenticationSignUp,
   authenticationUserRoles,
+  validateEmailPasswordFromAD,
 } from "../../assets/common/apis/Api_config";
 import { authenticationAPI } from "../../assets/common/apis/Api_ends_points";
 
@@ -105,7 +106,7 @@ const logIn = (UserData, navigate) => {
               response.data.responseResult.responseMessage ===
               "ERM_AuthService_AuthManager_Login_03"
             ) {
-              if (response.data.responseResult.roleID === 2) {
+              if (response.data.responseResult.roleID === 1) {
                 localStorage.setItem(
                   "userID",
                   response.data.responseResult.userID
@@ -249,18 +250,9 @@ const logIn = (UserData, navigate) => {
 };
 
 // signUp API Function
-const signUp = (UserData, navigate) => {
-  let Data = {
-    LoginID: UserData.LoginID,
-    FirstName: UserData.FirstName,
-    LastName: UserData.LastName,
-    Email: UserData.Email,
-    PersonalNumber: UserData.PersonalNumber,
-    RoleID: UserData.RoleID,
-  };
-
+const signUp = (Data, navigate) => {
   return (dispatch) => {
-    dispatch(signupInit());
+    dispatch(signupInit(Data));
     let form = new FormData();
     form.append("RequestMethod", authenticationSignUp.RequestMethod);
     form.append("RequestData", JSON.stringify(Data));
@@ -296,7 +288,7 @@ const signUp = (UserData, navigate) => {
               response.data.responseResult.responseMessage ===
               "ERM_AuthService_SignUpManager_SignUp_03"
             ) {
-              if (response.data.responseResult.roleID === 2) {
+              if (response.data.responseResult.roleID === 1) {
                 localStorage.setItem(
                   "userID",
                   response.data.responseResult.userID
@@ -316,14 +308,6 @@ const signUp = (UserData, navigate) => {
                 localStorage.setItem(
                   "roleID",
                   response.data.responseResult.roleID
-                );
-                localStorage.setItem(
-                  "token",
-                  response.data.responseResult.token
-                );
-                localStorage.setItem(
-                  "refreshToken",
-                  response.data.responseResult.refreshToken
                 );
                 navigate("/");
                 dispatch(signupSuccess("Successfully signup In"));
@@ -348,19 +332,11 @@ const signUp = (UserData, navigate) => {
                   "roleID",
                   response.data.responseResult.roleID
                 );
-                localStorage.setItem(
-                  "token",
-                  response.data.responseResult.token
-                );
-                localStorage.setItem(
-                  "refreshToken",
-                  response.data.responseResult.refreshToken
-                );
                 navigate("/");
                 dispatch(signupSuccess("Successfully Signup In"));
               } else {
                 dispatch(
-                  loginfail("This user is not authorise for this domain")
+                  signupFail("This user is not authorise for this domain")
                 );
               }
             }
@@ -435,7 +411,7 @@ const allUserRoles = () => {
           if (response.data.responseResult.isExecuted === true) {
             if (
               response.data.responseResult.responseMessage.toLowerCase() ===
-              "ERM_AuthService_RoleManager_RoleList_01".toLowerCase()
+              "ERM_AuthService_CommonManager_RoleList_01".toLowerCase()
             ) {
               console.log("UserRoleListUserRoleList", response);
               dispatch(
@@ -445,7 +421,7 @@ const allUserRoles = () => {
               response.data.responseResult.responseMessage
                 .toLowerCase()
                 .includes(
-                  "ERM_AuthService_RoleManager_RoleList_02".toLowerCase()
+                  "ERM_AuthService_CommonManager_RoleList_02".toLowerCase()
                 )
             ) {
               dispatch(rolesFail("No Record Found"));
@@ -453,7 +429,7 @@ const allUserRoles = () => {
               response.data.responseResult.responseMessage
                 .toLowerCase()
                 .includes(
-                  "ERM_AuthService_RoleManager_RoleList_03".toLowerCase()
+                  "ERM_AuthService_CommonManager_RoleList_03".toLowerCase()
                 )
             ) {
               dispatch(rolesFail("Exception No roles available"));
@@ -473,4 +449,105 @@ const allUserRoles = () => {
   };
 };
 
-export { logIn, signUp, signOut, allUserRoles };
+// FOR VALIDATE EMAIL API
+const validateInit = () => {
+  return {
+    type: actions.VALIDATE_EMAIL_PASSWORD_INIT,
+  };
+};
+
+const validateSuccess = (response, message) => {
+  return {
+    type: actions.VALIDATE_EMAIL_PASSWORD_SUCCESS,
+    response: response,
+    message: message,
+  };
+};
+
+const validateFail = (message) => {
+  return {
+    type: actions.VALIDATE_EMAIL_PASSWORD_FAIL,
+    message: message,
+  };
+};
+
+const validateEmailPassword = (email, password, navigate) => {
+  let Data = {
+    UserName: email,
+    Password: password,
+  };
+  return async (dispatch) => {
+    dispatch(validateInit(Data));
+    let form = new FormData();
+    form.append("RequestMethod", validateEmailPasswordFromAD.RequestMethod);
+    form.append("RequestData", JSON.stringify(Data));
+    await axios({
+      method: "POST",
+      url: authenticationAPI,
+      data: form,
+    })
+      .then(async (response) => {
+        console.log("validateEmailvalidateEmail", response);
+        if (response.data.responseCode === 200) {
+          if (response.data.responseResult.isExecuted === true) {
+            if (
+              response.data.responseResult.responseMessage.toLowerCase() ===
+              "ERM_AuthService_AuthManager_ValidateEmailAndPasswordFromAD_01".toLowerCase()
+            ) {
+              console.log("validateEmailvalidateEmail", response);
+              dispatch(validateFail("User / Password must not be empty"));
+            } else if (
+              response.data.responseResult.responseMessage
+                .toLowerCase()
+                .includes(
+                  "ERM_AuthService_AuthManager_ValidateEmailAndPasswordFromAD_02".toLowerCase()
+                )
+            ) {
+              dispatch(
+                validateFail(
+                  "User already exists in JS System. Please use other credentials"
+                )
+              );
+            } else if (
+              response.data.responseResult.responseMessage
+                .toLowerCase()
+                .includes(
+                  "ERM_AuthService_AuthManager_ValidateEmailAndPasswordFromAD_03".toLowerCase()
+                )
+            ) {
+              let data = {
+                Email: response.data.responseResult.email,
+                FirstName: response.data.responseResult.firstName,
+                LastName: response.data.responseResult.lastName,
+                UserName: response.data.responseResult.userName,
+              };
+
+              await dispatch(
+                validateSuccess(data, "Credentials has been verified")
+              );
+              navigate("/SignUp");
+            } else if (
+              response.data.responseResult.responseMessage
+                .toLowerCase()
+                .includes(
+                  "ERM_AuthService_AuthManager_ValidateEmailAndPasswordFromAD_04".toLowerCase()
+                )
+            ) {
+              dispatch(validateFail("Exception No Validation Found"));
+            }
+          } else {
+            dispatch(validateFail("Something went wrong"));
+            console.log("There's no User Role");
+          }
+        } else {
+          dispatch(validateFail("Something went wrong"));
+          console.log("There's no User Role");
+        }
+      })
+      .catch((response) => {
+        dispatch(validateFail("something went wrong"));
+      });
+  };
+};
+
+export { logIn, signUp, signOut, allUserRoles, validateEmailPassword };

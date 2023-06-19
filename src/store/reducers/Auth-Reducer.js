@@ -4,6 +4,7 @@ const initialState = {
   UserDetails: null,
   isLoggedIn: false,
   Loading: false,
+  validateResponse: [],
   ResponseMessage: "",
   isSignUp: false,
   SessionExpeireResponseMessage: "",
@@ -85,6 +86,30 @@ const authReducer = (state = initialState, action) => {
         ...state,
         Loading: false,
         UserRoleList: [],
+        ResponseMessage: action.message,
+      };
+
+    case actions.VALIDATE_EMAIL_PASSWORD_INIT:
+      return {
+        ...state,
+        Loading: true,
+      };
+
+    case actions.VALIDATE_EMAIL_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        Loading: false,
+        isLoggedIn: false,
+        validateResponse: action.response,
+        ResponseMessage: action.message,
+      };
+
+    case actions.VALIDATE_EMAIL_PASSWORD_FAIL:
+      return {
+        ...state,
+        Loading: false,
+        isLoggedIn: false,
+        validateResponse: [],
         ResponseMessage: action.message,
       };
 
