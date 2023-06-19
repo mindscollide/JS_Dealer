@@ -171,3 +171,20 @@
 .date-picker-calculator:is(:focus, :focus-visible) {
   outline: none !important;
 }
+
+.errorMessageLogin {
+  height: 10px;
+  margin-top: -12px !important;
+  margin-left: -65%;
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #f16b6b;
+  visibility: visible !important;
+}
+
+.errorMessageLogin_hidden {
+  visibility: hidden;
+  margin: 0;
+  height: 14px;
+  color: #f16b6b !important;
+}

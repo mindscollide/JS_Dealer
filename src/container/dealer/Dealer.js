@@ -1873,611 +1873,619 @@ const Dealer = () => {
   return (
     <>
       <Container fluid className="table-content-div">
-        <Row className="remove-gutterx-space">
-          <Col lg={6} md={6} sm={6}>
-            <div className="card-box">
-              <Row className="mt-2">
-                <Col lg={8} md={8} sm={8}>
-                  <Select
-                    options={tableFilterOptions}
-                    defaultValue={tableFilterOptions[0]}
-                    className="tableFilter"
-                    onChange={panelHandler}
-                    // onClick={openPkrvPanel}
-                  />
-                </Col>
-
-                {currentTable === 1 ? (
-                  <>
-                    <>
-                      <Col lg={4} md={4} sm={4} className="upper-3m-colum">
-                        <label className="upper-date-time">
-                          05-04-2023 16:53 PM
-                        </label>
-                      </Col>
-                    </>
-                  </>
-                ) : currentTable === 2 ? (
-                  <>
-                    <Col lg={4} md={4} sm={4} className="upper-3m-colum">
-                      <TextField
-                        placeholder="search"
-                        className="pkrv-search-textfield"
+        <Row>
+          <Col lg={12} md={12} sm={12}>
+            <Row className="me-5">
+              <Col lg={6} md={6} sm={6}>
+                <div className="card-box">
+                  <Row className="mt-2">
+                    <Col lg={8} md={8} sm={8}>
+                      <Select
+                        options={tableFilterOptions}
+                        defaultValue={tableFilterOptions[0]}
+                        className="tableFilter"
+                        onChange={panelHandler}
+                        // onClick={openPkrvPanel}
                       />
                     </Col>
-                  </>
-                ) : currentTable === 3 ? (
-                  <>
-                    <div className="second-row">
-                      <div className="News-div-scroll">
-                        <Row className="latest-date-row">
-                          <Col lg={12} md={12} sm={12}>
-                            <label className="latest-date">6-12-2022</label>
-                          </Col>
-                        </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img
-                              src={DowJones}
-                              width={40}
-                              onClick={openViewModal}
-                            />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
+                    {currentTable === 1 ? (
+                      <>
+                        <>
+                          <Col lg={4} md={4} sm={4} className="upper-3m-colum">
+                            <label className="upper-date-time">
+                              05-04-2023 16:53 PM
                             </label>
                           </Col>
-                        </Row>
+                        </>
+                      </>
+                    ) : currentTable === 2 ? (
+                      <>
+                        <Col lg={4} md={4} sm={4} className="upper-3m-colum">
+                          <TextField
+                            placeholder="search"
+                            className="pkrv-search-textfield"
+                          />
+                        </Col>
+                      </>
+                    ) : currentTable === 3 ? (
+                      <>
+                        <div className="second-row">
+                          <div className="News-div-scroll">
+                            <Row className="latest-date-row">
+                              <Col lg={12} md={12} sm={12}>
+                                <label className="latest-date">6-12-2022</label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={CNBC} width={40} />
-                            <label className="dj-jones-text">
-                              Russian oil Cap will work, EU ministers insist,
-                              despite kermlin opposition and
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img
+                                  src={DowJones}
+                                  width={40}
+                                  onClick={openViewModal}
+                                />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={Tresmark} width={40} />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={CNBC} width={40} />
+                                <label className="dj-jones-text">
+                                  Russian oil Cap will work, EU ministers
+                                  insist, despite kermlin opposition and
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="latest-date-row">
-                          <Col lg={12} md={12} sm={12}>
-                            <label className="latest-date">5-12-2022</label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={Tresmark} width={40} />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={DowJones} width={40} />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="latest-date-row">
+                              <Col lg={12} md={12} sm={12}>
+                                <label className="latest-date">5-12-2022</label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={CNBC} width={40} />
-                            <label className="dj-jones-text">
-                              Russian oil Cap will work, EU ministers insist,
-                              despite kermlin opposition and
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={DowJones} width={40} />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={CNBC} width={40} />
-                            <label className="dj-jones-text">
-                              Russian oil Cap will work, EU ministers insist,
-                              despite kermlin opposition and
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={CNBC} width={40} />
+                                <label className="dj-jones-text">
+                                  Russian oil Cap will work, EU ministers
+                                  insist, despite kermlin opposition and
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={Tresmark} width={40} />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={CNBC} width={40} />
+                                <label className="dj-jones-text">
+                                  Russian oil Cap will work, EU ministers
+                                  insist, despite kermlin opposition and
+                                </label>
+                              </Col>
+                            </Row>
+
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={Tresmark} width={40} />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
+                          </div>
+                        </div>
+                      </>
+                    ) : null}
+                  </Row>
+
+                  {/* current table 1 2 3 ye sb filters ma set ki hoe hain hm yaha condition laga kr match krraha */}
+                  {currentTable === 1 ? (
+                    <>
+                      <div className="upper-div-button">
+                        <Button
+                          text="Tbills"
+                          className={
+                            isTbills
+                              ? "table-upper-tbill-button-active"
+                              : "table-upper-tbill-button-notActive "
+                          }
+                          onClick={openTbillTable}
+                        />
+                        <Button
+                          text="PIBs"
+                          className={
+                            isPib
+                              ? "table-upper-PIB-button-active"
+                              : "table-upper-PIB-button-notActive"
+                          }
+                          onClick={openPibTable}
+                        />
+                        <Button
+                          text="PIB Floater"
+                          className={
+                            isPibFloater
+                              ? "table-upper-PIB-button-active"
+                              : "table-upper-Floater-button-notActive"
+                          }
+                          onClick={openPibFloaterTable}
+                        />
+                        <Button
+                          text="SUKUK"
+                          className={
+                            isSukuk
+                              ? "table-upper-SUKUK-button-active"
+                              : "table-upper-SUKUK-button-notActive"
+                          }
+                          onClick={openSukuk}
+                        />
                       </div>
-                    </div>
-                  </>
-                ) : null}
-              </Row>
+                    </>
+                  ) : null}
 
-              {/* current table 1 2 3 ye sb filters ma set ki hoe hain hm yaha condition laga kr match krraha */}
-              {currentTable === 1 ? (
-                <>
-                  <div className="upper-div-button">
-                    <Button
-                      text="Tbills"
-                      className={
-                        isTbills
-                          ? "table-upper-tbill-button-active"
-                          : "table-upper-tbill-button-notActive "
-                      }
-                      onClick={openTbillTable}
-                    />
-                    <Button
-                      text="PIBs"
-                      className={
-                        isPib
-                          ? "table-upper-PIB-button-active"
-                          : "table-upper-PIB-button-notActive"
-                      }
-                      onClick={openPibTable}
-                    />
-                    <Button
-                      text="PIB Floater"
-                      className={
-                        isPibFloater
-                          ? "table-upper-PIB-button-active"
-                          : "table-upper-Floater-button-notActive"
-                      }
-                      onClick={openPibFloaterTable}
-                    />
-                    <Button
-                      text="SUKUK"
-                      className={
-                        isSukuk
-                          ? "table-upper-SUKUK-button-active"
-                          : "table-upper-SUKUK-button-notActive"
-                      }
-                      onClick={openSukuk}
-                    />
-                  </div>
-                </>
-              ) : null}
-
-              {currentTable === 1 ? (
-                <>
-                  {isTbills ? (
+                  {currentTable === 1 ? (
                     <>
-                      <Table
-                        // dataSource={filteredData}
-                        column={columns}
-                        fixed="true"
-                        rows={filteredData}
-                        className="inside-table"
-                        pagination={false}
-                        scroll={{ y: 50 }}
-                      />
+                      {isTbills ? (
+                        <>
+                          <Table
+                            // dataSource={filteredData}
+                            column={columns}
+                            fixed="true"
+                            rows={filteredData}
+                            className="inside-table"
+                            pagination={false}
+                            scroll={{ y: 50 }}
+                          />
+                        </>
+                      ) : isPib ? (
+                        <>
+                          <Table
+                            column={Pibcolumns}
+                            rows={pibFilter}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : isPibFloater ? (
+                        <>
+                          <Table
+                            column={PibFloatercolumns}
+                            rows={pibFloaterFilter}
+                            scroll={{ x: "max-content" }}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : isSukuk ? (
+                        <>
+                          <Table
+                            column={sukukColumn}
+                            rows={sukukData}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : null}
                     </>
-                  ) : isPib ? (
+                  ) : currentTable === 2 ? (
                     <>
                       <Table
-                        column={Pibcolumns}
-                        rows={pibFilter}
-                        className="inside-table"
-                        pagination={false}
-                      />
-                    </>
-                  ) : isPibFloater ? (
-                    <>
-                      <Table
-                        column={PibFloatercolumns}
-                        rows={pibFloaterFilter}
-                        scroll={{ x: "max-content" }}
-                        className="inside-table"
-                        pagination={false}
-                      />
-                    </>
-                  ) : isSukuk ? (
-                    <>
-                      <Table
-                        column={sukukColumn}
-                        rows={sukukData}
-                        className="inside-table"
+                        column={PkrvPanelcolumns}
+                        rows={PkrvPaneldata}
+                        className="inside-pkrv-table"
                         pagination={false}
                       />
                     </>
                   ) : null}
-                </>
-              ) : currentTable === 2 ? (
-                <>
-                  <Table
-                    column={PkrvPanelcolumns}
-                    rows={PkrvPaneldata}
-                    className="inside-pkrv-table"
-                    pagination={false}
-                  />
-                </>
-              ) : null}
-            </div>
-          </Col>
+                </div>
+              </Col>
 
-          <Col lg={6} md={6} sm={6} className="news-colm">
-            <div className="card-box">
-              <Row className="mt-2">
-                <Col lg={8} md={8} sm={8}>
-                  <Select
-                    options={rightTableOption}
-                    defaultValue={rightTableOption[2]}
-                    className="tableFilter"
-                    onChange={panelRightHandler}
-                    // onClick={openPkrvPanel}
-                  />
-                </Col>
-
-                {currentRightTable === 1 ? (
-                  <>
-                    <>
-                      <Col lg={4} md={4} sm={4} className="upper-3m-colum">
-                        <label className="upper-date-time">
-                          05-04-2023 16:53 PM
-                        </label>
-                      </Col>
-                    </>
-                  </>
-                ) : currentRightTable === 2 ? (
-                  <>
-                    <Col lg={4} md={4} sm={4} className="upper-3m-colum">
-                      <TextField
-                        placeholder="search"
-                        className="pkrv-search-textfield"
+              <Col lg={6} md={6} sm={6}>
+                <div className="card-box">
+                  <Row className="mt-2">
+                    <Col lg={8} md={8} sm={8}>
+                      <Select
+                        options={rightTableOption}
+                        defaultValue={rightTableOption[2]}
+                        className="NewsFilter"
+                        onChange={panelRightHandler}
+                        // onClick={openPkrvPanel}
                       />
                     </Col>
-                  </>
-                ) : currentRightTable === 3 ? (
-                  <>
-                    <div className="second-row">
-                      <div className="News-div-scroll">
-                        <Row className="latest-date-row">
-                          <Col lg={12} md={12} sm={12}>
-                            <label className="latest-date">6-12-2022</label>
-                          </Col>
-                        </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img
-                              src={DowJones}
-                              width={40}
-                              onClick={openViewModal}
-                            />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
+                    {currentRightTable === 1 ? (
+                      <>
+                        <>
+                          <Col lg={4} md={4} sm={4} className="upper-3m-colum">
+                            <label className="upper-date-time">
+                              05-04-2023 16:53 PM
                             </label>
                           </Col>
-                        </Row>
+                        </>
+                      </>
+                    ) : currentRightTable === 2 ? (
+                      <>
+                        <Col lg={4} md={4} sm={4} className="upper-3m-colum">
+                          <TextField
+                            placeholder="search"
+                            className="pkrv-search-textfield"
+                          />
+                        </Col>
+                      </>
+                    ) : currentRightTable === 3 ? (
+                      <>
+                        <div className="second-row">
+                          <div className="News-div-scroll">
+                            <Row className="latest-date-row">
+                              <Col lg={12} md={12} sm={12}>
+                                <label className="latest-date">6-12-2022</label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={CNBC} width={40} />
-                            <label className="dj-jones-text">
-                              Russian oil Cap will work, EU ministers insist,
-                              despite kermlin opposition and
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img
+                                  src={DowJones}
+                                  width={40}
+                                  onClick={openViewModal}
+                                />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={Tresmark} width={40} />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={CNBC} width={40} />
+                                <label className="dj-jones-text">
+                                  Russian oil Cap will work, EU ministers
+                                  insist, despite kermlin opposition and
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="latest-date-row">
-                          <Col lg={12} md={12} sm={12}>
-                            <label className="latest-date">5-12-2022</label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={Tresmark} width={40} />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={DowJones} width={40} />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="latest-date-row">
+                              <Col lg={12} md={12} sm={12}>
+                                <label className="latest-date">5-12-2022</label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={CNBC} width={40} />
-                            <label className="dj-jones-text">
-                              Russian oil Cap will work, EU ministers insist,
-                              despite kermlin opposition and
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={DowJones} width={40} />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={CNBC} width={40} />
-                            <label className="dj-jones-text">
-                              Russian oil Cap will work, EU ministers insist,
-                              despite kermlin opposition and
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={CNBC} width={40} />
+                                <label className="dj-jones-text">
+                                  Russian oil Cap will work, EU ministers
+                                  insist, despite kermlin opposition and
+                                </label>
+                              </Col>
+                            </Row>
 
-                        <Row className="text-border-bottom">
-                          <Col
-                            lg={12}
-                            md={12}
-                            sm={12}
-                            className="dowjones-columns"
-                          >
-                            <label className="date-dj-jone">11:48</label>
-                            <img src={Tresmark} width={40} />
-                            <label className="dj-jones-text">
-                              DJ Interbank Foreign Exchange Rates At 01:50 EST /
-                              0650 GMT
-                            </label>
-                          </Col>
-                        </Row>
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={CNBC} width={40} />
+                                <label className="dj-jones-text">
+                                  Russian oil Cap will work, EU ministers
+                                  insist, despite kermlin opposition and
+                                </label>
+                              </Col>
+                            </Row>
+
+                            <Row className="text-border-bottom">
+                              <Col
+                                lg={12}
+                                md={12}
+                                sm={12}
+                                className="dowjones-columns"
+                              >
+                                <label className="date-dj-jone">11:48</label>
+                                <img src={Tresmark} width={40} />
+                                <label className="dj-jones-text">
+                                  DJ Interbank Foreign Exchange Rates At 01:50
+                                  EST / 0650 GMT
+                                </label>
+                              </Col>
+                            </Row>
+                          </div>
+                        </div>
+                      </>
+                    ) : null}
+                  </Row>
+
+                  {/* current table 1 2 3 ye sb filters ma set ki hoe hain hm yaha condition laga kr match krraha */}
+                  {currentRightTable === 1 ? (
+                    <>
+                      <div className="upper-div-button">
+                        <Button
+                          text="Tbills"
+                          className={
+                            isRightTbills
+                              ? "table-upper-tbill-button-active"
+                              : "table-upper-tbill-button-notActive"
+                          }
+                          onClick={openRightTbill}
+                        />
+                        <Button
+                          text="PIBs"
+                          className={
+                            isRightPib
+                              ? "table-upper-PIB-button-active"
+                              : "table-upper-PIB-button-notActive"
+                          }
+                          onClick={openRightPib}
+                        />
+                        <Button
+                          text="PIB Floater"
+                          className={
+                            isPibRightFloater
+                              ? "table-upper-Floater-button-active"
+                              : "table-upper-Floater-button-notActive"
+                          }
+                          onClick={openRightFloater}
+                        />
+                        <Button
+                          text="SUKUK"
+                          className={
+                            isRightSukuk
+                              ? "table-upper-SUKUK-button-active"
+                              : "table-upper-SUKUK-button-notActive"
+                          }
+                          onClick={openRightSukuk}
+                        />
                       </div>
-                    </div>
-                  </>
-                ) : null}
-              </Row>
+                    </>
+                  ) : null}
 
-              {/* current table 1 2 3 ye sb filters ma set ki hoe hain hm yaha condition laga kr match krraha */}
-              {currentRightTable === 1 ? (
-                <>
-                  <div className="upper-div-button">
-                    <Button
-                      text="Tbills"
-                      className={
-                        isRightTbills
-                          ? "table-upper-tbill-button-active"
-                          : "table-upper-tbill-button-notActive"
-                      }
-                      onClick={openRightTbill}
-                    />
-                    <Button
-                      text="PIBs"
-                      className={
-                        isRightPib
-                          ? "table-upper-PIB-button-active"
-                          : "table-upper-PIB-button-notActive"
-                      }
-                      onClick={openRightPib}
-                    />
-                    <Button
-                      text="PIB Floater"
-                      className={
-                        isPibRightFloater
-                          ? "table-upper-Floater-button-active"
-                          : "table-upper-Floater-button-notActive"
-                      }
-                      onClick={openRightFloater}
-                    />
-                    <Button
-                      text="SUKUK"
-                      className={
-                        isRightSukuk
-                          ? "table-upper-SUKUK-button-active"
-                          : "table-upper-SUKUK-button-notActive"
-                      }
-                      onClick={openRightSukuk}
-                    />
-                  </div>
-                </>
-              ) : null}
-
-              {currentRightTable === 1 ? (
-                <>
-                  {isRightTbills ? (
+                  {currentRightTable === 1 ? (
                     <>
-                      <Table
-                        column={columns}
-                        rows={filteredData}
-                        className="inside-table"
-                        pagination={false}
-                      />
+                      {isRightTbills ? (
+                        <>
+                          <Table
+                            column={columns}
+                            rows={filteredData}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : isRightPib ? (
+                        <>
+                          <Table
+                            column={Pibcolumns}
+                            rows={Pibdata}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : isPibRightFloater ? (
+                        <>
+                          <Table
+                            column={PibFloatercolumns}
+                            rows={PibFloaterdata}
+                            scroll={{ x: "max-content" }}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : isRightSukuk ? (
+                        <>
+                          <Table
+                            column={columns}
+                            rows={data}
+                            className="inside-table"
+                            pagination={false}
+                          />
+                        </>
+                      ) : null}
                     </>
-                  ) : isRightPib ? (
+                  ) : currentRightTable === 2 ? (
                     <>
                       <Table
-                        column={Pibcolumns}
-                        rows={Pibdata}
-                        className="inside-table"
-                        pagination={false}
-                      />
-                    </>
-                  ) : isPibRightFloater ? (
-                    <>
-                      <Table
-                        column={PibFloatercolumns}
-                        rows={PibFloaterdata}
-                        scroll={{ x: "max-content" }}
-                        className="inside-table"
-                        pagination={false}
-                      />
-                    </>
-                  ) : isRightSukuk ? (
-                    <>
-                      <Table
-                        column={columns}
-                        rows={data}
-                        className="inside-table"
+                        column={PkrvPanelcolumns}
+                        rows={PkrvPaneldata}
+                        className="inside-pkrv-table"
                         pagination={false}
                       />
                     </>
                   ) : null}
-                </>
-              ) : currentRightTable === 2 ? (
-                <>
-                  <Table
-                    column={PkrvPanelcolumns}
-                    rows={PkrvPaneldata}
-                    className="inside-pkrv-table"
-                    pagination={false}
-                  />
-                </>
-              ) : null}
-            </div>
+                </div>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>
 
       <Container fluid className="bottom-table-container">
         <div className="bottom-container-div">
-          <Row className="mt-3">
-            <Col lg={6} md={6} sm={6} className="txn-outstanding-btns">
-              <Button
-                text="TXN Summary"
-                className={
-                  isTxn ? "txn-summary-btn-outline" : "txn-summary-btn"
-                }
-                onClick={txnTableHandler}
-              />
-              <Button
-                text="Outstanding Deals"
-                className={
-                  isOutstanding
-                    ? "outstanding-summary-btn-outline"
-                    : "outstanding-summary-btn"
-                }
-                onClick={outstandingTableHandler}
-              />
-            </Col>
-            <Col lg={6} md={6} sm={6} className="bottom-table-buttons">
-              <Button
-                text="Export"
-                className="export-bttom-btn"
-                onClick={() => setIsExport(!isExport)}
-              />
+          <Row className="mb-2 me-5">
+            <Col lg={12} md={12} sm={12}>
+              <Row className="mt-3">
+                <Col lg={6} md={6} sm={6} className="txn-outstanding-btns">
+                  <Button
+                    text="TXN Summary"
+                    className={
+                      isTxn ? "txn-summary-btn-outline" : "txn-summary-btn"
+                    }
+                    onClick={txnTableHandler}
+                  />
+                  <Button
+                    text="Outstanding Deals"
+                    className={
+                      isOutstanding
+                        ? "outstanding-summary-btn-outline"
+                        : "outstanding-summary-btn"
+                    }
+                    onClick={outstandingTableHandler}
+                  />
+                </Col>
+                <Col lg={6} md={6} sm={6} className="bottom-table-buttons">
+                  <Button
+                    text="Export"
+                    className="export-bttom-btn"
+                    onClick={() => setIsExport(!isExport)}
+                  />
 
-              {isExport ? (
-                <>
-                  <div className="bottom-export-div">
-                    <img src={PDF} alt="pdf" height={25} />
-                    <img src={Excel} alt="pdf" height={25} />
-                    <span className="col">
-                      <i className="icon-email2 fs-4 cursor-pointer"></i>
-                    </span>
-                    <span className="col">
-                      <i className="icon-screen fs-4 cursor-pointer"></i>
-                    </span>
-                  </div>
-                </>
-              ) : null}
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={12} md={12} sm={12} className="features-table mt-2">
-              {isTxn ? (
-                <>
-                  <Table
-                    column={columnsTwo}
-                    rows={dataTwo}
-                    className="bottom-inside-table"
-                    pagination={false}
-                  />
-                </>
-              ) : isOutstanding ? (
-                <>
-                  <Table
-                    column={outstandingDeals}
-                    rows={outstandingData}
-                    className="bottom-inside-table"
-                    pagination={false}
-                  />
-                </>
-              ) : null}
+                  {isExport ? (
+                    <>
+                      <div className="bottom-export-div">
+                        <img src={PDF} alt="pdf" height={25} />
+                        <img src={Excel} alt="pdf" height={25} />
+                        <span className="col">
+                          <i className="icon-email2 fs-4 cursor-pointer"></i>
+                        </span>
+                        <span className="col">
+                          <i className="icon-screen fs-4 cursor-pointer"></i>
+                        </span>
+                      </div>
+                    </>
+                  ) : null}
+                </Col>
+              </Row>
+              <Row>
+                <Col lg={12} md={12} sm={12} className="features-table mt-2">
+                  {isTxn ? (
+                    <>
+                      <Table
+                        column={columnsTwo}
+                        rows={dataTwo}
+                        className="bottom-inside-table"
+                        pagination={false}
+                      />
+                    </>
+                  ) : isOutstanding ? (
+                    <>
+                      <Table
+                        column={outstandingDeals}
+                        rows={outstandingData}
+                        className="bottom-inside-table"
+                        pagination={false}
+                      />
+                    </>
+                  ) : null}
+                </Col>
+              </Row>
             </Col>
           </Row>
         </div>

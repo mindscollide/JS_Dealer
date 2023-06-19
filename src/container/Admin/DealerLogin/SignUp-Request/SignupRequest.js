@@ -1,12 +1,21 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Container, Col, Row, InputGroup, Form } from "react-bootstrap";
-import { Button, TextField } from "../../../../components/elements";
+import { Button, Loader, TextField } from "../../../../components/elements";
 import jsLogo from "../../../../assets/images/js-logo.png";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { validateEmail } from "../../../../assets/common/functions/validations";
+import { validateEmailPassword } from "../../../../store/actions/Auth-Actions";
 import "./SignupRequest.css";
 const SignUpRequest = () => {
+  const { auth } = useSelector((state) => state);
+  console.log(auth, "signUprequest");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  //For Error text state in signUp request
+  const [errorRequest, setErrorRequest] = useState(false);
+
   // state for request signup fields
   const [requestSignup, setRequestSignup] = useState({
     email: {
@@ -23,18 +32,33 @@ const SignUpRequest = () => {
     },
   });
 
-  const handeEmailvlidate = () => {
-    if (requestSignup.email.content !== "") {
-      if (validateEmail(requestSignup.email.content)) {
+  const handeEmailvlidate = (e) => {
+    let value = e.target.value.trimStart();
+    console.log("emailErrorr", value);
+
+    if (value !== "") {
+      if (validateEmail(value)) {
         //  need to dispatch email validate
-      } else {
-        // setEmailUnique(false);
         setRequestSignup({
           ...requestSignup,
           email: {
-            value: requestSignup.email.content,
-            errorMessage: console.log("Enter valid email address"),
-            errorStatus: true,
+            content: value,
+            isError: false,
+            errorMessage: "",
+            isSuccess: false,
+          },
+        });
+      } else {
+        // setEmailUnique(false);
+        console.log("emailErrorr", requestSignup.email.content);
+
+        setRequestSignup({
+          ...requestSignup,
+          email: {
+            content: value,
+            isError: true,
+            errorMessage: "",
+            isSuccess: true,
           },
         });
       }
@@ -43,9 +67,10 @@ const SignUpRequest = () => {
       setRequestSignup({
         ...requestSignup,
         email: {
-          value: "",
-          errorMessage: console.log("Enter email address"),
-          errorStatus: true,
+          content: "",
+          isError: true,
+          errorMessage: "",
+          isSuccess: true,
         },
       });
     }
@@ -53,35 +78,51 @@ const SignUpRequest = () => {
 
   // state for validation
   const setCredentialHandler = (e) => {
-    if (e.target.name === "Password") {
-      let numChars = e.target.value;
-      let showText = "";
-      for (let i = 0; i < numChars.length; i++) {
-        showText += "•";
-      }
+    let value = e.target.value.trimStart();
+    console.log("emailErrorr", value);
+
+    if (value !== "") {
       setRequestSignup({
         ...requestSignup,
-        [e.target.name]: e.target.value,
-        ["fakePassword"]: showText,
+        password: {
+          content: value,
+          isError: false,
+          errorMessage: "",
+          isSuccess: false,
+        },
       });
     } else {
       setRequestSignup({
         ...requestSignup,
-        [e.target.name]: e.target.value,
+        email: {
+          content: value,
+          isError: true,
+          errorMessage: "",
+          isSuccess: true,
+        },
       });
     }
   };
 
   // Proceed Handler
-  const proceedDataHandler = (e) => {
+  const proceedDataHandler = async (e) => {
     if (
       requestSignup.email.content !== "" &&
       requestSignup.password.content !== ""
     ) {
-      navigate("/SignUp");
+      setErrorRequest(false);
+      console.log("fields empty", requestSignup);
+
+      await dispatch(
+        validateEmailPassword(
+          requestSignup.email.content,
+          requestSignup.password.content,
+          navigate
+        )
+      );
     } else {
+      setErrorRequest(true);
       console.log("fields empty");
-      alert("fields empty");
     }
   };
 
@@ -108,8 +149,8 @@ const SignUpRequest = () => {
                         Signup Request
                       </span>
                     </Col>
-                    <Col sm={12} md={12} lg={12} className="mt-2">
-                      <InputGroup className="mb-3">
+                    <Col sm={12} md={12} lg={12} className="mt-3">
+                      <InputGroup className="mb-2">
                         <InputGroup.Text
                           id="basic-addon1"
                           className="Icon-Field-class"
@@ -126,8 +167,21 @@ const SignUpRequest = () => {
                           aria-describedby="basic-addon1"
                         />
                       </InputGroup>
+                      <Row>
+                        <Col className="d-flex justify-content-start">
+                          <p
+                            className={
+                              errorRequest && requestSignup.email.content === ""
+                                ? "errorMessage"
+                                : "errorMessage_hidden"
+                            }
+                          >
+                            Email is required
+                          </p>
+                        </Col>
+                      </Row>
                     </Col>
-                    <Col sm={12} md={12} lg={12} className="mb-3">
+                    <Col sm={12} md={12} lg={12} className="mb-2">
                       <InputGroup>
                         <InputGroup.Text
                           id="basic-addon1"
@@ -137,6 +191,7 @@ const SignUpRequest = () => {
                         </InputGroup.Text>
                         <Form.Control
                           name="password"
+                          type="password"
                           value={requestSignup.password.content}
                           onChange={setCredentialHandler}
                           className="sign-up-request-field"
@@ -145,6 +200,20 @@ const SignUpRequest = () => {
                           aria-describedby="basic-addon1"
                         />
                       </InputGroup>
+                      <Row>
+                        <Col className="d-flex justify-content-start">
+                          <p
+                            className={
+                              errorRequest &&
+                              requestSignup.password.content === ""
+                                ? "errorPasswordMessage"
+                                : "errorPasswordMessage_hidden"
+                            }
+                          >
+                            Password is required
+                          </p>
+                        </Col>
+                      </Row>
                       {/* <TextField
                         placeholder="User Password"
                         className="Text-field"
@@ -174,6 +243,8 @@ const SignUpRequest = () => {
           </Row>
         </Container>
       </Col>
+
+      {auth.Loading ? <Loader /> : null}
     </Fragment>
   );
 };

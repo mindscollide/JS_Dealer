@@ -11,4 +11,21 @@ const authenticationSignUp = {
 const authenticationUserRoles = {
   RequestMethod: "ServiceManager.RoleList",
 };
-export { authenticationLogIn, authenticationSignUp, authenticationUserRoles };
+
+const validateEmailPasswordFromAD = {
+  RequestMethod: "ServiceManager.ValidateEmailAndPasswordFromAD",
+};
+
+// for dealer ports
+
+const getRatestables = {
+  RequestMethod: "ServiceManager.GetRates",
+};
+
+export {
+  authenticationLogIn,
+  authenticationSignUp,
+  authenticationUserRoles,
+  validateEmailPasswordFromAD,
+  getRatestables,
+};

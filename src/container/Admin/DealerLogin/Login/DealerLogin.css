@@ -112,3 +112,35 @@
 .websecurity-password {
   -webkit-text-security: disc !important;
 }
+
+.errorMessageLogin {
+  height: 10px;
+  margin-top: -12px !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #f16b6b;
+  visibility: visible !important;
+}
+
+.errorMessageLogin_hidden {
+  visibility: hidden;
+  margin: 0;
+  height: 14px;
+  color: #f16b6b !important;
+}
+
+.errorPasswordSignInMessage {
+  height: 0px;
+  margin-top: 0px !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #f16b6b;
+  visibility: visible !important;
+}
+
+.errorPasswordSignInMessage_hidden {
+  visibility: hidden;
+  margin: 0;
+  height: 16px;
+  color: #f16b6b !important;
+}

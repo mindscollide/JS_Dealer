@@ -104,3 +104,37 @@
   justify-content: center !important;
   gap: 5px !important;
 }
+
+.errorMessage {
+  height: 10px;
+  margin-top: -12px !important;
+  /* margin-left: -65%; */
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #f16b6b;
+  visibility: visible !important;
+}
+
+.errorMessage_hidden {
+  visibility: hidden;
+  margin: 0;
+  height: 14px;
+  color: #f16b6b !important;
+}
+
+.errorPasswordMessage {
+  height: 0px;
+  margin-top: 0px !important;
+  /* margin-left: -57%; */
+  font-size: 14px !important;
+  font-weight: 600;
+  color: #f16b6b;
+  visibility: visible !important;
+}
+
+.errorPasswordMessage_hidden {
+  visibility: hidden;
+  margin: 0;
+  height: 16px;
+  color: #f16b6b !important;
+}

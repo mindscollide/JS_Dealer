@@ -16,6 +16,9 @@ const Calculator = () => {
   const { Panel } = Collapse;
   const [startDate, setStartDate] = useState(new Date());
 
+  // error bar states for Yield to Price
+  const [errorBar, setErrorBar] = useState("");
+
   //states for tbill calculator yield to price
   const [tbillYield, setTbillYield] = useState({
     price: {
@@ -1224,6 +1227,23 @@ const Calculator = () => {
     }
   };
 
+  //onCalculate button Yield to Price
+  const priceToYieldCalBtn = (e) => {
+    if (
+      tbillYield.price.value !== "" &&
+      tbillYield.lifeRemaning.value !== "" &&
+      tbillYield.pvbp.value !== "" &&
+      tbillYield.purchasedYield.value !== "" &&
+      tbillYield.approximatePriceChange.value !== "" &&
+      tbillYield.tenor.value !== "" &&
+      tbillYield.yieldToMaturity.value !== ""
+    ) {
+      setErrorBar(false);
+    } else {
+      setErrorBar(true);
+    }
+  };
+
   return (
     <>
       <Container fluid>
@@ -1286,6 +1306,19 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar && tbillYield.price.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
 
@@ -1329,6 +1362,19 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar && tbillYield.lifeRemaning.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
 
@@ -1370,6 +1416,19 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar && tbillYield.pvbp.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
 
@@ -1393,6 +1452,20 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar &&
+                                tbillYield.purchasedYield.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                       {/* <Col lg={1} md={1} sm={1} /> */}
 
@@ -1414,6 +1487,20 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar &&
+                                tbillYield.approximatePriceChange.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
 
@@ -1437,6 +1524,19 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar && tbillYield.tenor.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                       {/* <Col lg={1} md={1} sm={1} /> */}
 
@@ -1458,6 +1558,20 @@ const Calculator = () => {
                           onChange={tbillYieldPriceHandler}
                           className={styles["alltextfields-calculator"]}
                         />
+                        <Row>
+                          <Col className="d-flex justify-content-center">
+                            <p
+                              className={
+                                errorBar &&
+                                tbillYield.yieldToMaturity.value === ""
+                                  ? `${styles["errorMessageLogin"]}`
+                                  : `${styles["errorMessageLogin_hidden"]}`
+                              }
+                            >
+                              Field is required
+                            </p>
+                          </Col>
+                        </Row>
                       </Col>
                     </Row>
 
@@ -1486,6 +1600,7 @@ const Calculator = () => {
                       >
                         <Button
                           text="Calculate"
+                          onCalculate={priceToYieldCalBtn}
                           className={styles["calculate-btn"]}
                         />
                       </Col>
