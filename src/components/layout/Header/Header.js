@@ -1,110 +1,110 @@
-import { useState } from "react";
-import { Container, Row, Col, Nav, Dropdown } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import { Button, Modal, TextField } from "../../../components/elements";
-import { signOut } from "../../../store/actions/Auth-Actions";
-import Navbar from "react-bootstrap/Navbar";
-import CustomUpload from "../../elements/upload/Upload";
-import deleteButtonCreateMeeting from "../../../assets/images/cancel_meeting_icon.svg";
-import FileIcon from "react-file-icon";
-import { Checkbox, Switch } from "antd";
+import { useState } from 'react'
+import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Button, Modal, TextField } from '../../../components/elements'
+import { signOut } from '../../../store/actions/Auth-Actions'
+import Navbar from 'react-bootstrap/Navbar'
+import CustomUpload from '../../elements/upload/Upload'
+import deleteButtonCreateMeeting from '../../../assets/images/cancel_meeting_icon.svg'
+import FileIcon from 'react-file-icon'
+import { Checkbox, Switch } from 'antd'
 import {
   ListUl,
   Gear,
   QuestionCircle,
   BoxArrowRight,
-} from "react-bootstrap-icons";
-import "./Header.css";
-import JohnCater from "../../../assets/images/profile3.png";
-import JsLogo from "../../../assets/images/js-logo.png";
+} from 'react-bootstrap-icons'
+import './Header.css'
+import JohnCater from '../../../assets/images/profile3.png'
+import JsLogo from '../../../assets/images/js-logo.png'
 
 const Header = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   // for show modal state
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   //for user setting
-  const [userSetting, setUserSetting] = useState(true);
+  const [userSetting, setUserSetting] = useState(true)
 
   //for user passcode
-  const [userPasscode, setUserPasscode] = useState(false);
+  const [userPasscode, setUserPasscode] = useState(false)
 
   // for change password field state
-  const [changePassField, setChangePassField] = useState(false);
+  const [changePassField, setChangePassField] = useState(false)
 
   //Upload File States
   const [tasksAttachments, setTasksAttachments] = useState({
     TasksAttachments: [],
-  });
+  })
 
   const openChangePassField = () => {
-    setChangePassField(true);
-  };
+    setChangePassField(true)
+  }
 
   //for open setting show modal
   const openSettingModalHandler = async () => {
-    setShow(true);
-  };
+    setShow(true)
+  }
 
   // for open usersetting
   const openUserSetting = async () => {
-    setUserSetting(true);
-    setUserPasscode(false);
-  };
+    setUserSetting(true)
+    setUserPasscode(false)
+  }
 
   //for open passcode
   const openPasscodeSetting = async () => {
-    setUserPasscode(true);
-    setUserSetting(false);
-  };
+    setUserPasscode(true)
+    setUserSetting(false)
+  }
 
   // for open calculator
   const gotoCalculator = () => {
-    navigate("/Js/calculator/");
-  };
+    navigate('/Js/calculator/')
+  }
 
   //Upload File Handler
   const uploadFilesToDo = (data) => {
-    const uploadFilePath = data.target.value;
-    const uploadedFile = data.target.files[0];
-    var ext = uploadedFile.name.split(".").pop();
-    console.log("uploadedFile", uploadedFile.name, ext);
-    let file = tasksAttachments.TasksAttachments;
-    console.log("uploadedFile", file);
+    const uploadFilePath = data.target.value
+    const uploadedFile = data.target.files[0]
+    var ext = uploadedFile.name.split('.').pop()
+    console.log('uploadedFile', uploadedFile.name, ext)
+    let file = tasksAttachments.TasksAttachments
+    console.log('uploadedFile', file)
     if (
-      ext === "doc" ||
-      ext === "docx" ||
-      ext === "xls" ||
-      ext === "xlsx" ||
-      ext === "pdf" ||
-      ext === "png" ||
-      ext === "txt" ||
-      ext === "jpg" ||
-      ext === "jpeg" ||
-      ext === "gif"
+      ext === 'doc' ||
+      ext === 'docx' ||
+      ext === 'xls' ||
+      ext === 'xlsx' ||
+      ext === 'pdf' ||
+      ext === 'png' ||
+      ext === 'txt' ||
+      ext === 'jpg' ||
+      ext === 'jpeg' ||
+      ext === 'gif'
     ) {
-      let data;
-      let sizezero;
-      let size;
+      let data
+      let sizezero
+      let size
       if (file.length > 0) {
         file.map((filename, index) => {
-          console.log("uploadedFile", filename);
+          console.log('uploadedFile', filename)
           if (filename.DisplayAttachmentName === uploadedFile.name) {
             console.log(
-              "uploadedFile",
-              filename.DisplayAttachmentName === uploadedFile.name
-            );
-            data = false;
+              'uploadedFile',
+              filename.DisplayAttachmentName === uploadedFile.name,
+            )
+            data = false
           }
-        });
+        })
         if (uploadedFile.size > 10000000) {
-          size = false;
+          size = false
         } else if (uploadedFile.size === 0) {
-          sizezero = false;
+          sizezero = false
         }
         if (data === false) {
         } else if (size === false) {
@@ -113,12 +113,12 @@ const Header = () => {
           // dispatch(FileUploadToDo(uploadedFile));
         }
       } else {
-        let size;
-        let sizezero;
+        let size
+        let sizezero
         if (uploadedFile.size > 10000000) {
-          size = false;
+          size = false
         } else if (uploadedFile.size === 0) {
-          sizezero = false;
+          sizezero = false
         }
         if (size === false) {
         } else if (sizezero === false) {
@@ -132,11 +132,11 @@ const Header = () => {
       PK_TAID: 0,
       DisplayAttachmentName: uploadedFile.name,
       OriginalAttachmentName: uploadFilePath,
-      CreationDateTime: "",
+      CreationDateTime: '',
       FK_TID: 0,
-    });
-    setTasksAttachments({ ["TasksAttachments"]: file });
-  };
+    })
+    setTasksAttachments({ ['TasksAttachments']: file })
+  }
 
   return (
     <>
@@ -150,13 +150,16 @@ const Header = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="nav-rfq-calculator ms-auto">
                 <Nav.Link>
-                  {" "}
-                  <Button text="Upload Rates" className="rfq-button" />
+                  {' '}
+                  <Button
+                    text="Upload Rates"
+                    className="file btn btn-primary me-2 fw-bold ps-4 pe-4"
+                  />
                 </Nav.Link>
                 <Nav.Link>
                   <Button
                     text="Calculators"
-                    className="caluclator-button"
+                    className="btn btn-primary fw-bold ps-4 pe-4 me-2"
                     onClick={gotoCalculator}
                   />
                 </Nav.Link>
@@ -216,8 +219,8 @@ const Header = () => {
                   text="User Settings"
                   className={
                     userSetting
-                      ? "modal-setting-btn-Active"
-                      : "modal-setting-btn-notActive"
+                      ? 'modal-setting-btn-Active'
+                      : 'modal-setting-btn-notActive'
                   }
                   onClick={openUserSetting}
                 />
@@ -225,8 +228,8 @@ const Header = () => {
                   text="Passcode Settings"
                   className={
                     userPasscode
-                      ? "modal-setting-passcode-active"
-                      : "modal-setting-passcode-notActive"
+                      ? 'modal-setting-passcode-active'
+                      : 'modal-setting-passcode-notActive'
                   }
                   onClick={openPasscodeSetting}
                 />
@@ -447,7 +450,7 @@ const Header = () => {
         }
       />
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
