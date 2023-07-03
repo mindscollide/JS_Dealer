@@ -32,8 +32,7 @@
 
 .inside-table {
   max-height: 38vh;
-  /* overflow: auto !important;
-  overflow-x: hidden; */
+  overflow: auto;
 }
 
 .inside-table .ant-table-thead>tr>th {
@@ -76,7 +75,7 @@
 .table-all-title {
   color: #002650;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 11px;
   vertical-align: middle;
   font-family: 'Montserrat';
 }
@@ -578,7 +577,9 @@
 }
 
 .column-boldness {
-  font-weight: 700 !important;
+  font-size: 11px !important;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .ant-select-selection-item {
@@ -707,13 +708,13 @@
 }
 
 .rejected-status {
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 600;
   color: #cf5b5b !important;
 }
 
 .pending-status {
-  font-size: 15px;
+  font-size: 11px;
   font-weight: 600;
   color: #888b8e !important;
 }
@@ -1090,12 +1091,12 @@ ul.nav.nav-tabs.nav-justified.mt-2.replace-fixed-header-on-tab-change.control-da
 }
 
 .btn-secondary {
-  background: #feac78;
-  background: -moz-linear-gradient(top, #feac78 0%, #e97225 100%);
-  background: -webkit-linear-gradient(top, #feac78 0%, #e97225 100%);
-  background: linear-gradient(to bottom, #feac78 0%, #e97225 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#feac78', endColorstr='#e97225', GradientType=0);
-  border-color: #feac78;
+  background: #feac78 !important;
+  background: -moz-linear-gradient(top, #feac78 0%, #e97225 100%) !important;
+  background: -webkit-linear-gradient(top, #feac78 0%, #e97225 100%) !important;
+  background: linear-gradient(to bottom, #feac78 0%, #e97225 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#feac78', endColorstr='#e97225', GradientType=0) !important;
+  border-color: #feac78 !important;
 }
 
 .btn-secondary:hover,
@@ -1103,12 +1104,12 @@ ul.nav.nav-tabs.nav-justified.mt-2.replace-fixed-header-on-tab-change.control-da
 .btn-secondary:active,
 .btn-secondary.active,
 .btn-secondary.active:hover {
-  background: #5b67cd;
-  background: -moz-linear-gradient(top, #5b67cd 0%, #2a38af 100%);
-  background: -webkit-linear-gradient(top, #5b67cd 0%, #2a38af 100%);
-  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5b67cd', endColorstr='#2a38af', GradientType=0);
-  border-color: #5b67cd;
+  background: #5b67cd !important;
+  background: -moz-linear-gradient(top, #5b67cd 0%, #2a38af 100%) !important;
+  background: -webkit-linear-gradient(top, #5b67cd 0%, #2a38af 100%) !important;
+  background: linear-gradient(to bottom, #5b67cd 0%, #2a38af 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5b67cd', endColorstr='#2a38af', GradientType=0) !important;
+  border-color: #5b67cd !important;
 }
 
 .box-content-wrapper {
@@ -1132,5 +1133,70 @@ ul.nav.nav-tabs.nav-justified.mt-2.replace-fixed-header-on-tab-change.control-da
 }
 
 .ant-table-wrapper.inside-table th.ant-table-cell {
+  padding: 4px !important;
+  text-align: center !important;
+}
+
+span.ant-dropdown-trigger.ant-table-filter-trigger {
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  z-index: 99999999;
+  width: 16px;
+}
+
+td.ant-table-cell {
   padding: 5px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px;
+  text-align: center !important;
+}
+
+button.bid-text-button.btn.btn-primary {
+  background: #64c0ef !important;
+  background: -moz-linear-gradient(top, #64c0ef 0%, #087f99 100%) !important;
+  background: -webkit-linear-gradient(top, #64c0ef 0%, #087f99 100%) !important;
+  background: linear-gradient(to bottom, #64c0ef 0%, #087f99 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#64c0ef', endColorstr='#087f99', GradientType=0) !important;
+  color: #ffffff;
+  display: inline-block;
+  padding: 2px 3px !important;
+  border-radius: 2px !important;
+  width: 50px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+button.offer-text-button.btn.btn-primary {
+  background: #f8ae58 !important;
+  background: -moz-linear-gradient(top, #f8ae58 0%, #c64309 100%) !important;
+  background: -webkit-linear-gradient(top, #f8ae58 0%, #c64309 100%) !important;
+  background: linear-gradient(to bottom, #f8ae58 0%, #c64309 100%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8ae58', endColorstr='#c64309', GradientType=0) !important;
+  color: #ffffff;
+  display: inline-block;
+  padding: 2px 3px !important;
+  border-radius: 2px !important;
+  width: 50px;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+span.ant-table-column-title {
+  text-align: center !important;
+}
+
+td.ant-table-cell.ant-table-cell-ellipsis {
+  text-align: center !important;
+}
+
+th.ant-table-cell {
+  padding: 4px !important;
+  text-align: center !important;
+}
+
+.features-table th.ant-table-cell {
+  padding: 10px 5px !important;
+  font-size: 11px !important;
+  font-family: 'Montserrat', sans-serif !important;
 }

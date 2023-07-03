@@ -1,23 +1,24 @@
-import * as actions from "../action_types";
+import * as actions from '../action_types'
 
 const initialState = {
   UserDetails: null,
   isLoggedIn: false,
   Loading: false,
   validateResponse: [],
-  ResponseMessage: "",
+  ResponseMessage: '',
   isSignUp: false,
-  SessionExpeireResponseMessage: "",
+  SessionExpeireResponseMessage: '',
   UserRoleList: [],
   roles: null,
-  Token: "",
-  Refresh: "",
-};
+  Token: '',
+  Refresh: '',
+  Severity: '',
+}
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOG_IN_INIT:
-      return { ...state, Loading: true };
+      return { ...state, Loading: true }
 
     case actions.LOG_IN_SUCCESS:
       return {
@@ -27,7 +28,7 @@ const authReducer = (state = initialState, action) => {
         Loading: false,
         Token: action.response.token,
         Refresh: action.response.refreshToken,
-      };
+      }
 
     case actions.LOG_IN_FAIL:
       return {
@@ -35,12 +36,12 @@ const authReducer = (state = initialState, action) => {
         UserDetails: action.response,
         ResponseMessage: action.message,
         Loading: false,
-        Token: "",
-        Refresh: "",
-      };
+        Token: '',
+        Refresh: '',
+      }
 
     case actions.SIGN_UP_INIT:
-      return { ...state, Loading: true };
+      return { ...state, Loading: true }
 
     case actions.SIGN_UP_SUCCESS:
       return {
@@ -48,7 +49,8 @@ const authReducer = (state = initialState, action) => {
         Loading: false,
         isLoggedIn: true,
         ResponseMessage: action.message,
-      };
+        Severity: action.severity,
+      }
 
     case actions.SIGN_UP_FAIL:
       return {
@@ -56,22 +58,23 @@ const authReducer = (state = initialState, action) => {
         isLoggedIn: false,
         Loading: false,
         ResponseMessage: action.message,
-      };
+        Severity: action.severity,
+      }
 
     case actions.SIGN_OUT:
-      localStorage.clear();
+      localStorage.clear()
       return {
         ...state,
         UserDetails: null,
         isLoggedIn: false,
         Loading: false,
-        Token: "",
-        Refresh: "",
+        Token: '',
+        Refresh: '',
         SessionExpeireResponseMessage: action.message,
-      };
+      }
 
     case actions.USER_ROLES_INIT:
-      return { ...state, Loading: true };
+      return { ...state, Loading: true }
 
     case actions.USER_ROLES_SUCCESS:
       return {
@@ -79,7 +82,7 @@ const authReducer = (state = initialState, action) => {
         Loading: false,
         UserRoleList: action.response,
         ResponseMessage: action.message,
-      };
+      }
 
     case actions.USER_ROLES_FAIL:
       return {
@@ -87,13 +90,13 @@ const authReducer = (state = initialState, action) => {
         Loading: false,
         UserRoleList: [],
         ResponseMessage: action.message,
-      };
+      }
 
     case actions.VALIDATE_EMAIL_PASSWORD_INIT:
       return {
         ...state,
         Loading: true,
-      };
+      }
 
     case actions.VALIDATE_EMAIL_PASSWORD_SUCCESS:
       return {
@@ -102,7 +105,8 @@ const authReducer = (state = initialState, action) => {
         isLoggedIn: false,
         validateResponse: action.response,
         ResponseMessage: action.message,
-      };
+        Severity: action.severity,
+      }
 
     case actions.VALIDATE_EMAIL_PASSWORD_FAIL:
       return {
@@ -111,11 +115,12 @@ const authReducer = (state = initialState, action) => {
         isLoggedIn: false,
         validateResponse: [],
         ResponseMessage: action.message,
-      };
+        Severity: action.severity,
+      }
 
     default:
-      return { ...state };
+      return { ...state }
   }
-};
+}
 
-export default authReducer;
+export default authReducer

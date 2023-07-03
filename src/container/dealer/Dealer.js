@@ -529,7 +529,7 @@ const Dealer = () => {
       issuedate: <label className="column-boldness">19-10-2022</label>,
       maturity: <label className="column-boldness">12-01-2023</label>,
       tenor: '1Y',
-      instrument: 'PIB',
+      instrument: <label className="column-boldness">'PIB'</label>,
       pkrv: 15.72,
       dtm: 'ewew',
       Coupon: 16,
@@ -542,7 +542,7 @@ const Dealer = () => {
       issuedate: <label className="column-boldness">19-10-2022</label>,
       maturity: <label className="column-boldness">22-01-2023</label>,
       tenor: '3m',
-      instrument: 'PIB',
+      instrument: <label className="column-boldness">'PIB'</label>,
       pkrv: 15.72,
       dtm: 'ewew',
       Coupon: 16,
@@ -555,7 +555,7 @@ const Dealer = () => {
       issuedate: <label className="column-boldness">19-10-2022</label>,
       maturity: <label className="column-boldness">15-01-2023</label>,
       tenor: '2m',
-      instrument: 'PIB',
+      instrument: <label className="column-boldness">'PIB'</label>,
       pkrv: 15.72,
       dtm: 'ewew',
       Coupon: 16,
@@ -568,7 +568,7 @@ const Dealer = () => {
       issuedate: <label className="column-boldness">19-10-2022</label>,
       maturity: <label className="column-boldness">18-01-2023</label>,
       tenor: '1Y',
-      instrument: 'PIB',
+      instrument: <label className="column-boldness">'PIB'</label>,
       pkrv: 15.72,
       dtm: 'ewew',
       Coupon: 16,
@@ -581,7 +581,7 @@ const Dealer = () => {
       issuedate: <label className="column-boldness">19-10-2022</label>,
       maturity: <label className="column-boldness">18-01-2023</label>,
       tenor: '1Y',
-      instrument: 'PIB',
+      instrument: <label className="column-boldness">'PIB'</label>,
       pkrv: 15.72,
       dtm: 'ewew',
       Coupon: 16,
@@ -594,7 +594,7 @@ const Dealer = () => {
       issuedate: <label className="column-boldness">19-10-2022</label>,
       maturity: <label className="column-boldness">18-01-2023</label>,
       tenor: '1Y',
-      instrument: 'PIB',
+      instrument: <label className="column-boldness">'PIB'</label>,
       pkrv: 15.72,
       dtm: 'ewew',
       Coupon: 16,
@@ -1473,7 +1473,7 @@ const Dealer = () => {
         <Button
           text={text}
           onClick={() => setChatBoxOpen(!chatBoxOpen)}
-          className="chatIcon-inBotton-table"
+          className="btn btn-secondary ps-3 pe-3"
         />
       ),
       // ellipsis: true,
@@ -1707,7 +1707,7 @@ const Dealer = () => {
       render: (text) => (
         <Button
           text={text}
-          className="chatIcon-inBotton-table"
+          className="btn btn-secondary ps-3 pe-3"
           onClick={() => setChatBoxOpen(!chatBoxOpen)}
         />
       ),
@@ -1728,7 +1728,7 @@ const Dealer = () => {
       noofdays: '0',
       settlement: '21-03-2023',
       status: <span className="rejected-status">Rejected</span>,
-      chat: <i className={'icon-chat2'}></i>,
+      chat: <i className={'icon-chat2 fs-4'}></i>,
     },
   ]
 
@@ -1748,7 +1748,7 @@ const Dealer = () => {
       noofdays: '0',
       settlement: '21-03-2023',
       status: <span className="pending-status">Pending</span>,
-      chat: <i className={'icon-chat2'}></i>,
+      chat: <i className={'icon-chat2 fs-4'}></i>,
     },
   ]
 
@@ -2392,7 +2392,7 @@ const Dealer = () => {
           </Col>
         </Row>
         <div className="bottom-container-div">
-          <Row className="mb-2 me-5">
+          <Row className="mb-2">
             <Col lg={12} md={12} sm={12}>
               <Row className="mt-3">
                 <Col lg={6} md={6} sm={6} className="txn-outstanding-btns">

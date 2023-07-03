@@ -1,178 +1,190 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Container, Col, Row, InputGroup, Form } from "react-bootstrap";
-import { Button, TextField } from "../../../../components/elements";
-import jsLogo from "../../../../assets/images/js-logo.png";
-import { useDispatch, useSelector } from "react-redux";
-import Select from "react-select";
-import { validationEmail } from "../../../../assets/common/functions/validations";
-import { validateEmailPassword } from "../../../../store/actions/Auth-Actions";
-import { useNavigate } from "react-router-dom";
-import { signUp, allUserRoles } from "../../../../store/actions/Auth-Actions";
-import "./SignUp.css";
+import React, { Fragment, useEffect, useState } from 'react'
+import { Container, Col, Row, InputGroup, Form } from 'react-bootstrap'
+import {
+  Button,
+  TextField,
+  Notification,
+  Loader,
+} from '../../../../components/elements'
+import jsLogo from '../../../../assets/images/js-logo.png'
+import { useDispatch, useSelector } from 'react-redux'
+import Select from 'react-select'
+import { validationEmail } from '../../../../assets/common/functions/validations'
+import { validateEmailPassword } from '../../../../store/actions/Auth-Actions'
+import { useNavigate } from 'react-router-dom'
+import { signUp, allUserRoles } from '../../../../store/actions/Auth-Actions'
+import './SignUp.css'
 const SignUp = (data) => {
-  const { auth } = useSelector((state) => state);
-  console.log(auth, "allUserRoles");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { auth } = useSelector((state) => state)
+  console.log(auth, 'allUserRoles')
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  //Notification States
+  const [open, setOpen] = useState({
+    flag: false,
+    message: '',
+    severity: '',
+  })
 
   // roles states
   // const [roles, setRoles] = useState([]);
-  const [roleValue, setRoleValue] = useState([]);
-  const [userRoles, setUserRoles] = useState([]);
-  const [transactionType, setTransactionType] = useState([]);
-  const [regionType, setRegionType] = useState([]);
-  const [roleType, setRoleType] = useState([]);
+  const [roleValue, setRoleValue] = useState([])
+  const [userRoles, setUserRoles] = useState([])
+  const [transactionType, setTransactionType] = useState([])
+  const [regionType, setRegionType] = useState([])
+  const [roleType, setRoleType] = useState([])
   const [signupCredentials, setSignupCredentials] = useState({
     emailAddress: {
-      content: "",
+      content: '',
       isError: true,
       isSuccess: false,
-      errorMessage: "",
+      errorMessage: '',
       isFail: false,
     },
     password: {
-      content: "",
+      content: '',
       isSuccess: false,
       isError: true,
-      errorMessage: "",
+      errorMessage: '',
       isFail: false,
     },
     completed: false,
-  });
+  })
 
   const [credentialsBio, setCredentialsBio] = useState({
     Email: {
-      value: "",
-      errorMessage: "",
+      value: '',
+      errorMessage: '',
       errorStatus: false,
     },
     UserName: {
-      value: "",
-      errorMessage: "",
+      value: '',
+      errorMessage: '',
       errorStatus: false,
     },
     FirstName: {
-      value: "",
-      errorMessage: "",
+      value: '',
+      errorMessage: '',
       errorStatus: false,
     },
     LastName: {
-      value: "",
-      errorMessage: "",
+      value: '',
+      errorMessage: '',
       errorStatus: false,
     },
     RoleID: 0,
-  });
-  console.log("credentialsBio", credentialsBio);
+  })
+  console.log('credentialsBio', credentialsBio)
   useEffect(() => {
     // on page refresh
-    dispatch(allUserRoles());
-  }, []);
+    dispatch(allUserRoles())
+  }, [])
   //goback btn handler
   const goBackBtn = () => {
-    navigate("/SignUpRequest");
-  };
+    navigate('/SignUpRequest')
+  }
 
   const rolesChangeHandler = async (selectedOption) => {
-    console.log(selectedOption, "selectedOptionselectedOption");
+    console.log(selectedOption, 'selectedOptionselectedOption')
     setCredentialsBio({
       ...credentialsBio,
       RoleID: selectedOption.value,
-    });
-  };
+    })
+  }
 
   // on change handler for signUp credentials
   const signUpOnchangeHandler = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    let emailRegex = /([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@hbl([\.])com/g;
-    let alphabeticRegex = /[^a-zA-Z ]/g;
+    let name = e.target.name
+    let value = e.target.value
+    let emailRegex = /([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@hbl([\.])com/g
+    let alphabeticRegex = /[^a-zA-Z ]/g
 
-    if (name === "Email" && value !== "") {
-      console.log(value, "emailemailemail");
-      if (value !== "") {
+    if (name === 'Email' && value !== '') {
+      console.log(value, 'emailemailemail')
+      if (value !== '') {
         setCredentialsBio({
           ...credentialsBio,
           Email: {
             value: value.trimStart(),
-            errorMessage: "",
+            errorMessage: '',
             errorStatus: false,
           },
-        });
+        })
       }
-    } else if (name === "Email" && value === "") {
+    } else if (name === 'Email' && value === '') {
       setCredentialsBio({
         ...credentialsBio,
-        Email: { value: "", errorMessage: "", errorStatus: false },
-      });
+        Email: { value: '', errorMessage: '', errorStatus: false },
+      })
     }
 
-    if (name === "UserName" && value !== "") {
-      let valueCheck = value.replace(/[^a-zA-Z ]/g, "");
-      if (valueCheck !== "") {
+    if (name === 'UserName' && value !== '') {
+      let valueCheck = value.replace(/[^a-zA-Z ]/g, '')
+      if (valueCheck !== '') {
         setCredentialsBio({
           ...credentialsBio,
           UserName: {
             value: valueCheck.trimStart(),
-            errorMessage: "",
+            errorMessage: '',
             errorStatus: false,
           },
-        });
+        })
       }
-    } else if (name === "UserName" && value === "") {
+    } else if (name === 'UserName' && value === '') {
       setCredentialsBio({
         ...credentialsBio,
-        UserName: { value: "", errorMessage: "", errorStatus: false },
-      });
+        UserName: { value: '', errorMessage: '', errorStatus: false },
+      })
     }
 
-    if (name === "UserName" && value !== "") {
-      let valueCheck = value.replace(/[^a-zA-Z ]/g, "");
-      if (valueCheck !== "") {
+    if (name === 'UserName' && value !== '') {
+      let valueCheck = value.replace(/[^a-zA-Z ]/g, '')
+      if (valueCheck !== '') {
         setCredentialsBio({
           ...credentialsBio,
           UserName: {
             value: valueCheck.trimStart(),
-            errorMessage: "",
+            errorMessage: '',
             errorStatus: false,
           },
-        });
+        })
       }
-    } else if (name === "FirstName" && value === "") {
+    } else if (name === 'FirstName' && value === '') {
       setCredentialsBio({
         ...credentialsBio,
-        FirstName: { value: "", errorMessage: "", errorStatus: false },
-      });
+        FirstName: { value: '', errorMessage: '', errorStatus: false },
+      })
     }
 
-    if (name === "LastName" && value !== "") {
-      let valueCheck = value.replace(/[^a-zA-Z ]/g, "");
-      if (valueCheck !== "") {
+    if (name === 'LastName' && value !== '') {
+      let valueCheck = value.replace(/[^a-zA-Z ]/g, '')
+      if (valueCheck !== '') {
         setCredentialsBio({
           ...credentialsBio,
           LastName: {
             value: valueCheck.trimStart(),
-            errorMessage: "",
+            errorMessage: '',
             errorStatus: false,
           },
-        });
+        })
       }
-    } else if (name === "LastName" && value === "") {
+    } else if (name === 'LastName' && value === '') {
       setCredentialsBio({
         ...credentialsBio,
-        LastName: { value: "", errorMessage: "", errorStatus: false },
-      });
+        LastName: { value: '', errorMessage: '', errorStatus: false },
+      })
     }
-  };
+  }
 
   const CustomStyle = {
     option: (base, state) => ({
       ...base,
-      background: state.isFocused ? "#002650" : "#fff",
-      color: state.isFocused ? "#fff" : "#000",
-      border: "none",
+      background: state.isFocused ? '#002650' : '#fff',
+      color: state.isFocused ? '#fff' : '#000',
+      border: 'none',
     }),
-  };
+  }
 
   const signUpButton = () => {
     let Data = {
@@ -181,53 +193,69 @@ const SignUp = (data) => {
       Email: credentialsBio.Email.value,
       RoleID: credentialsBio.RoleID,
       LoginID: credentialsBio.UserName.value,
-    };
-    dispatch(signUp(Data));
-  };
+      PersonalNumber: '',
+    }
+    dispatch(signUp(Data))
+  }
 
   useEffect(() => {
     if (Object.keys(auth.UserRoleList).length > 0) {
-      let tem = [];
+      let tem = []
       auth.UserRoleList.map((data, index) => {
-        console.log(data, "datadatadatadata");
+        console.log(data, 'datadatadatadata')
         tem.push({
           label: data.roleName,
           value: data.roleID,
-        });
-      });
-      setUserRoles(tem);
+        })
+      })
+      setUserRoles(tem)
     }
-  }, [auth.UserRoleList]);
+  }, [auth.UserRoleList])
 
   useEffect(() => {
     if (Object.keys(auth.validateResponse).length > 0) {
-      let responseData = auth.validateResponse;
-      console.log("datatddatd", responseData);
+      let responseData = auth.validateResponse
+      console.log('datatddatd', responseData)
       setCredentialsBio({
         ...credentialsBio,
         Email: {
           value: responseData.Email,
-          errorMessage: "",
+          errorMessage: '',
           errorStatus: false,
         },
         UserName: {
           value: responseData.UserName,
-          errorMessage: "",
+          errorMessage: '',
           errorStatus: false,
         },
         FirstName: {
           value: responseData.FirstName,
-          errorMessage: "",
+          errorMessage: '',
           errorStatus: false,
         },
         LastName: {
           value: responseData.LastName,
-          errorMessage: "",
+          errorMessage: '',
           errorStatus: false,
         },
-      });
+      })
     }
-  }, [auth.validateResponse]);
+  }, [auth.validateResponse])
+
+  useEffect(() => {
+    if (
+      auth.ResponseMessage !== undefined &&
+      auth.ResponseMessage !== null &&
+      auth.ResponseMessage !== ''
+    ) {
+      setOpen({
+        ...open,
+        flag: true,
+        message: auth.ResponseMessage,
+        severity: auth.Severity,
+      })
+    }
+  }, [auth.ResponseMessage])
 
   return (
     <Fragment>
@@ -367,8 +395,15 @@ const SignUp = (data) => {
           </Row>
         </Container>
       </Col>
+      {auth.Loading ? <Loader /> : null}
+      <Notification
+        setOpen={setOpen}
+        open={open.flag}
+        message={open.message}
+        severity={open.severity}
+      />
     </Fragment>
-  );
-};
+  )
+}
 
-export default SignUp;
+export default SignUp

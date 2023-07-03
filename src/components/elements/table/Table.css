@@ -20,9 +20,9 @@
   margin: 20px 0 20px 0 !important;
 }
 
-.ant-table-thead > tr > th {
+.ant-table-thead>tr>th {
   background-color: #fff !important;
-  border-bottom: 2px solid #e1e1e1 !important;
+  border-bottom: 1px solid #e1e1e1 !important;
 }
 
 .ant-table-thead tr {
@@ -47,6 +47,7 @@
   justify-content: center;
   justify-items: center;
 }
+
 /* change color blue to this */
 .title {
   color: #2097d6;
