@@ -1,31 +1,69 @@
-const _token = localStorage.getItem("token");
-
 const authenticationLogIn = {
-  RequestMethod: "ServiceManager.Login",
-};
+  RequestMethod: 'ServiceManager.Login',
+}
+
+const authenticationRefreshToken = {
+  RequestMethod: 'ServiceManager.RefreshToken',
+}
 
 const authenticationSignUp = {
-  RequestMethod: "ServiceManager.SignUp",
-};
+  RequestMethod: 'ServiceManager.SignUp',
+}
 
 const authenticationUserRoles = {
-  RequestMethod: "ServiceManager.RoleList",
-};
+  RequestMethod: 'ServiceManager.RoleList',
+}
 
 const validateEmailPasswordFromAD = {
-  RequestMethod: "ServiceManager.ValidateEmailAndPasswordFromAD",
-};
+  RequestMethod: 'ServiceManager.ValidateEmailAndPasswordFromAD',
+}
 
 // for dealer ports
 
 const getRatestables = {
-  RequestMethod: "ServiceManager.GetRates",
-};
+  RequestMethod: 'ServiceManager.GetRates',
+}
+
+const getRecentQuoteTbill = {
+  RequestMethod: 'ServiceManager.GetRecentQuoteTbill',
+}
+
+const getRecentQuotePib = {
+  RequestMethod: 'ServiceManager.GetRecentQuotePib',
+}
+
+const getRecentQuotePibFloater = {
+  RequestMethod: 'ServiceManager.GetRecentQuotePibFloater',
+}
+
+const getRecentQuoteSukuk = {
+  RequestMethod: 'ServiceManager.GetRecentQuoteSukuk',
+}
+
+const getAllOutstandingDetails = {
+  RequestMethod: 'ServiceManager.GetAllOutstandingDetails',
+}
+
+const updateVolmeterByDealer = {
+  RequestMethod: 'ServiceManager.UpdateVolmeterByDealer',
+}
+
+const getVolMetersByBankID = {
+  RequestMethod: 'ServiceManager.GetVolMetersByBankID',
+}
 
 export {
+  authenticationRefreshToken,
   authenticationLogIn,
   authenticationSignUp,
   authenticationUserRoles,
   validateEmailPasswordFromAD,
   getRatestables,
-};
+  getRecentQuoteTbill,
+  getRecentQuotePib,
+  getRecentQuotePibFloater,
+  getRecentQuoteSukuk,
+  getAllOutstandingDetails,
+  updateVolmeterByDealer,
+  getVolMetersByBankID,
+}

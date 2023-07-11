@@ -1,42 +1,53 @@
-import React, { Fragment, useEffect, useState } from "react";
-import { Container, Col, Row, InputGroup, Form } from "react-bootstrap";
-import { Button, Loader, TextField } from "../../../../components/elements";
-import jsLogo from "../../../../assets/images/js-logo.png";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { validateEmail } from "../../../../assets/common/functions/validations";
-import { validateEmailPassword } from "../../../../store/actions/Auth-Actions";
-import "./SignupRequest.css";
+import React, { Fragment, useEffect, useState } from 'react'
+import { Container, Col, Row, InputGroup, Form } from 'react-bootstrap'
+import {
+  Button,
+  Loader,
+  TextField,
+  Notification,
+} from '../../../../components/elements'
+import jsLogo from '../../../../assets/images/js-logo.png'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { validateEmail } from '../../../../assets/common/functions/validations'
+import { validateEmailPassword } from '../../../../store/actions/Auth-Actions'
+import './SignupRequest.css'
 const SignUpRequest = () => {
-  const { auth } = useSelector((state) => state);
-  console.log(auth, "signUprequest");
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const { auth } = useSelector((state) => state)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   //For Error text state in signUp request
-  const [errorRequest, setErrorRequest] = useState(false);
+  const [errorRequest, setErrorRequest] = useState(false)
+
+  //Notification States
+  const [open, setOpen] = useState({
+    flag: false,
+    message: '',
+    severity: '',
+  })
 
   // state for request signup fields
   const [requestSignup, setRequestSignup] = useState({
     email: {
-      content: "",
+      content: '',
       isError: false,
-      errorMessage: "",
+      errorMessage: '',
       isSuccess: false,
     },
     password: {
-      content: "",
+      content: '',
       isError: false,
-      errorMessage: "",
+      errorMessage: '',
       isSuccess: false,
     },
-  });
+  })
 
   const handeEmailvlidate = (e) => {
-    let value = e.target.value.trimStart();
-    console.log("emailErrorr", value);
+    let value = e.target.value.trimStart()
+    console.log('emailErrorr', value)
 
-    if (value !== "") {
+    if (value !== '') {
       if (validateEmail(value)) {
         //  need to dispatch email validate
         setRequestSignup({
@@ -44,87 +55,104 @@ const SignUpRequest = () => {
           email: {
             content: value,
             isError: false,
-            errorMessage: "",
+            errorMessage: '',
             isSuccess: false,
           },
-        });
+        })
       } else {
         // setEmailUnique(false);
-        console.log("emailErrorr", requestSignup.email.content);
+        console.log('emailErrorr', requestSignup.email.content)
 
         setRequestSignup({
           ...requestSignup,
           email: {
             content: value,
             isError: true,
-            errorMessage: "",
+            errorMessage: '',
             isSuccess: true,
           },
-        });
+        })
       }
     } else {
       // setEmailUnique(false);
       setRequestSignup({
         ...requestSignup,
         email: {
-          content: "",
+          content: '',
           isError: true,
-          errorMessage: "",
+          errorMessage: '',
           isSuccess: true,
         },
-      });
+      })
     }
-  };
+  }
 
   // state for validation
   const setCredentialHandler = (e) => {
-    let value = e.target.value.trimStart();
-    console.log("emailErrorr", value);
+    let value = e.target.value.trimStart()
+    console.log('emailErrorr', value)
 
-    if (value !== "") {
+    if (value !== '') {
       setRequestSignup({
         ...requestSignup,
         password: {
           content: value,
           isError: false,
-          errorMessage: "",
+          errorMessage: '',
           isSuccess: false,
         },
-      });
+      })
     } else {
       setRequestSignup({
         ...requestSignup,
         email: {
           content: value,
           isError: true,
-          errorMessage: "",
+          errorMessage: '',
           isSuccess: true,
         },
-      });
+      })
     }
-  };
+  }
 
   // Proceed Handler
   const proceedDataHandler = async (e) => {
     if (
-      requestSignup.email.content !== "" &&
-      requestSignup.password.content !== ""
+      requestSignup.email.content !== '' &&
+      requestSignup.password.content !== ''
     ) {
-      setErrorRequest(false);
-      console.log("fields empty", requestSignup);
+      setErrorRequest(false)
+      console.log('fields empty', requestSignup)
 
       await dispatch(
         validateEmailPassword(
           requestSignup.email.content,
           requestSignup.password.content,
-          navigate
-        )
-      );
+          navigate,
+        ),
+      )
     } else {
-      setErrorRequest(true);
-      console.log("fields empty");
+      setErrorRequest(true)
+      console.log('fields empty')
     }
-  };
+  }
+
+  useEffect(() => {
+    if (
+      auth.ResponseMessage !== undefined &&
+      auth.ResponseMessage !== null &&
+      auth.ResponseMessage !== ''
+    ) {
+      setOpen({
+        ...open,
+        flag: true,
+        message: auth.ResponseMessage,
+        severity: auth.Severity,
+      })
+    }
+  }, [auth])
+
+  console.log('Auth Global State', auth)
 
   return (
     <Fragment>
@@ -171,9 +199,9 @@ const SignUpRequest = () => {
                         <Col className="d-flex justify-content-start">
                           <p
                             className={
-                              errorRequest && requestSignup.email.content === ""
-                                ? "errorMessage"
-                                : "errorMessage_hidden"
+                              errorRequest && requestSignup.email.content === ''
+                                ? 'errorMessage'
+                                : 'errorMessage_hidden'
                             }
                           >
                             Email is required
@@ -205,9 +233,9 @@ const SignUpRequest = () => {
                           <p
                             className={
                               errorRequest &&
-                              requestSignup.password.content === ""
-                                ? "errorPasswordMessage"
-                                : "errorPasswordMessage_hidden"
+                              requestSignup.password.content === ''
+                                ? 'errorPasswordMessage'
+                                : 'errorPasswordMessage_hidden'
                             }
                           >
                             Password is required
@@ -228,7 +256,7 @@ const SignUpRequest = () => {
                       <Button
                         text="Go Back"
                         className="goBack-btn"
-                        onClick={() => navigate("/")}
+                        onClick={() => navigate('/')}
                       />
                       <Button
                         text="Proceed"
@@ -245,8 +273,14 @@ const SignUpRequest = () => {
       </Col>
 
       {auth.Loading ? <Loader /> : null}
+      <Notification
+        setOpen={setOpen}
+        open={open.flag}
+        message={open.message}
+        severity={open.severity}
+      />
     </Fragment>
-  );
-};
+  )
+}
 
-export default SignUpRequest;
+export default SignUpRequest

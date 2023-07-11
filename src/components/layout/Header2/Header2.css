@@ -10,6 +10,7 @@
   align-items: center;
   gap: 20px;
 }
+
 .navbar-header {
   display: flex !important;
 }
@@ -106,6 +107,9 @@
   font-weight: 500;
   margin-left: 0px;
   color: #1e2125 !important;
+  position: relative;
+  top: 1px;
+  left: 1px;
 }
 
 /* for modal setting */
@@ -231,10 +235,11 @@
   cursor: pointer;
 }
 
-.site-header .icn-wrapper > i {
+.site-header .icn-wrapper>i {
   font-size: 20px;
   cursor: pointer;
 }
+
 .notification-badge {
   width: 18px;
   height: 18px;
