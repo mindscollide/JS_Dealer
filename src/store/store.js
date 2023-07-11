@@ -1,26 +1,28 @@
-import { applyMiddleware, combineReducers } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { applyMiddleware, combineReducers } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-import { authReducer } from "./reducers";
-import { configureStore } from "@reduxjs/toolkit";
-import * as actions from "./action_types";
+import { authReducer, dealerReducer, volmeterReducer } from './reducers'
+import { configureStore } from '@reduxjs/toolkit'
+import * as actions from './action_types'
 
 const AppReducer = combineReducers({
   auth: authReducer,
-});
+  dealer: dealerReducer,
+  volmeter: volmeterReducer,
+})
 
 const rootReducer = (state, action) => {
   // when a logout action is dispatched it will reset redux state
   if (action.type === actions.SIGN_OUT) {
-    state = undefined;
+    state = undefined
   }
-  return AppReducer(state, action);
-};
+  return AppReducer(state, action)
+}
 
 const store = configureStore(
   { reducer: rootReducer },
-  composeWithDevTools(applyMiddleware(thunk))
-);
+  composeWithDevTools(applyMiddleware(thunk)),
+)
 
-export default store;
+export default store

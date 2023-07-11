@@ -1,4 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
+import { useDispatch, useSelector } from 'react-redux'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Container, Col, Row } from 'react-bootstrap'
 import {
   Table,
@@ -6,6 +11,7 @@ import {
   Modal,
   TextField,
   Loader,
+  SkeletonTable,
 } from '../../components/elements'
 import {
   CaretDownFill,
@@ -14,14 +20,23 @@ import {
   Paperclip,
   ChatDots,
 } from 'react-bootstrap-icons'
-
+import {
+  GetRecentQuoteTbill,
+  GetRecentQuotePib,
+  GetRecentQuotePibFloater,
+  GetRecentQuoteSukuk,
+  GetAllOutstandingDetails,
+} from './../../store/actions/Dealer_Actions'
+import {
+  commaFormatter,
+  timeFormatterUTC,
+} from './../../assets/common/functions/data_formators'
 import ViewModal from '../Pages/viewModal-Dealer/ViewModal'
 import JohnCater from '../../assets/images/profile3.png'
 import DowJones from '../../assets/images/dowjones.png'
 import CNBC from '../../assets/images/cnbc.png'
 import PDF from '../../assets/images/pdf.png'
 import Excel from '../../assets/images/excel.png'
-
 import { Select } from 'antd'
 import Tresmark from '../../assets/images/tresmark.png'
 import './Dealer.css'
@@ -29,14 +44,18 @@ import './Dealer.css'
 const Dealer = () => {
   const [show, setShow] = useState(false)
 
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const { dealer } = useSelector((state) => state)
+
   //for another chat box open
   const [chatBoxOpen, setChatBoxOpen] = useState(false)
 
+  const [currentDateTime, setCurrentDateTime] = useState(moment())
+
   //View dealer modal
   const [viewDealerModal, setViewDealerModal] = useState(false)
-
-  //view modal for client
-  const [viewModal, setViewModal] = useState(false)
 
   //for buy modal for client
   const [buyModal, setBuyModal] = useState(false)
@@ -350,40 +369,19 @@ const Dealer = () => {
   ]
 
   // for Tbills filter data
-  const [filteredData, setFilteredData] = useState(data)
+  const [recentQuoteTbill, setRecentQuoteTbill] = useState([])
 
   // for Pib filter data
-  const [pibFilter, setPibFilter] = useState(Pibdata)
+  const [recentQuotePib, setRecentQuotePib] = useState([])
 
   // for pib floater filter data
-  const [pibFloaterFilter, setIsPibFloaterFilter] = useState(PibFloaterdata)
+  const [recentQuotePibFloater, setRecentQuotePibFloater] = useState([])
 
-  // for tbills filter handler
-  const handleFilter = (tenor) => {
-    // console.log(tenor, "filteredfiltered");
-    // console.log(data, "filteredfiltered");
-    const filtered = data.filter(
-      (item) => item.tenor.toLowerCase() === tenor.toLowerCase(),
-    )
-    // console.log(filtered, "filteredfiltered");
-    setFilteredData(filtered)
-  }
+  // for recent quote sukook
+  const [recentQuoteSukuk, setRecentQuoteSukuk] = useState([])
 
-  // for pib filter handler
-  const pibHandleFilter = (tenor) => {
-    const filtered = Pibdata.filter(
-      (item) => item.tenor.toLowerCase() === tenor.toLowerCase(),
-    )
-    setPibFilter(filtered)
-  }
-
-  // for pib Floater filter handler
-  const pibFloaterHandleFilter = (tenor) => {
-    const filtered = PibFloaterdata.filter(
-      (item) => item.tenor.toLowerCase() === tenor.toLowerCase(),
-    )
-    setIsPibFloaterFilter(filtered)
-  }
+  //all outstanding deals
+  const [allOutstandingDeals, setAllOutstandingDeals] = useState([])
 
   // data for PKRV panel table columns for table
   const PkrvPanelcolumns = [
@@ -634,12 +632,14 @@ const Dealer = () => {
   const columns = [
     {
       title: <label className="table-all-title">Issue Date</label>,
-      dataIndex: 'issuedate',
-      key: 'issuedate',
+      dataIndex: 'issueDate',
+      key: 'issueDate',
       align: 'center',
       width: '125px',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -664,12 +664,14 @@ const Dealer = () => {
     },
     {
       title: <label className="table-all-title">Maturity</label>,
-      dataIndex: 'maturity',
-      key: 'maturity',
+      dataIndex: 'maturityDate',
+      key: 'maturityDate',
       align: 'center',
       width: '110px',
       ellipsis: true,
-      render: (text) => <label className="maturity-column">{text}</label>,
+      render: (text) => (
+        <label className="maturity-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -781,6 +783,7 @@ const Dealer = () => {
       align: 'center',
       width: '120px',
       key: 'inventory',
+      render: (text) => commaFormatter(text),
       // ellipsis: true,
     },
   ]
@@ -789,11 +792,13 @@ const Dealer = () => {
   const Pibcolumns = [
     {
       title: <label className="table-all-title">Issue Date</label>,
-      dataIndex: 'issuedate',
-      key: 'issuedate',
+      dataIndex: 'issueDate',
+      key: 'issueDate',
       width: '100px',
       ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -818,11 +823,13 @@ const Dealer = () => {
     },
     {
       title: <label className="table-all-title">Maturity</label>,
-      dataIndex: 'maturity',
-      key: 'maturity',
+      dataIndex: 'maturityDate',
+      key: 'maturityDate',
       width: '100px',
       ellipsis: true,
-      render: (text) => <label className="maturity-column">{text}</label>,
+      render: (text) => (
+        <label className="maturity-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -931,12 +938,13 @@ const Dealer = () => {
       width: '100px',
       key: 'inventory',
       ellipsis: true,
+      render: (text) => commaFormatter(text),
     },
     {
       title: <label className="table-all-title">Coupon</label>,
-      dataIndex: 'Coupon',
+      dataIndex: 'coupon',
       width: '70px',
-      key: 'Coupon',
+      key: 'coupon',
     },
   ]
 
@@ -944,11 +952,13 @@ const Dealer = () => {
   const PibFloatercolumns = [
     {
       title: <label className="table-all-title">Issue Date</label>,
-      dataIndex: 'issuedate',
-      key: 'issuedate',
+      dataIndex: 'issueDate',
+      key: 'issueDate',
       width: '100px',
       ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -973,11 +983,13 @@ const Dealer = () => {
     },
     {
       title: <label className="table-all-title">Maturity</label>,
-      dataIndex: 'maturity',
-      key: 'maturity',
+      dataIndex: 'maturityDate',
+      key: 'maturityDate',
       width: '100px',
       ellipsis: true,
-      render: (text) => <label className="maturity-column">{text}</label>,
+      render: (text) => (
+        <label className="maturity-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -1082,20 +1094,20 @@ const Dealer = () => {
     },
     {
       title: <label className="table-all-title">Coupon</label>,
-      dataIndex: 'Coupon',
-      key: 'Coupon',
+      dataIndex: 'coupon',
+      key: 'coupon',
       width: '100px',
     },
     {
       title: <label className="table-all-title">Frequency</label>,
-      dataIndex: 'frequency',
-      key: 'frequency',
+      dataIndex: 'couponFrequency',
+      key: 'couponFrequency',
       width: '100px',
     },
     {
       title: <label className="table-all-title">Bid Spread</label>,
-      dataIndex: 'bidspread',
-      key: 'bidspread',
+      dataIndex: 'bidSpread',
+      key: 'bidSpread',
       width: '100px',
     },
   ]
@@ -1104,11 +1116,13 @@ const Dealer = () => {
   const sukukColumn = [
     {
       title: <label className="table-all-title">Issue Date</label>,
-      dataIndex: 'issuedate',
-      key: 'issuedate',
+      dataIndex: 'issueDate',
+      key: 'issueDate',
       width: '130px',
       ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -1133,11 +1147,13 @@ const Dealer = () => {
     },
     {
       title: <label className="table-all-title">Maturity</label>,
-      dataIndex: 'maturity',
-      key: 'maturity',
+      dataIndex: 'maturityDate',
+      key: 'maturityDate',
       width: '110px',
       ellipsis: true,
-      render: (text) => <label className="maturity-column">{text}</label>,
+      render: (text) => (
+        <label className="maturity-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '12-10-2022',
@@ -1242,6 +1258,7 @@ const Dealer = () => {
       width: '100px',
       key: 'inventory',
       ellipsis: true,
+      render: (text) => commaFormatter(text),
     },
   ]
 
@@ -1471,7 +1488,7 @@ const Dealer = () => {
       width: '100px',
       render: (text) => (
         <Button
-          text={text}
+          text={<i className={'icon-chat2 fs-4'}></i>}
           onClick={() => setChatBoxOpen(!chatBoxOpen)}
           className="btn btn-secondary ps-3 pe-3"
         />
@@ -1484,12 +1501,12 @@ const Dealer = () => {
   const outstandingDeals = [
     {
       title: <label className="bottom-table-header">TXN ID</label>,
-      dataIndex: 'txnid',
-      key: 'txnid',
+      dataIndex: '',
+      key: '',
       width: '100px',
       align: 'center',
       ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: '12-10-2022',
@@ -1500,12 +1517,12 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Client</label>,
-      dataIndex: 'client',
-      key: 'client',
+      dataIndex: '',
+      key: '',
       width: '100px',
       align: 'center',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: 'JS-BANK',
@@ -1516,12 +1533,12 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Position</label>,
-      dataIndex: 'position',
-      key: 'position',
+      dataIndex: '',
+      key: '',
       width: '100px',
       align: 'center',
       ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: 'BUY',
@@ -1531,20 +1548,26 @@ const Dealer = () => {
       filterIcon: (filtered) => <CaretDownFill className="filtericon-bottom" />,
     },
     {
-      title: <label className="bottom-table-header">Security Type</label>,
-      dataIndex: 'securitytype',
-      key: 'securitytype',
+      title: (
+        <label className="bottom-table-header securityType">
+          Security Type
+        </label>
+      ),
+      dataIndex: '',
+      key: '',
       width: '100px',
       align: 'center',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: 'TBILLS',
           value: '1',
         },
       ],
-      filterIcon: (filtered) => <CaretDownFill className="filtericon-bottom" />,
+      filterIcon: (filtered) => (
+        <CaretDownFill className="filtericon-bottom securityType" />
+      ),
     },
     {
       title: <label className="bottom-table-header">Amount</label>,
@@ -1553,7 +1576,9 @@ const Dealer = () => {
       align: 'center',
       width: '80px',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{commaFormatter(text)}</label>
+      ),
       filters: [
         {
           text: '1,000,000',
@@ -1580,12 +1605,12 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Tenor</label>,
-      dataIndex: 'tenor',
-      key: 'tenor',
+      dataIndex: '',
+      key: '',
       width: '100px',
       align: 'center',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: '3M',
@@ -1596,12 +1621,12 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Issue Date</label>,
-      dataIndex: 'issuedate',
-      key: 'issuedate',
+      dataIndex: '',
+      key: '',
       align: 'center',
       width: '100px',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: '3M',
@@ -1612,12 +1637,12 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Maturity Date</label>,
-      dataIndex: 'maturitydate',
-      key: 'maturitydate',
+      dataIndex: '',
+      key: '',
       width: '100px',
       align: 'center',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: '3M',
@@ -1628,12 +1653,14 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Trade Date</label>,
-      dataIndex: 'tradedate',
-      key: 'tradedate',
+      dataIndex: 'tradeDate',
+      key: 'tradeDate',
       width: '100px',
       align: 'center',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '21-03-2023',
@@ -1644,12 +1671,12 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">No of Days</label>,
-      dataIndex: 'noofdays',
-      key: 'noofdays',
+      dataIndex: '',
+      key: '',
       align: 'center',
       width: '100px',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      // render: (text) => <label className="issue-date-column">{text}</label>,
       filters: [
         {
           text: '0',
@@ -1660,12 +1687,14 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Settlement Date</label>,
-      dataIndex: 'settlement',
-      key: 'settlement',
+      dataIndex: 'settlementDate',
+      key: 'settlementDate',
       align: 'center',
       width: '110px',
       // ellipsis: true,
-      render: (text) => <label className="issue-date-column">{text}</label>,
+      render: (text) => (
+        <label className="issue-date-column">{timeFormatterUTC(text)}</label>
+      ),
       filters: [
         {
           text: '21-03-2023',
@@ -1676,8 +1705,8 @@ const Dealer = () => {
     },
     {
       title: <label className="bottom-table-header">Status</label>,
-      dataIndex: 'status',
-      key: 'status',
+      dataIndex: 'transactionStatus',
+      key: 'transactionStatus',
       align: 'center',
       width: '100px',
       // ellipsis: true,
@@ -1706,9 +1735,9 @@ const Dealer = () => {
       width: '100px',
       render: (text) => (
         <Button
-          text={text}
-          className="btn btn-secondary ps-3 pe-3"
+          text={<i className={'icon-chat2 fs-4'}></i>}
           onClick={() => setChatBoxOpen(!chatBoxOpen)}
+          className="btn btn-secondary ps-3 pe-3"
         />
       ),
       // ellipsis: true,
@@ -1870,6 +1899,90 @@ const Dealer = () => {
     setIsTxn(false)
   }
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDateTime(moment())
+    }, 60000) // Update every second
+
+    return () => {
+      clearInterval(timer)
+    }
+  }, [])
+
+  const formattedDateTime = currentDateTime.format('DD-MM-YYYY hh:mm A')
+
+  useEffect(() => {
+    dispatch(GetRecentQuoteTbill(navigate))
+    dispatch(GetRecentQuotePib(navigate))
+    dispatch(GetRecentQuotePibFloater(navigate))
+    dispatch(GetRecentQuoteSukuk(navigate))
+    dispatch(GetAllOutstandingDetails(navigate))
+  }, [])
+
+  console.log('dealer reducer', dealer)
+
+  useEffect(() => {
+    if (
+      dealer?.GetRecentQuoteTbillData !== undefined &&
+      dealer?.GetRecentQuoteTbillData !== null &&
+      dealer?.GetRecentQuoteTbillData.length !== 0
+    ) {
+      setRecentQuoteTbill(dealer.GetRecentQuoteTbillData.tbill)
+    } else {
+      setRecentQuoteTbill([])
+    }
+  }, [dealer?.GetRecentQuoteTbillData])
+
+  useEffect(() => {
+    if (
+      dealer?.GetRecentQuotePibData !== undefined &&
+      dealer?.GetRecentQuotePibData !== null &&
+      dealer?.GetRecentQuotePibData.length !== 0
+    ) {
+      setRecentQuotePib(dealer.GetRecentQuotePibData.pib)
+    } else {
+      setRecentQuotePib([])
+    }
+  }, [dealer?.GetRecentQuotePibData])
+
+  useEffect(() => {
+    if (
+      dealer?.GetRecentQuotePibFloaterData !== undefined &&
+      dealer?.GetRecentQuotePibFloaterData !== null &&
+      dealer?.GetRecentQuotePibFloaterData.length !== 0
+    ) {
+      setRecentQuotePibFloater(dealer.GetRecentQuotePibFloaterData.pibFloater)
+    } else {
+      setRecentQuotePibFloater([])
+    }
+  }, [dealer?.GetRecentQuotePibFloaterData])
+
+  useEffect(() => {
+    if (
+      dealer?.GetRecentQuoteSukukData !== undefined &&
+      dealer?.GetRecentQuoteSukukData !== null &&
+      dealer?.GetRecentQuoteSukukData.length !== 0
+    ) {
+      setRecentQuoteSukuk(dealer.GetRecentQuoteSukukData.sukukFixed)
+    } else {
+      setRecentQuoteSukuk([])
+    }
+  }, [dealer?.GetRecentQuoteSukukData])
+
+  useEffect(() => {
+    if (
+      dealer?.GetAllOutstandingDetailsData !== undefined &&
+      dealer?.GetAllOutstandingDetailsData !== null &&
+      dealer?.GetAllOutstandingDetailsData.length !== 0
+    ) {
+      setAllOutstandingDeals(
+        dealer.GetAllOutstandingDetailsData.outstandingTransactionDetails,
+      )
+    } else {
+      setAllOutstandingDeals([])
+    }
+  }, [dealer?.GetAllOutstandingDetailsData])
+
   return (
     <>
       <Container fluid className="page-gutter">
@@ -1891,7 +2004,7 @@ const Dealer = () => {
                         {currentTable === 1 ? (
                           <>
                             <label className="upper-date-time">
-                              05-04-2023 16:53 PM
+                              {formattedDateTime}
                             </label>
                           </>
                         ) : currentTable === 2 ? (
@@ -1965,43 +2078,59 @@ const Dealer = () => {
                       <>
                         {isTbills ? (
                           <>
-                            <Table
-                              // dataSource={filteredData}
-                              column={columns}
-                              fixed="true"
-                              rows={filteredData}
-                              className="inside-table"
-                              pagination={false}
-                              scroll={{ y: 50 }}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                // dataSource={filteredData}
+                                column={columns}
+                                fixed="true"
+                                rows={recentQuoteTbill}
+                                className="inside-table"
+                                pagination={false}
+                                scroll={{ y: 50 }}
+                              />
+                            )}
                           </>
                         ) : isPib ? (
                           <>
-                            <Table
-                              column={Pibcolumns}
-                              rows={pibFilter}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={Pibcolumns}
+                                rows={recentQuotePib}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : isPibFloater ? (
                           <>
-                            <Table
-                              column={PibFloatercolumns}
-                              rows={pibFloaterFilter}
-                              scroll={{ x: 'max-content' }}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={PibFloatercolumns}
+                                rows={recentQuotePibFloater}
+                                scroll={{ x: 'max-content' }}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : isSukuk ? (
                           <>
-                            <Table
-                              column={sukukColumn}
-                              rows={sukukData}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={sukukColumn}
+                                rows={recentQuoteSukuk}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : null}
                       </>
@@ -2149,7 +2278,7 @@ const Dealer = () => {
                         {currentRightTable === 1 ? (
                           <>
                             <label className="upper-date-time">
-                              05-04-2023 16:53 PM
+                              {formattedDateTime}
                             </label>
                           </>
                         ) : currentRightTable === 2 ? (
@@ -2223,40 +2352,56 @@ const Dealer = () => {
                       <>
                         {isRightTbills ? (
                           <>
-                            <Table
-                              column={columns}
-                              rows={filteredData}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={columns}
+                                rows={recentQuoteTbill}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : isRightPib ? (
                           <>
-                            <Table
-                              column={Pibcolumns}
-                              rows={Pibdata}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={Pibcolumns}
+                                rows={recentQuotePib}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : isPibRightFloater ? (
                           <>
-                            <Table
-                              column={PibFloatercolumns}
-                              rows={PibFloaterdata}
-                              scroll={{ x: 'max-content' }}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={PibFloatercolumns}
+                                rows={recentQuotePibFloater}
+                                scroll={{ x: 'max-content' }}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : isRightSukuk ? (
                           <>
-                            <Table
-                              column={columns}
-                              rows={data}
-                              className="inside-table"
-                              pagination={false}
-                            />
+                            {dealer.Loader === true ? (
+                              <SkeletonTable columns={columns} rowCount={4} />
+                            ) : (
+                              <Table
+                                column={sukukColumn}
+                                rows={recentQuoteSukuk}
+                                className="inside-table"
+                                pagination={false}
+                              />
+                            )}
                           </>
                         ) : null}
                       </>
@@ -2460,12 +2605,16 @@ const Dealer = () => {
                     </>
                   ) : isOutstanding ? (
                     <>
-                      <Table
-                        column={outstandingDeals}
-                        rows={outstandingData}
-                        className="bottom-inside-table"
-                        pagination={false}
-                      />
+                      {dealer.Loader === true ? (
+                        <SkeletonTable columns={columns} rowCount={4} />
+                      ) : (
+                        <Table
+                          column={outstandingDeals}
+                          rows={allOutstandingDeals}
+                          className="bottom-inside-table"
+                          pagination={false}
+                        />
+                      )}
                     </>
                   ) : null}
                 </Col>

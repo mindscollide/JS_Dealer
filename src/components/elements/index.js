@@ -12,6 +12,7 @@ import Loader from './loader/Loader'
 import Upload from './upload/Upload'
 import uploadButton from './upload/uploadButton'
 import Notification from './snackbar/Snackbar'
+import SkeletonTable from './SkeletonTable/SkeletonTable'
 
 export {
   Loader,
@@ -28,4 +29,5 @@ export {
   CustomRadio,
   Table,
   Notification,
+  SkeletonTable,
 }

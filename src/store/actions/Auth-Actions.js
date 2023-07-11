@@ -8,6 +8,13 @@ import {
 } from '../../assets/common/apis/Api_config'
 import { authenticationAPI } from '../../assets/common/apis/Api_ends_points'
 
+const setClient = (response) => {
+  return {
+    type: actions.SET_MQTT_CLIENT,
+    response: response,
+  }
+}
+
 const logininit = () => {
   return {
     type: actions.LOG_IN_INIT,
@@ -135,6 +142,10 @@ const logIn = (UserData, navigate) => {
                 localStorage.setItem(
                   'refreshToken',
                   response.data.responseResult.refreshToken,
+                )
+                localStorage.setItem(
+                  'bankID',
+                  response.data.responseResult.bankID,
                 )
                 navigate('/Js/')
                 dispatch(loginsuccess('Successfully Logged In'))
@@ -563,4 +574,11 @@ const validateEmailPassword = (email, password, navigate) => {
   }
 }
 
-export { logIn, signUp, signOut, allUserRoles, validateEmailPassword }
+export {
+  setClient,
+  logIn,
+  signUp,
+  signOut,
+  allUserRoles,
+  validateEmailPassword,
+}

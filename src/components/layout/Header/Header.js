@@ -1,21 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import { Button, Modal, TextField } from '../../../components/elements'
-import { signOut } from '../../../store/actions/Auth-Actions'
-import Navbar from 'react-bootstrap/Navbar'
-import CustomUpload from '../../elements/upload/Upload'
-import deleteButtonCreateMeeting from '../../../assets/images/cancel_meeting_icon.svg'
-import FileIcon from 'react-file-icon'
-import { Checkbox, Switch } from 'antd'
 import {
-  ListUl,
-  Gear,
-  QuestionCircle,
-  BoxArrowRight,
-} from 'react-bootstrap-icons'
+  Button,
+  Modal,
+  TextField,
+  Loader,
+  Notification,
+} from '../../../components/elements'
+import { signOut } from '../../../store/actions/Auth-Actions'
+import {
+  GetVolMetersByBankID,
+  UpdateVolmeterByDealer,
+} from '../../../store/actions/Volmeter_Actions'
+import Navbar from 'react-bootstrap/Navbar'
+import { Checkbox, Switch } from 'antd'
 import './Header.css'
 import JohnCater from '../../../assets/images/profile3.png'
 import JsLogo from '../../../assets/images/js-logo.png'
@@ -23,6 +24,22 @@ import JsLogo from '../../../assets/images/js-logo.png'
 const Header = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const { volmeter } = useSelector((state) => state)
+
+  let currentBankId = localStorage.getItem('bankID')
+
+  const [volmeter01, setVolmeter01] = useState(true)
+  const [volmeter02, setVolmeter02] = useState(false)
+  const [volmeter03, setVolmeter03] = useState(false)
+  const [volmeterOff, setVolmeterOff] = useState(false)
+
+  //Notification States
+  const [open, setOpen] = useState({
+    flag: false,
+    message: '',
+    severity: '',
+  })
 
   // for show modal state
   const [show, setShow] = useState(false)
@@ -36,14 +53,16 @@ const Header = () => {
   // for change password field state
   const [changePassField, setChangePassField] = useState(false)
 
+  // vol meter data
+  const [volmeterData, setVolmeterData] = useState({
+    isVolMeterOnOff: false,
+    volMeters: [],
+  })
+
   //Upload File States
   const [tasksAttachments, setTasksAttachments] = useState({
     TasksAttachments: [],
   })
-
-  const openChangePassField = () => {
-    setChangePassField(true)
-  }
 
   //for open setting show modal
   const openSettingModalHandler = async () => {
@@ -138,6 +157,102 @@ const Header = () => {
     setTasksAttachments({ ['TasksAttachments']: file })
   }
 
+  const volmeter01Handler = () => {
+    setVolmeter01(true)
+    setVolmeter02(false)
+    setVolmeter03(false)
+    setVolmeterOff(false)
+    if (volmeter01 === false) {
+      let Data = {
+        BankID: parseInt(currentBankId),
+        action: 1,
+      }
+      dispatch(UpdateVolmeterByDealer(Data, navigate))
+    }
+  }
+
+  const volmeter02Handler = () => {
+    setVolmeter01(false)
+    setVolmeter02(true)
+    setVolmeter03(false)
+    setVolmeterOff(false)
+    if (volmeter02 === false) {
+      let Data = {
+        BankID: parseInt(currentBankId),
+        action: 2,
+      }
+      dispatch(UpdateVolmeterByDealer(Data, navigate))
+    }
+  }
+
+  const volmeter03Handler = () => {
+    setVolmeter01(false)
+    setVolmeter02(false)
+    setVolmeter03(true)
+    setVolmeterOff(false)
+    if (volmeter03 === false) {
+      let Data = {
+        BankID: parseInt(currentBankId),
+        action: 3,
+      }
+      dispatch(UpdateVolmeterByDealer(Data, navigate))
+    }
+  }
+
+  const volmeterOffHandler = () => {
+    setVolmeter01(false)
+    setVolmeter02(false)
+    setVolmeter03(false)
+    setVolmeterOff(true)
+    if (volmeterOff === false) {
+      let Data = {
+        BankID: parseInt(currentBankId),
+        action: 0,
+      }
+      dispatch(UpdateVolmeterByDealer(Data, navigate))
+    }
+  }
+
+  useEffect(() => {
+    let Data = {
+      BankId: parseInt(currentBankId),
+    }
+    dispatch(GetVolMetersByBankID(Data, navigate))
+  }, [])
+
+  useEffect(() => {
+    if (
+      volmeter.GetVolMetersByBankIDData !== undefined &&
+      volmeter.GetVolMetersByBankIDData !== null &&
+      volmeter.GetVolMetersByBankIDData.length !== 0
+    ) {
+      setVolmeterData({
+        ...volmeterData,
+        isVolMeterOnOff: volmeter.GetVolMetersByBankIDData.isVolMeterOnOff,
+        volMeters: volmeter.GetVolMetersByBankIDData.volMeters,
+      })
+    }
+  }, [volmeter?.GetVolMetersByBankIDData])
+
+  console.log('volmeter data', volmeterData)
+  console.log('volmeter reducer', volmeter)
+
+  useEffect(() => {
+    if (
+      (volmeter.ResponseMessage !== undefined &&
+        volmeter.ResponseMessage !== null &&
+        volmeter.ResponseMessage !== '') ||
+      volmeter.ResponseMessage !== 'Record Found'
+    ) {
+      setOpen({
+        ...open,
+        flag: true,
+        message: volmeter.ResponseMessage,
+        severity: volmeter.Severity,
+      })
+    }
+  }, [volmeter.ResponseMessage])
+
   return (
     <>
       <Container fluid className="container-header">
@@ -163,6 +278,73 @@ const Header = () => {
                     onClick={gotoCalculator}
                   />
                 </Nav.Link>
+                <div className="vol-meter-container me-2">
+                  <div className="d-flex align-items-center vol-meter-inner-wrapper">
+                    <div className="heading-vol-meter fs-5 fw-semibold">
+                      Vol Meter
+                    </div>
+                    <Button
+                      text="01"
+                      className={
+                        volmeterData.volMeters.length > 0
+                          ? (volmeterData.volMeters[0].isVolMeterActive ===
+                              true &&
+                              volmeterData.volMeters[1].isVolMeterActive ===
+                                false &&
+                              volmeterData.volMeters[2].isVolMeterActive ===
+                                false &&
+                              volmeterData.isVolMeterOnOff) === true
+                            ? 'btn vol-meter ms-1 active-vol'
+                            : 'btn vol-meter btn-default ms-1'
+                          : null
+                      }
+                      onClick={volmeter01Handler}
+                    />
+                    <Button
+                      text="02"
+                      className={
+                        volmeterData.volMeters.length > 0
+                          ? (volmeterData.volMeters[0].isVolMeterActive ===
+                              false &&
+                              volmeterData.volMeters[1].isVolMeterActive ===
+                                true &&
+                              volmeterData.volMeters[2].isVolMeterActive ===
+                                false &&
+                              volmeterData.isVolMeterOnOff) === true
+                            ? 'btn vol-meter ms-1 active-vol'
+                            : 'btn vol-meter btn-default ms-1'
+                          : null
+                      }
+                      onClick={volmeter02Handler}
+                    />
+                    <Button
+                      text="03"
+                      className={
+                        volmeterData.volMeters.length > 0
+                          ? volmeterData.volMeters[0].isVolMeterActive ===
+                              false &&
+                            volmeterData.volMeters[1].isVolMeterActive ===
+                              false &&
+                            volmeterData.volMeters[2].isVolMeterActive ===
+                              true &&
+                            volmeterData.isVolMeterOnOff === true
+                            ? 'btn vol-meter ms-1 active-vol'
+                            : 'btn vol-meter btn-default ms-1'
+                          : null
+                      }
+                      onClick={volmeter03Handler}
+                    />
+                    <Button
+                      text="off"
+                      className={
+                        volmeterData.isVolMeterOnOff === false
+                          ? 'btn vol-meter ms-1 active-vol'
+                          : 'btn vol-meter btn-default ms-1'
+                      }
+                      onClick={volmeterOffHandler}
+                    />
+                  </div>
+                </div>
               </Nav>
             </Navbar.Collapse>
 
@@ -449,6 +631,13 @@ const Header = () => {
           </>
         }
       />
+      <Notification
+        setOpen={setOpen}
+        open={open.flag}
+        message={open.message}
+        severity={open.severity}
+      />
+      {volmeter.Loader ? <Loader /> : null}
     </>
   )
 }

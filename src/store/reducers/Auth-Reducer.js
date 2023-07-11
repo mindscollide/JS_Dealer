@@ -13,10 +13,18 @@ const initialState = {
   Token: '',
   Refresh: '',
   Severity: '',
+  client: null,
 }
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actions.SET_MQTT_CLIENT: {
+      return {
+        ...state,
+        client: action.response,
+      }
+    }
+
     case actions.LOG_IN_INIT:
       return { ...state, Loading: true }
 

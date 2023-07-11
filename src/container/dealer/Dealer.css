@@ -75,9 +75,12 @@
 .table-all-title {
   color: #002650;
   font-weight: 700;
-  font-size: 11px;
-  vertical-align: middle;
+  font-size: 13px;
   font-family: 'Montserrat';
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
 }
 
 .bid-text-button {
@@ -379,7 +382,7 @@
 }
 
 .header-Video-Modal-close-btn {
-  font-size: 11px;
+  font-size: 13px;
   border: none !important;
   position: absolute;
   right: 0px;
@@ -577,7 +580,7 @@
 }
 
 .column-boldness {
-  font-size: 11px !important;
+  font-size: 13px !important;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif !important;
 }
@@ -708,13 +711,13 @@
 }
 
 .rejected-status {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: #cf5b5b !important;
 }
 
 .pending-status {
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 600;
   color: #888b8e !important;
 }
@@ -1139,8 +1142,8 @@ ul.nav.nav-tabs.nav-justified.mt-2.replace-fixed-header-on-tab-change.control-da
 
 span.ant-dropdown-trigger.ant-table-filter-trigger {
   position: absolute;
-  top: 14px;
-  right: 20px;
+  top: 10px;
+  right: 12px;
   z-index: 99999999;
   width: 16px;
 }
@@ -1148,7 +1151,7 @@ span.ant-dropdown-trigger.ant-table-filter-trigger {
 td.ant-table-cell {
   padding: 5px !important;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 11px;
+  font-size: 13px;
   text-align: center !important;
 }
 
@@ -1164,7 +1167,7 @@ button.bid-text-button.btn.btn-primary {
   border-radius: 2px !important;
   width: 50px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 button.offer-text-button.btn.btn-primary {
@@ -1179,7 +1182,7 @@ button.offer-text-button.btn.btn-primary {
   border-radius: 2px !important;
   width: 50px;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 13px;
 }
 
 span.ant-table-column-title {
@@ -1197,6 +1200,14 @@ th.ant-table-cell {
 
 .features-table th.ant-table-cell {
   padding: 10px 5px !important;
-  font-size: 11px !important;
+  font-size: 13px !important;
   font-family: 'Montserrat', sans-serif !important;
+}
+
+.ant-table-wrapper.bottom-inside-table span.ant-dropdown-trigger.ant-table-filter-trigger {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  z-index: 99999999;
+  width: 16px;
 }
