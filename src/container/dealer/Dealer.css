@@ -35,13 +35,16 @@
   overflow: auto;
 }
 
-.inside-table .ant-table-thead>tr>th {
+.inside-table .ant-table-thead > tr > th {
   position: sticky !important;
   top: 0;
   z-index: 1;
 }
 
-:where(.css-dev-only-do-not-override-1e3x2xa).ant-table-wrapper .ant-table-tbody>tr>td {
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-table-wrapper
+  .ant-table-tbody
+  > tr
+  > td {
   padding: 5px !important;
   text-align: center;
 }
@@ -76,7 +79,7 @@
   color: #002650;
   font-weight: 700;
   font-size: 13px;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -452,7 +455,8 @@
   overflow-anchor: none;
 }
 
-:where(.css-dev-only-do-not-override-1e3x2xa).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+:where(.css-dev-only-do-not-override-1e3x2xa).ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   color: rgb(255 255 255 / 88%) !important;
   border-radius: 0px !important;
   font-weight: 600;
@@ -483,17 +487,23 @@
   color: #002650 !important;
 } */
 
-:where(.css-dev-only-do-not-override-1wazalj).ant-select-single.ant-select-open .ant-select-selection-item {
+:where(.css-dev-only-do-not-override-1wazalj).ant-select-single.ant-select-open
+  .ant-select-selection-item {
   color: #002650 !important;
-
 }
 
-:where(.css-dev-only-do-not-override-1wazalj).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover .ant-select-selector {
+:where(.css-dev-only-do-not-override-1wazalj).ant-select:not(
+    .ant-select-disabled
+  ):not(.ant-select-customize-input):not(.ant-pagination-size-changer):hover
+  .ant-select-selector {
   outline: 0 !important;
   box-shadow: none !important;
 }
 
-.ant-select-focused:where(.css-dev-only-do-not-override-1wazalj).ant-select:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+.ant-select-focused:where(.css-dev-only-do-not-override-1wazalj).ant-select:not(
+    .ant-select-disabled
+  ):not(.ant-select-customize-input):not(.ant-pagination-size-changer)
+  .ant-select-selector {
   box-shadow: none !important;
 }
 
@@ -582,7 +592,7 @@
 .column-boldness {
   font-size: 13px !important;
   font-weight: 700;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
 .ant-select-selection-item {
@@ -908,7 +918,8 @@
   min-width: 185px !important;
 }
 
-:where(.css-dev-only-do-not-override-1wazalj).ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+:where(.css-dev-only-do-not-override-1wazalj).ant-select-dropdown
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
   background-color: #ddd;
   color: #212529;
   border-bottom: 1px solid #81828f !important;
@@ -941,7 +952,7 @@ span.ant-select-selection-item {
 }
 
 span.ant-select-selection-item {
-  margin-top: -1px !important
+  margin-top: -1px !important;
 }
 
 .color-light {
@@ -1018,7 +1029,8 @@ span.ant-select-selection-item {
   --bs-nav-tabs-link-active-color: #495057 !important;
   --bs-nav-tabs-link-active-bg: #fff !important;
   --bs-nav-tabs-link-active-border-color: #dee2e6 #dee2e6 #fff !important;
-  border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color) !important;
+  border-bottom: var(--bs-nav-tabs-border-width) solid
+    var(--bs-nav-tabs-border-color) !important;
 }
 
 .nav {
@@ -1066,7 +1078,7 @@ span.ant-select-selection-item {
 }
 
 ul.nav.nav-tabs.nav-justified.mt-2.replace-fixed-header-on-tab-change.control-data-header {
-  border-bottom: none !important
+  border-bottom: none !important;
 }
 
 .nav-tabs .nav-item.show .nav-link-secondary,
@@ -1150,7 +1162,7 @@ span.ant-dropdown-trigger.ant-table-filter-trigger {
 
 td.ant-table-cell {
   padding: 5px !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   font-size: 13px;
   text-align: center !important;
 }
@@ -1201,13 +1213,14 @@ th.ant-table-cell {
 .features-table th.ant-table-cell {
   padding: 10px 5px !important;
   font-size: 13px !important;
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
 }
 
-.ant-table-wrapper.bottom-inside-table span.ant-dropdown-trigger.ant-table-filter-trigger {
+.ant-table-wrapper.bottom-inside-table
+  span.ant-dropdown-trigger.ant-table-filter-trigger {
   position: absolute;
   top: 16px;
   right: 18px;
-  z-index: 99999999;
+  z-index: 1;
   width: 16px;
 }
