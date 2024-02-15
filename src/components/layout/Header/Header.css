@@ -126,6 +126,7 @@
   margin-top: -2%;
   /* position: relative !important; */
   height: 86vh !important;
+  z-index: 999 !important;
   width: 48vw !important;
   background-color: #ffffff;
   border: none !important;

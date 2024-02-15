@@ -1,129 +1,129 @@
-import { useState, useEffect } from 'react'
-import { Container, Row, Col, Nav, Dropdown } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { Container, Row, Col, Nav, Dropdown } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Modal,
   TextField,
   Loader,
   Notification,
-} from '../../../components/elements'
-import { signOut } from '../../../store/actions/Auth-Actions'
+} from "../../../components/elements";
+import { signOut } from "../../../store/actions/Auth-Actions";
 import {
   GetVolMetersByBankID,
   UpdateVolmeterByDealer,
-} from '../../../store/actions/Volmeter_Actions'
-import Navbar from 'react-bootstrap/Navbar'
-import { Checkbox, Switch } from 'antd'
-import './Header.css'
-import JohnCater from '../../../assets/images/profile3.png'
-import JsLogo from '../../../assets/images/js-logo.png'
+} from "../../../store/actions/Volmeter_Actions";
+import Navbar from "react-bootstrap/Navbar";
+import { Checkbox, Switch } from "antd";
+import "./Header.css";
+import JohnCater from "../../../assets/images/profile3.png";
+import JsLogo from "../../../assets/images/js-logo.png";
 
 const Header = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { volmeter } = useSelector((state) => state)
+  const { volmeter } = useSelector((state) => state);
 
-  let currentBankId = localStorage.getItem('bankID')
+  let currentBankId = localStorage.getItem("bankID");
 
-  const [volmeter01, setVolmeter01] = useState(true)
-  const [volmeter02, setVolmeter02] = useState(false)
-  const [volmeter03, setVolmeter03] = useState(false)
-  const [volmeterOff, setVolmeterOff] = useState(false)
+  const [volmeter01, setVolmeter01] = useState(true);
+  const [volmeter02, setVolmeter02] = useState(false);
+  const [volmeter03, setVolmeter03] = useState(false);
+  const [volmeterOff, setVolmeterOff] = useState(false);
 
   //Notification States
   const [open, setOpen] = useState({
     flag: false,
-    message: '',
-    severity: '',
-  })
+    message: "",
+    severity: "",
+  });
 
   // for show modal state
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   //for user setting
-  const [userSetting, setUserSetting] = useState(true)
+  const [userSetting, setUserSetting] = useState(true);
 
   //for user passcode
-  const [userPasscode, setUserPasscode] = useState(false)
+  const [userPasscode, setUserPasscode] = useState(false);
 
   // for change password field state
-  const [changePassField, setChangePassField] = useState(false)
+  const [changePassField, setChangePassField] = useState(false);
 
   // vol meter data
   const [volmeterData, setVolmeterData] = useState({
     isVolMeterOnOff: false,
     volMeters: [],
-  })
+  });
 
   //Upload File States
   const [tasksAttachments, setTasksAttachments] = useState({
     TasksAttachments: [],
-  })
+  });
 
   //for open setting show modal
   const openSettingModalHandler = async () => {
-    setShow(true)
-  }
+    setShow(true);
+  };
 
   // for open usersetting
   const openUserSetting = async () => {
-    setUserSetting(true)
-    setUserPasscode(false)
-  }
+    setUserSetting(true);
+    setUserPasscode(false);
+  };
 
   //for open passcode
   const openPasscodeSetting = async () => {
-    setUserPasscode(true)
-    setUserSetting(false)
-  }
+    setUserPasscode(true);
+    setUserSetting(false);
+  };
 
   // for open calculator
   const gotoCalculator = () => {
-    navigate('/Js/calculator/')
-  }
+    navigate("/Js/calculator/");
+  };
 
   //Upload File Handler
   const uploadFilesToDo = (data) => {
-    const uploadFilePath = data.target.value
-    const uploadedFile = data.target.files[0]
-    var ext = uploadedFile.name.split('.').pop()
-    console.log('uploadedFile', uploadedFile.name, ext)
-    let file = tasksAttachments.TasksAttachments
-    console.log('uploadedFile', file)
+    const uploadFilePath = data.target.value;
+    const uploadedFile = data.target.files[0];
+    var ext = uploadedFile.name.split(".").pop();
+    console.log("uploadedFile", uploadedFile.name, ext);
+    let file = tasksAttachments.TasksAttachments;
+    console.log("uploadedFile", file);
     if (
-      ext === 'doc' ||
-      ext === 'docx' ||
-      ext === 'xls' ||
-      ext === 'xlsx' ||
-      ext === 'pdf' ||
-      ext === 'png' ||
-      ext === 'txt' ||
-      ext === 'jpg' ||
-      ext === 'jpeg' ||
-      ext === 'gif'
+      ext === "doc" ||
+      ext === "docx" ||
+      ext === "xls" ||
+      ext === "xlsx" ||
+      ext === "pdf" ||
+      ext === "png" ||
+      ext === "txt" ||
+      ext === "jpg" ||
+      ext === "jpeg" ||
+      ext === "gif"
     ) {
-      let data
-      let sizezero
-      let size
+      let data;
+      let sizezero;
+      let size;
       if (file.length > 0) {
         file.map((filename, index) => {
-          console.log('uploadedFile', filename)
+          console.log("uploadedFile", filename);
           if (filename.DisplayAttachmentName === uploadedFile.name) {
             console.log(
-              'uploadedFile',
-              filename.DisplayAttachmentName === uploadedFile.name,
-            )
-            data = false
+              "uploadedFile",
+              filename.DisplayAttachmentName === uploadedFile.name
+            );
+            data = false;
           }
-        })
+        });
         if (uploadedFile.size > 10000000) {
-          size = false
+          size = false;
         } else if (uploadedFile.size === 0) {
-          sizezero = false
+          sizezero = false;
         }
         if (data === false) {
         } else if (size === false) {
@@ -132,12 +132,12 @@ const Header = () => {
           // dispatch(FileUploadToDo(uploadedFile));
         }
       } else {
-        let size
-        let sizezero
+        let size;
+        let sizezero;
         if (uploadedFile.size > 10000000) {
-          size = false
+          size = false;
         } else if (uploadedFile.size === 0) {
-          sizezero = false
+          sizezero = false;
         }
         if (size === false) {
         } else if (sizezero === false) {
@@ -151,74 +151,74 @@ const Header = () => {
       PK_TAID: 0,
       DisplayAttachmentName: uploadedFile.name,
       OriginalAttachmentName: uploadFilePath,
-      CreationDateTime: '',
+      CreationDateTime: "",
       FK_TID: 0,
-    })
-    setTasksAttachments({ ['TasksAttachments']: file })
-  }
+    });
+    setTasksAttachments({ ["TasksAttachments"]: file });
+  };
 
   const volmeter01Handler = () => {
-    setVolmeter01(true)
-    setVolmeter02(false)
-    setVolmeter03(false)
-    setVolmeterOff(false)
+    setVolmeter01(true);
+    setVolmeter02(false);
+    setVolmeter03(false);
+    setVolmeterOff(false);
     if (volmeter01 === false) {
       let Data = {
         BankID: parseInt(currentBankId),
         action: 1,
-      }
-      dispatch(UpdateVolmeterByDealer(Data, navigate))
+      };
+      dispatch(UpdateVolmeterByDealer(Data, navigate));
     }
-  }
+  };
 
   const volmeter02Handler = () => {
-    setVolmeter01(false)
-    setVolmeter02(true)
-    setVolmeter03(false)
-    setVolmeterOff(false)
+    setVolmeter01(false);
+    setVolmeter02(true);
+    setVolmeter03(false);
+    setVolmeterOff(false);
     if (volmeter02 === false) {
       let Data = {
         BankID: parseInt(currentBankId),
         action: 2,
-      }
-      dispatch(UpdateVolmeterByDealer(Data, navigate))
+      };
+      dispatch(UpdateVolmeterByDealer(Data, navigate));
     }
-  }
+  };
 
   const volmeter03Handler = () => {
-    setVolmeter01(false)
-    setVolmeter02(false)
-    setVolmeter03(true)
-    setVolmeterOff(false)
+    setVolmeter01(false);
+    setVolmeter02(false);
+    setVolmeter03(true);
+    setVolmeterOff(false);
     if (volmeter03 === false) {
       let Data = {
         BankID: parseInt(currentBankId),
         action: 3,
-      }
-      dispatch(UpdateVolmeterByDealer(Data, navigate))
+      };
+      dispatch(UpdateVolmeterByDealer(Data, navigate));
     }
-  }
+  };
 
   const volmeterOffHandler = () => {
-    setVolmeter01(false)
-    setVolmeter02(false)
-    setVolmeter03(false)
-    setVolmeterOff(true)
+    setVolmeter01(false);
+    setVolmeter02(false);
+    setVolmeter03(false);
+    setVolmeterOff(true);
     if (volmeterOff === false) {
       let Data = {
         BankID: parseInt(currentBankId),
         action: 0,
-      }
-      dispatch(UpdateVolmeterByDealer(Data, navigate))
+      };
+      dispatch(UpdateVolmeterByDealer(Data, navigate));
     }
-  }
+  };
 
   useEffect(() => {
     let Data = {
       BankId: parseInt(currentBankId),
-    }
-    dispatch(GetVolMetersByBankID(Data, navigate))
-  }, [])
+    };
+    dispatch(GetVolMetersByBankID(Data, navigate));
+  }, []);
 
   useEffect(() => {
     if (
@@ -230,28 +230,28 @@ const Header = () => {
         ...volmeterData,
         isVolMeterOnOff: volmeter.GetVolMetersByBankIDData.isVolMeterOnOff,
         volMeters: volmeter.GetVolMetersByBankIDData.volMeters,
-      })
+      });
     }
-  }, [volmeter?.GetVolMetersByBankIDData])
+  }, [volmeter?.GetVolMetersByBankIDData]);
 
-  console.log('volmeter data', volmeterData)
-  console.log('volmeter reducer', volmeter)
+  console.log("volmeter data", volmeterData);
+  console.log("volmeter reducer", volmeter);
 
   useEffect(() => {
     if (
       (volmeter.ResponseMessage !== undefined &&
         volmeter.ResponseMessage !== null &&
-        volmeter.ResponseMessage !== '') ||
-      volmeter.ResponseMessage !== 'Record Found'
+        volmeter.ResponseMessage !== "") ||
+      volmeter.ResponseMessage !== "Record Found"
     ) {
       setOpen({
         ...open,
         flag: true,
         message: volmeter.ResponseMessage,
         severity: volmeter.Severity,
-      })
+      });
     }
-  }, [volmeter.ResponseMessage])
+  }, [volmeter.ResponseMessage]);
 
   return (
     <>
@@ -265,7 +265,7 @@ const Header = () => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="nav-rfq-calculator ms-auto">
                 <Nav.Link>
-                  {' '}
+                  {" "}
                   <Button
                     text="Upload Rates"
                     className="file btn btn-primary me-2 fw-bold ps-4 pe-4"
@@ -294,8 +294,8 @@ const Header = () => {
                               volmeterData.volMeters[2].isVolMeterActive ===
                                 false &&
                               volmeterData.isVolMeterOnOff) === true
-                            ? 'btn vol-meter ms-1 active-vol'
-                            : 'btn vol-meter btn-default ms-1'
+                            ? "btn vol-meter ms-1 active-vol"
+                            : "btn vol-meter btn-default ms-1"
                           : null
                       }
                       onClick={volmeter01Handler}
@@ -311,8 +311,8 @@ const Header = () => {
                               volmeterData.volMeters[2].isVolMeterActive ===
                                 false &&
                               volmeterData.isVolMeterOnOff) === true
-                            ? 'btn vol-meter ms-1 active-vol'
-                            : 'btn vol-meter btn-default ms-1'
+                            ? "btn vol-meter ms-1 active-vol"
+                            : "btn vol-meter btn-default ms-1"
                           : null
                       }
                       onClick={volmeter02Handler}
@@ -328,8 +328,8 @@ const Header = () => {
                             volmeterData.volMeters[2].isVolMeterActive ===
                               true &&
                             volmeterData.isVolMeterOnOff === true
-                            ? 'btn vol-meter ms-1 active-vol'
-                            : 'btn vol-meter btn-default ms-1'
+                            ? "btn vol-meter ms-1 active-vol"
+                            : "btn vol-meter btn-default ms-1"
                           : null
                       }
                       onClick={volmeter03Handler}
@@ -338,8 +338,8 @@ const Header = () => {
                       text="off"
                       className={
                         volmeterData.isVolMeterOnOff === false
-                          ? 'btn vol-meter ms-1 active-vol'
-                          : 'btn vol-meter btn-default ms-1'
+                          ? "btn vol-meter ms-1 active-vol"
+                          : "btn vol-meter btn-default ms-1"
                       }
                       onClick={volmeterOffHandler}
                     />
@@ -395,14 +395,14 @@ const Header = () => {
         onHide={() => setShow(false)}
         ModalBody={
           <>
-            <Row>
+            {/* <Row>
               <Col lg={12} md={12} sm={12} className="top-button-setting-modal">
                 <Button
                   text="User Settings"
                   className={
                     userSetting
-                      ? 'modal-setting-btn-Active'
-                      : 'modal-setting-btn-notActive'
+                      ? "modal-setting-btn-Active"
+                      : "modal-setting-btn-notActive"
                   }
                   onClick={openUserSetting}
                 />
@@ -410,117 +410,80 @@ const Header = () => {
                   text="Passcode Settings"
                   className={
                     userPasscode
-                      ? 'modal-setting-passcode-active'
-                      : 'modal-setting-passcode-notActive'
+                      ? "modal-setting-passcode-active"
+                      : "modal-setting-passcode-notActive"
                   }
                   onClick={openPasscodeSetting}
                 />
               </Col>
-            </Row>
+            </Row> */}
 
             {userSetting ? (
               <>
-                <Row>
+                <Row className="border-line-passcode ">
                   <Col
-                    lg={12}
-                    md={12}
+                    lg={6}
+                    md={6}
                     sm={12}
-                    className="modal-setting-checkbox-col mt-5"
+                    className="d-flex justify-content-start mt-5"
                   >
-                    <Checkbox />
-                    <p className="modal-setting-para fw-5">
-                      Chat Panel Overlap
+                    <p className="modal-setting-para">
+                      Two Factor Authentication
                     </p>
+                  </Col>
+                  <Col
+                    lg={6}
+                    md={6}
+                    sm={12}
+                    className="d-flex justify-content-end mt-5"
+                  >
+                    <Switch />
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="border-line-passcode ">
                   <Col
-                    lg={12}
-                    md={12}
+                    lg={6}
+                    md={6}
                     sm={12}
-                    className="modal-setting-checkbox-col mt-2"
+                    className="d-flex justify-content-start mt-4"
                   >
-                    <Checkbox />
-                    <p className="modal-setting-para">
-                      Sound on every personal message
-                    </p>
+                    <p className="modal-setting-para">Sound on every message</p>
+                  </Col>
+                  <Col
+                    lg={6}
+                    md={6}
+                    sm={12}
+                    className="d-flex justify-content-end mt-4"
+                  >
+                    <Switch />
                   </Col>
                 </Row>
 
-                <Row>
+                <Row className="border-line-passcode ">
                   <Col
-                    lg={12}
-                    md={12}
+                    lg={6}
+                    md={6}
                     sm={12}
-                    className="modal-setting-checkbox-col mt-2"
+                    className="d-flex justify-content-start mt-4"
                   >
-                    <Checkbox />
                     <p className="modal-setting-para">
-                      Sound on every personal message
+                      Email on new message while offline
                     </p>
                   </Col>
-                </Row>
-
-                <Row>
                   <Col
-                    lg={12}
-                    md={12}
+                    lg={6}
+                    md={6}
                     sm={12}
-                    className="modal-setting-checkbox-col mt-2"
+                    className="d-flex justify-content-end mt-4"
                   >
-                    <Checkbox />
-                    <p className="modal-setting-para">
-                      Sound on every group message
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col
-                    lg={12}
-                    md={12}
-                    sm={12}
-                    className="modal-setting-checkbox-col mt-2"
-                  >
-                    <Checkbox />
-                    <p className="modal-setting-para">
-                      Sound on chat room message
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col
-                    lg={12}
-                    md={12}
-                    sm={12}
-                    className="modal-setting-checkbox-col mt-2"
-                  >
-                    <Checkbox />
-                    <p className="modal-setting-para">
-                      Email on new personal message while offline
-                    </p>
-                  </Col>
-                </Row>
-
-                <Row>
-                  <Col
-                    lg={12}
-                    md={12}
-                    sm={12}
-                    className="modal-setting-checkbox-col mt-2"
-                  >
-                    <Checkbox />
-                    <p className="modal-setting-para">
-                      Email on new group message while offline
-                    </p>
+                    <Switch />
                   </Col>
                 </Row>
               </>
             ) : userPasscode ? (
               <>
-                <Row className="border-line-passcode">
+                {/* <Row className="border-line-passcode">
                   <Col
                     lg={6}
                     md={6}
@@ -594,7 +557,7 @@ const Header = () => {
                       </>
                     ) : null}
                   </Col>
-                </Row>
+                </Row> */}
               </>
             ) : null}
           </>
@@ -639,7 +602,7 @@ const Header = () => {
       />
       {volmeter.Loader ? <Loader /> : null}
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
